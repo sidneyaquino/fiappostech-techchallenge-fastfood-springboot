@@ -1,0 +1,55 @@
+version: "3.8"
+services:
+  # ====================================================================================================================
+  # APP
+  # ====================================================================================================================
+  # web:
+  #   image: bellsoft/liberica-runtime-container:jdk-17-slim-musl
+  #   container_name: app
+  #   working_dir: /app
+  #   volumes:
+  #     - $PWD:/app
+  #     - ${HOME}/.m2/repository:/root/.m2/repository
+  #   ports:
+  #     - 5005:5005
+  #     - $PORT:$PORT
+  #   environment:
+  #     PORT: ${PORT}
+  #     # APP_PROFILE:dev
+  #   command:
+  #     [
+  #       /bin/sh,
+  #       -c,
+  #       "./mvnw spring-boot:run -Dspring-boot.run.arguments='--server.port='$PORT"
+  #     ]
+  #   depends_on:
+  #     - sql
+  #   networks:
+  #     - network
+  #   restart: always
+
+  # ====================================================================================================================
+  # POSTGRES SERVER
+  # ====================================================================================================================
+  sql:
+    image: postgres:15-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_DB: dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      TZ: GMT
+    ports:
+      - 5432:5432
+    volumes:
+      - ./.data/postgresql/data:/var/lib/postgresql/data
+    networks:
+      - network
+    restart: always
+
+# ======================================================================================================================
+# NET
+# ======================================================================================================================
+networks:
+  network:
+    driver: bridge
