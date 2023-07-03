@@ -3,21 +3,21 @@ package com.fiappostech.fastfood.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.fiappostech.fastfood.adapters.outbound.CustomerCreateServiceAdapter;
-import com.fiappostech.fastfood.adapters.outbound.CustomerIdentifyServiceAdapter;
-import com.fiappostech.fastfood.application.core.usecase.CustomerCreateUseCase;
-import com.fiappostech.fastfood.application.core.usecase.CustomerIdentifyUseCase;
+import com.fiappostech.fastfood.adapters.outbound.CustomerInsertServiceAdapter;
+import com.fiappostech.fastfood.adapters.outbound.CustomerSelectServiceAdapter;
+import com.fiappostech.fastfood.application.core.CustomerIdentifyUseCase;
+import com.fiappostech.fastfood.application.core.CustomerRegistryUseCase;
 
 @Configuration
 public class CustomerBeanConfig {
 
    @Bean
-   public CustomerCreateUseCase createCustomerUseCase(CustomerCreateServiceAdapter customerCreateAdapter) {
-      return new CustomerCreateUseCase(customerCreateAdapter);
+   public CustomerRegistryUseCase customerRegistryUseCase(CustomerInsertServiceAdapter customerInsertServiceAdapter) {
+      return new CustomerRegistryUseCase(customerInsertServiceAdapter);
    }
 
    @Bean
-   public CustomerIdentifyUseCase identificarClienteService(CustomerIdentifyServiceAdapter customerIdentifyAdapter) {
-      return new CustomerIdentifyUseCase(customerIdentifyAdapter);
+   public CustomerIdentifyUseCase customerIdentifyUseCase(CustomerSelectServiceAdapter customerSelectServiceAdapter) {
+      return new CustomerIdentifyUseCase(customerSelectServiceAdapter);
    }
 }

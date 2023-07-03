@@ -2,7 +2,8 @@ package com.fiappostech.fastfood.application.core.domain;
 
 import com.fiappostech.fastfood.application.core.valueobject.EmailAdress;
 import com.fiappostech.fastfood.application.core.valueobject.PersonalId;
-import com.fiappostech.fastfood.application.ports.dto.Customer;
+import com.fiappostech.fastfood.application.ports.dto.request.CustomerRequest;
+import com.fiappostech.fastfood.application.ports.dto.response.CustomerResponse;
 
 public class CustomerDomain {
 
@@ -19,14 +20,16 @@ public class CustomerDomain {
       this.name = name;
    }
 
-   public CustomerDomain(Customer customer) {
-      this.personalId = new PersonalId(customer.personalId());
-      this.emailAdress = new EmailAdress(customer.email());
-      this.name = customer.name();
+   public CustomerDomain(CustomerRequest customerRequest) {
+      this.personalId = new PersonalId(customerRequest.personalId());
+      this.emailAdress = new EmailAdress(customerRequest.email());
+      this.name = customerRequest.name();
    }
 
-   public Customer toCustomer(){
-      return new Customer(this.getPersonalId().personalId(), this.emailAdress.emailAddress(), this.getName());
+   public CustomerDomain(CustomerResponse customerResponse) {
+      this.personalId = new PersonalId(customerResponse.personalId());
+      this.emailAdress = new EmailAdress(customerResponse.email());
+      this.name = customerResponse.name();
    }
 
    public PersonalId getPersonalId() {
@@ -51,5 +54,13 @@ public class CustomerDomain {
 
    public void setName(String name) {
       this.name = name;
+   }
+
+   public CustomerRequest toCustomerRequest() {
+      return new CustomerRequest(this.getPersonalId().personalId(), this.emailAdress.emailAddress(), this.getName());
+   }
+
+   public CustomerResponse toCustomerResponse() {
+      return new CustomerResponse(this.getPersonalId().personalId(), this.emailAdress.emailAddress(), this.getName());
    }
 }

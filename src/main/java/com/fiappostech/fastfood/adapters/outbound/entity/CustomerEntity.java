@@ -1,6 +1,7 @@
 package com.fiappostech.fastfood.adapters.outbound.entity;
 
-import com.fiappostech.fastfood.application.ports.dto.Customer;
+import com.fiappostech.fastfood.application.ports.dto.request.CustomerRequest;
+import com.fiappostech.fastfood.application.ports.dto.response.CustomerResponse;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,21 +23,22 @@ import lombok.Setter;
 public class CustomerEntity {
 
    @Id
+   @Column(length = 11)
    private String personalId;
 
-   @Column(unique = true)
+   @Column(nullable = false, unique = true)
    private String email;
 
    @Column(nullable = false)
    private String name;
 
-   public CustomerEntity(Customer customer) {
-      this.personalId = customer.personalId();
-      this.email = customer.email();
-      this.name = customer.name();
+   public CustomerEntity(CustomerRequest customerRequest) {
+      this.personalId = customerRequest.personalId();
+      this.email = customerRequest.email();
+      this.name = customerRequest.name();
    }
 
-   public Customer toCustomer() {
-      return new Customer(this.getPersonalId(), this.getEmail(), this.getName());
+   public CustomerResponse toCustomerResponse() {
+      return new CustomerResponse(this.getPersonalId(), this.getEmail(), this.getName());
    }   
 }

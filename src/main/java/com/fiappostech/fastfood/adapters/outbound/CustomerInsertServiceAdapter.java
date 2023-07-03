@@ -6,23 +6,26 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fiappostech.fastfood.adapters.outbound.entity.CustomerEntity;
 import com.fiappostech.fastfood.adapters.outbound.repository.CustomerRepository;
-import com.fiappostech.fastfood.application.ports.dto.Customer;
-import com.fiappostech.fastfood.application.ports.outbound.CustomerCreateOutputPort;
+import com.fiappostech.fastfood.application.ports.dto.request.CustomerRequest;
+import com.fiappostech.fastfood.application.ports.dto.response.CustomerResponse;
+import com.fiappostech.fastfood.application.ports.outbound.CustomerRegistryOutputPort;
 
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Component
-public class CustomerCreateServiceAdapter implements CustomerCreateOutputPort {
+public class CustomerInsertServiceAdapter implements CustomerRegistryOutputPort {
 
    @Autowired
    private final CustomerRepository customerRepository;
 
    @Transactional
    @Override
-   public Customer execute(Customer customer) {
+   public CustomerResponse execute(CustomerRequest customerRequest) {
+      
       try {
-         return customerRepository.save(new CustomerEntity(customer)).toCustomer();
+         return customerRepository.save(new CustomerEntity(customerRequest)).toCustomerResponse();
+
       } catch (Exception e) {
          throw e;
       }

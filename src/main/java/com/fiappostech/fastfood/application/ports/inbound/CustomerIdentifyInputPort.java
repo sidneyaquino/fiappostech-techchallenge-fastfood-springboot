@@ -1,7 +1,7 @@
 package com.fiappostech.fastfood.application.ports.inbound;
 
-import com.fiappostech.fastfood.application.ports.dto.Customer;
+import com.fiappostech.fastfood.application.ports.dto.response.CustomerResponse;
 
 public interface CustomerIdentifyInputPort {
-   Customer execute(String personalId);
+   CustomerResponse execute(String personalId);
 }

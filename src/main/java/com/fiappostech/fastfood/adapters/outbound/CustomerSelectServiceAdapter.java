@@ -5,24 +5,25 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fiappostech.fastfood.adapters.outbound.repository.CustomerRepository;
-import com.fiappostech.fastfood.application.ports.dto.Customer;
+import com.fiappostech.fastfood.application.ports.dto.response.CustomerResponse;
 import com.fiappostech.fastfood.application.ports.outbound.CustomerIdentifyOutputPort;
 
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Component
-public class CustomerIdentifyServiceAdapter implements CustomerIdentifyOutputPort {
+public class CustomerSelectServiceAdapter implements CustomerIdentifyOutputPort {
 
    @Autowired
    private final CustomerRepository customerRepository;
 
    @Transactional(readOnly = true)
    @Override
-   public Customer execute(String personalId) {
+   public CustomerResponse execute(String personalId) {
 
       try {
-         return customerRepository.getReferenceById(personalId).toCustomer();
+         return customerRepository.getReferenceById(personalId).toCustomerResponse();
+         
       } catch (Exception e) {
          // throw new NotFoundException(personalId);
          throw e;
