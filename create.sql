@@ -12,11 +12,10 @@ INSERT INTO "public"."customers" ("personal_id", "email", "name") VALUES ('12345
 -- PRODUCTS
 CREATE TABLE "public"."products" ( 
   "id" UUID NOT NULL,
-  "name" VARCHAR(150) NOT NULL,
-  "description" TEXT NOT NULL,
   "category" SMALLINT NOT NULL,
+  "description" TEXT NOT NULL,
+  "name" VARCHAR(150) NOT NULL,
   "value" NUMERIC NOT NULL,
-  "deleted" BOOLEAN NOT NULL,
   CONSTRAINT "products_pkey" PRIMARY KEY ("id")
 );
 INSERT INTO "public"."products" ("id", "category", "description", "name", "value") VALUES ('5ccf3357-150d-4661-8201-eceb744edbe9', 0, 'Double Burger with Many Mayo', 'Prima Burger Stuttgart', '13.99');
