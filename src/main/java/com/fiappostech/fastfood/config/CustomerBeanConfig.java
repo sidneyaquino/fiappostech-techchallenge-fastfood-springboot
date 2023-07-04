@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.fiappostech.fastfood.adapters.outbound.CustomerInsertServiceAdapter;
-import com.fiappostech.fastfood.adapters.outbound.CustomerSelectServiceAdapter;
+import com.fiappostech.fastfood.adapters.outbound.CustomerFindByIdServiceAdapter;
 import com.fiappostech.fastfood.application.core.CustomerIdentifyUseCase;
 import com.fiappostech.fastfood.application.core.CustomerRegistryUseCase;
 
@@ -17,7 +17,7 @@ public class CustomerBeanConfig {
    }
 
    @Bean
-   public CustomerIdentifyUseCase customerIdentifyUseCase(CustomerSelectServiceAdapter customerSelectServiceAdapter) {
-      return new CustomerIdentifyUseCase(customerSelectServiceAdapter);
+   public CustomerIdentifyUseCase customerIdentifyUseCase(CustomerFindByIdServiceAdapter customerFindByIdServiceAdapter) {
+      return new CustomerIdentifyUseCase(customerFindByIdServiceAdapter);
    }
 }

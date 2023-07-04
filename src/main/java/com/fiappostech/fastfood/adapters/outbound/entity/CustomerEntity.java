@@ -19,17 +19,17 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "Customers")
+@Table(name = "customers")
 public class CustomerEntity {
 
    @Id
    @Column(length = 11)
    private String personalId;
 
-   @Column(nullable = false, unique = true)
+   @Column(unique = true, nullable = false)
    private String email;
 
-   @Column(nullable = false)
+   @Column(length = 150, nullable = false)
    private String name;
 
    public CustomerEntity(CustomerRequest customerRequest) {

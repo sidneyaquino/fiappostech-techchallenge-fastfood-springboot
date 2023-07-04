@@ -8,10 +8,10 @@ import com.fiappostech.fastfood.application.ports.outbound.CustomerRegistryOutpu
 
 public class CustomerRegistryUseCase implements CustomerRegistryInputPort {
 
-   private final CustomerRegistryOutputPort customerCreateOutputPort;
+   private final CustomerRegistryOutputPort customerRegistryOutputPort;
 
-   public CustomerRegistryUseCase(CustomerRegistryOutputPort customerCreateOutputPort) {
-      this.customerCreateOutputPort = customerCreateOutputPort;
+   public CustomerRegistryUseCase(CustomerRegistryOutputPort customerRegistryOutputPort) {
+      this.customerRegistryOutputPort = customerRegistryOutputPort;
    }
 
    @Override
@@ -21,7 +21,7 @@ public class CustomerRegistryUseCase implements CustomerRegistryInputPort {
       //
       // Business Rules before Request.
       //
-      var customerResponse = customerCreateOutputPort.execute(customerDomain.toCustomerRequest());
+      var customerResponse = this.customerRegistryOutputPort.execute(customerDomain.toCustomerRequest());
       customerDomain = new CustomerDomain(customerResponse);      
       //
       // Business Rules before Response.

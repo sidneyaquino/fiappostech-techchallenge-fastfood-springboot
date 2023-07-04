@@ -9,5 +9,5 @@ import com.fiappostech.fastfood.adapters.outbound.entity.CustomerEntity;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<CustomerEntity, String> {
-   List<CustomerEntity> findByNameContains(String name);  
+   List<CustomerEntity> findByNameContains(String name);
 }

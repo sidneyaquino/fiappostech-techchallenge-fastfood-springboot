@@ -1,50 +1,50 @@
 package com.fiappostech.fastfood.application.core.domain;
 
-import com.fiappostech.fastfood.application.core.valueobject.EmailAdress;
-import com.fiappostech.fastfood.application.core.valueobject.PersonalId;
+import com.fiappostech.fastfood.application.core.valueobject.EmailAdressDomain;
+import com.fiappostech.fastfood.application.core.valueobject.PersonalIdDomain;
 import com.fiappostech.fastfood.application.ports.dto.request.CustomerRequest;
 import com.fiappostech.fastfood.application.ports.dto.response.CustomerResponse;
 
 public class CustomerDomain {
 
-   private PersonalId personalId;
-   private EmailAdress emailAdress;
+   private PersonalIdDomain personalId;
+   private EmailAdressDomain emailAdress;
    private String name;
 
    public CustomerDomain() {
    }
 
-   public CustomerDomain(PersonalId personalId, EmailAdress emailAdress, String name) {
+   public CustomerDomain(PersonalIdDomain personalId, EmailAdressDomain emailAdress, String name) {
       this.personalId = personalId;
       this.emailAdress = emailAdress;
       this.name = name;
    }
 
    public CustomerDomain(CustomerRequest customerRequest) {
-      this.personalId = new PersonalId(customerRequest.personalId());
-      this.emailAdress = new EmailAdress(customerRequest.email());
+      this.personalId = new PersonalIdDomain(customerRequest.personalId());
+      this.emailAdress = new EmailAdressDomain(customerRequest.email());
       this.name = customerRequest.name();
    }
 
    public CustomerDomain(CustomerResponse customerResponse) {
-      this.personalId = new PersonalId(customerResponse.personalId());
-      this.emailAdress = new EmailAdress(customerResponse.email());
+      this.personalId = new PersonalIdDomain(customerResponse.personalId());
+      this.emailAdress = new EmailAdressDomain(customerResponse.email());
       this.name = customerResponse.name();
    }
 
-   public PersonalId getPersonalId() {
+   public PersonalIdDomain getPersonalId() {
       return personalId;
    }
 
-   public void setPersonalId(PersonalId personalId) {
+   public void setPersonalId(PersonalIdDomain personalId) {
       this.personalId = personalId;
    }
 
-   public EmailAdress getEmailAdress() {
+   public EmailAdressDomain getEmailAdress() {
       return emailAdress;
    }
 
-   public void setEmailAddress(EmailAdress emailAddress) {
+   public void setEmailAddress(EmailAdressDomain emailAddress) {
       this.emailAdress = emailAddress;
    }
 
