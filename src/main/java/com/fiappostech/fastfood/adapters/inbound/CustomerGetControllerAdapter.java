@@ -20,7 +20,7 @@ public class CustomerGetControllerAdapter {
    private final CustomerIdentifyInputPort customerIdentifyInputPort;
 
    @GetMapping("/{personalId}")
-   public ResponseEntity<Object> getById(@PathVariable String personalId) {
+   public ResponseEntity<Object> customerFindById(@PathVariable String personalId) {
       try {
          var customerResponse = customerIdentifyInputPort.execute(personalId);
          return ResponseEntity.status(HttpStatus.OK).body(new CustomerResponseDTO(customerResponse));

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fiappostech.fastfood.adapters.inbound.dto.request.ProductRequestDTO;
 import com.fiappostech.fastfood.adapters.inbound.dto.response.ProductResponseDTO;
-import com.fiappostech.fastfood.application.ports.inbound.ProductAddInputPort;
+import com.fiappostech.fastfood.application.ports.inbound.ProductInsertInputPort;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -19,13 +19,13 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/products")
 public class ProductPostControllerAdapter {
 
-   private final ProductAddInputPort productAddInputPort;
+   private final ProductInsertInputPort productInsertInputPort;
 
    @PostMapping
-   public ResponseEntity<ProductResponseDTO> save(@RequestBody @Valid ProductRequestDTO productRequestDTO){
+   public ResponseEntity<ProductResponseDTO> productSave(@RequestBody @Valid ProductRequestDTO productRequestDTO){
 
       try {
-         var productResponse = productAddInputPort.execute(productRequestDTO.toProductRequest());
+         var productResponse = productInsertInputPort.execute(productRequestDTO.toProductRequest());
          return ResponseEntity.status(HttpStatus.CREATED).body(new ProductResponseDTO(productResponse));
 
       // } catch (DataIntegrityViolationException e) {

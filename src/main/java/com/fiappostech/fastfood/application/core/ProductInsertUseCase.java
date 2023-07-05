@@ -3,15 +3,15 @@ package com.fiappostech.fastfood.application.core;
 import com.fiappostech.fastfood.application.core.domain.ProductDomain;
 import com.fiappostech.fastfood.application.ports.dto.request.ProductRequest;
 import com.fiappostech.fastfood.application.ports.dto.response.ProductResponse;
-import com.fiappostech.fastfood.application.ports.inbound.ProductAddInputPort;
-import com.fiappostech.fastfood.application.ports.outbound.ProductAddOutputPort;
+import com.fiappostech.fastfood.application.ports.inbound.ProductInsertInputPort;
+import com.fiappostech.fastfood.application.ports.outbound.ProductSaveOutputPort;
 
-public class ProductAddUseCase implements ProductAddInputPort{
+public class ProductInsertUseCase implements ProductInsertInputPort{
    
-   private final ProductAddOutputPort productAddOutputPort;
+   private final ProductSaveOutputPort productSaveOutputPort;
 
-   public ProductAddUseCase(ProductAddOutputPort productAddOutputPort) {
-      this.productAddOutputPort = productAddOutputPort;
+   public ProductInsertUseCase(ProductSaveOutputPort productSaveOutputPort) {
+      this.productSaveOutputPort = productSaveOutputPort;
    }
 
    @Override
@@ -21,7 +21,7 @@ public class ProductAddUseCase implements ProductAddInputPort{
       //
       // Business Rules before Request.
       //      
-      var productResponse = this.productAddOutputPort.execute(productDomain.toProductRequest());
+      var productResponse = this.productSaveOutputPort.execute(productDomain.toProductRequest());
       productDomain = new ProductDomain(productResponse);
       //
       // Business Rules before Response.

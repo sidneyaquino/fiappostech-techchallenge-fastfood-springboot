@@ -22,7 +22,7 @@ public class CustomerPostControllerAdapter {
    private final CustomerRegistryInputPort customerRegistryInputPort;
 
    @PostMapping
-   public ResponseEntity<CustomerResponseDTO> save(@RequestBody @Valid CustomerRequestDTO customerRequestDTO) {
+   public ResponseEntity<CustomerResponseDTO> customerSave(@RequestBody @Valid CustomerRequestDTO customerRequestDTO) {
 
       try {
          var customerResponse = customerRegistryInputPort.execute(customerRequestDTO.toCustomerRequest());

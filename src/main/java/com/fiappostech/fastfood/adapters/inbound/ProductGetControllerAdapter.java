@@ -27,7 +27,7 @@ public class ProductGetControllerAdapter {
    private final ProductFindByCategoryInputPort productFindByCategoryInputPort;
 
    @GetMapping("/{productID}")
-   public ResponseEntity<Object> getById(@PathVariable UUID productID){
+   public ResponseEntity<Object> productFindById(@PathVariable UUID productID){
 
       try {
          var productResponse = productFindByIdInputPort.execute(productID);
@@ -43,7 +43,7 @@ public class ProductGetControllerAdapter {
    }
 
    @GetMapping("/category/{category}")
-   public ResponseEntity<Object> getById(@PathVariable Category category){
+   public ResponseEntity<Object> productFindByCatetory(@PathVariable Category category){
 
       try {
          List<ProductResponse> listProductResponse = productFindByCategoryInputPort.execute(category);

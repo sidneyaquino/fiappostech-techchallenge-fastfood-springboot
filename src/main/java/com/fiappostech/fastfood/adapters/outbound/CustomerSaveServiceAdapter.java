@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Component
-public class CustomerInsertServiceAdapter implements CustomerRegistryOutputPort {
+public class CustomerSaveServiceAdapter implements CustomerRegistryOutputPort {
 
    @Autowired
    private final CustomerRepository customerRepository;

@@ -23,7 +23,8 @@ public class ProductDeleteByIdServiceAdapter implements ProductDeleteByIdOutputP
    public void execute(UUID productId) {
 
       try {
-         productRepository.deleteById(productId);
+         var productEntity = productRepository.findById(productId).get();
+         productRepository.delete(productEntity);
 
       } catch (Exception e) {
          // throw new NotFoundException(personalId);

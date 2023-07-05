@@ -16,12 +16,12 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/products")
-public class ProductDeleteByIdControllerAdapter {
+public class ProductDeleteControllerAdapter {
    
    private final ProductDeleteByIdInputPort productDeleteByIdInputPort;
 
    @DeleteMapping("/{productID}")
-   public ResponseEntity<Object> deleteById(@PathVariable UUID productID){
+   public ResponseEntity<Object> productDeleteById(@PathVariable UUID productID){
 
       try {
          productDeleteByIdInputPort.execute(productID);
