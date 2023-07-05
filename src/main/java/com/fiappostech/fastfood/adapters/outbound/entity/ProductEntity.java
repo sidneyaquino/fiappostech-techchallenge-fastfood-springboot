@@ -19,11 +19,13 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "productId")
 @Getter
+@Setter
 @Entity
 @Table(name = "products")
 public class ProductEntity {
@@ -56,7 +58,7 @@ public class ProductEntity {
       this.category = productRequest.category();
       this.value = productRequest.value();
    }
-   
+
    public ProductResponse toProductResponse() {
       return new ProductResponse(this.getProductId(), this.getName(), this.getDescription(), this.getCategory(), this.getValue());
    } 

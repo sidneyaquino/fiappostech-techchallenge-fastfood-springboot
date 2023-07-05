@@ -11,13 +11,19 @@ import com.fiappostech.fastfood.application.core.ProductDeleteByIdUseCase;
 import com.fiappostech.fastfood.application.core.ProductFindByCategoryUseCase;
 import com.fiappostech.fastfood.application.core.ProductFindByIdUseCase;
 import com.fiappostech.fastfood.application.core.ProductInsertUseCase;
+import com.fiappostech.fastfood.application.core.ProductUpdateUseCase;
 
 @Configuration
 public class ProductBeanConfig {
 
    @Bean
-   public ProductInsertUseCase productAddUseCase(ProductSaveServiceAdapter productSaveServiceAdapter) {
+   public ProductInsertUseCase productInsertUseCase(ProductSaveServiceAdapter productSaveServiceAdapter) {
       return new ProductInsertUseCase(productSaveServiceAdapter);
+   }
+
+   @Bean
+   public ProductUpdateUseCase productUpdateUseCase(ProductSaveServiceAdapter productSaveServiceAdapter) {
+      return new ProductUpdateUseCase(productSaveServiceAdapter);
    }
 
    @Bean

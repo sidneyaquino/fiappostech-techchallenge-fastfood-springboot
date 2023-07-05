@@ -8,6 +8,7 @@ CREATE TABLE "public"."customers" (
 );
 INSERT INTO "public"."customers" ("personal_id", "email", "name") VALUES ('12345678902', 'otto@bismark.de', 'Otto Bismark');
 INSERT INTO "public"."customers" ("personal_id", "email", "name") VALUES ('12345678901', 'nikolas@grosskopf.com', 'Nikolas Grosskopf');
+INSERT INTO "public"."customers" ("personal_id", "email", "name") VALUES ('12345678903', 'michael@Huttemberg.com', 'Michael Huttemberg');
 
 -- PRODUCTS
 CREATE TABLE "public"."products" ( 
