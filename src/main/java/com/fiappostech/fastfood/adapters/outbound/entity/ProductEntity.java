@@ -3,6 +3,9 @@ package com.fiappostech.fastfood.adapters.outbound.entity;
 import java.math.BigDecimal;
 import java.util.UUID;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import com.fiappostech.fastfood.application.ports.dto.Category;
 import com.fiappostech.fastfood.application.ports.dto.request.ProductRequest;
 import com.fiappostech.fastfood.application.ports.dto.response.ProductResponse;
@@ -27,6 +30,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@SQLDelete(sql = "UPDATE products SET deleted=true WHERE id=?")
+@Where(clause = "deleted = false")
 @Table(name = "products")
 public class ProductEntity {
 
@@ -48,8 +53,7 @@ public class ProductEntity {
    @Column(nullable = false)
    private BigDecimal value;
 
-   // @Column(nullable = false)   
-   // private boolean deleted = false;
+   private boolean deleted = false;
 
    public ProductEntity(ProductRequest productRequest) {
       this.productId = productRequest.productId();
