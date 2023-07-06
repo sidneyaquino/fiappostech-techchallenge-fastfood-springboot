@@ -1,6 +1,5 @@
 package com.fiappostech.fastfood.adapters.outbound;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,11 +28,12 @@ public class ProductSaveServiceAdapter implements ProductSaveOutputPort {
 
          if (productRequest.productId() == null) {
             productEntity = new ProductEntity(productRequest);
+            productRepository.save(productEntity);
          } else {
             productEntity = productRepository.findById(productRequest.productId()).get();
-            BeanUtils.copyProperties(productRequest, productEntity);
+            productEntity.update(productRequest);
          }
-         return productRepository.save(productEntity).toProductResponse();
+         return productEntity.toProductResponse();
 
       } catch (Exception e) {
          throw e;

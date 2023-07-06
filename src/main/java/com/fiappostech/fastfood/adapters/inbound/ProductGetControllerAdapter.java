@@ -8,9 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fiappostech.fastfood.adapters.inbound.dto.response.ProductResponseDTO;
+import com.fiappostech.fastfood.adapters.inbound.dto.response.ProductFullResponse;
 import com.fiappostech.fastfood.application.ports.dto.Category;
 import com.fiappostech.fastfood.application.ports.dto.response.ProductResponse;
 import com.fiappostech.fastfood.application.ports.inbound.ProductFindByCategoryInputPort;
@@ -31,8 +32,7 @@ public class ProductGetControllerAdapter {
 
       try {
          var productResponse = productFindByIdInputPort.execute(productID);
-         var productResponseDTO = new ProductResponseDTO(productResponse);
-         return ResponseEntity.status(HttpStatus.OK).body(productResponseDTO);
+         return ResponseEntity.status(HttpStatus.OK).body(new ProductFullResponse(productResponse));
          
       // } catch (CustomerNotFoundException e) {
       //    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
@@ -42,13 +42,13 @@ public class ProductGetControllerAdapter {
       }
    }
 
-   @GetMapping("/category/{category}")
-   public ResponseEntity<Object> productFindByCatetory(@PathVariable Category category){
+   @GetMapping
+   public ResponseEntity<Object> productFindByCatetory(@RequestParam Category category){
 
       try {
          List<ProductResponse> listProductResponse = productFindByCategoryInputPort.execute(category);
-         var listProductResponseDTO = listProductResponse.stream().map(productResponse -> new ProductResponseDTO(productResponse)).toList();
-         return ResponseEntity.status(HttpStatus.OK).body(listProductResponseDTO);
+         var listProductFullResponse = listProductResponse.stream().map(productResponse -> new ProductFullResponse(productResponse)).toList();
+         return ResponseEntity.status(HttpStatus.OK).body(listProductFullResponse);
          
       // } catch (CustomerNotFoundException e) {
       //    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());

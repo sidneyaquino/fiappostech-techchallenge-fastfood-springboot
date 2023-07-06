@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fiappostech.fastfood.adapters.inbound.dto.response.CustomerResponseDTO;
+import com.fiappostech.fastfood.adapters.inbound.dto.response.CustomerFullResponse;
 import com.fiappostech.fastfood.application.ports.inbound.CustomerIdentifyInputPort;
 
 import lombok.AllArgsConstructor;
@@ -23,7 +23,7 @@ public class CustomerGetControllerAdapter {
    public ResponseEntity<Object> customerFindById(@PathVariable String personalId) {
       try {
          var customerResponse = customerIdentifyInputPort.execute(personalId);
-         return ResponseEntity.status(HttpStatus.OK).body(new CustomerResponseDTO(customerResponse));
+         return ResponseEntity.status(HttpStatus.OK).body(new CustomerFullResponse(customerResponse));
 
       // } catch (CustomerNotFoundException e) {
       //    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());

@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fiappostech.fastfood.adapters.inbound.dto.request.CustomerRequestDTO;
-import com.fiappostech.fastfood.adapters.inbound.dto.response.CustomerResponseDTO;
+import com.fiappostech.fastfood.adapters.inbound.dto.request.CustomerPostRequest;
+import com.fiappostech.fastfood.adapters.inbound.dto.response.CustomerFullResponse;
 import com.fiappostech.fastfood.application.ports.inbound.CustomerRegistryInputPort;
 
 import jakarta.validation.Valid;
@@ -22,11 +22,11 @@ public class CustomerPostControllerAdapter {
    private final CustomerRegistryInputPort customerRegistryInputPort;
 
    @PostMapping
-   public ResponseEntity<CustomerResponseDTO> customerSave(@RequestBody @Valid CustomerRequestDTO customerRequestDTO) {
+   public ResponseEntity<CustomerFullResponse> customerSave(@RequestBody @Valid CustomerPostRequest customerPostRequest) {
 
       try {
-         var customerResponse = customerRegistryInputPort.execute(customerRequestDTO.toCustomerRequest());
-         return ResponseEntity.status(HttpStatus.CREATED).body(new CustomerResponseDTO(customerResponse));
+         var customerResponse = customerRegistryInputPort.execute(customerPostRequest.toCustomerRequest());
+         return ResponseEntity.status(HttpStatus.CREATED).body(new CustomerFullResponse(customerResponse));
 
       // } catch (DataIntegrityViolationException e) {
       //    return ResponseEntity.status(HttpStatus.CONFLICT).build();

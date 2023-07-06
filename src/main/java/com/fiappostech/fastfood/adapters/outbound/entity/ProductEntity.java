@@ -59,7 +59,22 @@ public class ProductEntity {
       this.value = productRequest.value();
    }
 
+   public void update(ProductRequest productRequest) {
+      if (productRequest.name() != null) {
+         this.name = productRequest.name();
+      }
+      if (productRequest.description() != null) {
+         this.description = productRequest.description();
+      }
+      if (productRequest.category() != null) {
+         this.category = productRequest.category();
+      }
+      if (productRequest.value() != null) {
+         this.value = productRequest.value();
+      }
+   }
+
    public ProductResponse toProductResponse() {
       return new ProductResponse(this.getProductId(), this.getName(), this.getDescription(), this.getCategory(), this.getValue());
-   } 
+   }
 }

@@ -2,8 +2,8 @@ package com.fiappostech.fastfood.adapters.inbound.dto.response;
 
 import com.fiappostech.fastfood.application.ports.dto.response.CustomerResponse;
 
-public record CustomerResponseDTO(String personalId, String name, String email) {
-   public CustomerResponseDTO(CustomerResponse customerResponse){
+public record CustomerFullResponse(String personalId, String name, String email) {
+   public CustomerFullResponse(CustomerResponse customerResponse){
       this(customerResponse.personalId(), customerResponse.name(), customerResponse.email());
    }
 

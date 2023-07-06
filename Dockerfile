@@ -17,4 +17,4 @@ COPY --link --chown=javauser --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 USER javauser
 SHELL ["/bin/sh", "-c"]
 CMD java $JAVA_OPTS -Dserver.port=$PORT -cp app:app/lib/* \
-   $(find app/com -name '*Application*' | sed 's/\//./g' | sed 's/app.//' | sed 's/.class//')
+   com.fiappostech.fastfood.FastfoodApplication

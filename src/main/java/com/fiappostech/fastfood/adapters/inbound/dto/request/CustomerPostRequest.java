@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-public record CustomerRequestDTO(
+public record CustomerPostRequest(
 
       @Pattern(regexp = "^[0-9]+$")
       @Size(min = 11, max = 11, message = "Personal ID should be 11 digits")
