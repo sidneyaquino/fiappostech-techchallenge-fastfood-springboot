@@ -1,4 +1,4 @@
-package com.fiappostech.fastfood.infra.exception;
+package com.fiappostech.fastfood.infrastructure.exception;
 
 import java.util.Arrays;
 import java.util.List;

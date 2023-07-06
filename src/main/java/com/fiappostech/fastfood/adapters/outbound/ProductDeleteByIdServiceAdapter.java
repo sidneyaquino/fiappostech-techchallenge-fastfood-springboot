@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fiappostech.fastfood.adapters.outbound.repository.ProductRepository;
 import com.fiappostech.fastfood.application.ports.outbound.ProductDeleteByIdOutputPort;
-import com.fiappostech.fastfood.infra.exception.RecordNotFoundException;
+import com.fiappostech.fastfood.infrastructure.exception.RecordNotFoundException;
 
 import lombok.AllArgsConstructor;
 
