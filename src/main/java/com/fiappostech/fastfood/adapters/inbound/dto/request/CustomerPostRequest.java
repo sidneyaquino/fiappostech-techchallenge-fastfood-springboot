@@ -9,8 +9,8 @@ import jakarta.validation.constraints.Size;
 
 public record CustomerPostRequest(
 
-      @Pattern(regexp = "^[0-9]+$")
-      @Size(min = 11, max = 11, message = "Personal ID should be 11 digits")
+      @Pattern(regexp = "^[0-9]+$", message = "Personal ID should only have numbers")
+      @Size(min = 11, max = 11, message = "Personal ID should be exactly 11 digits")
       @NotBlank(message = "Personal ID is mandatory.") 
       String personalId,
       

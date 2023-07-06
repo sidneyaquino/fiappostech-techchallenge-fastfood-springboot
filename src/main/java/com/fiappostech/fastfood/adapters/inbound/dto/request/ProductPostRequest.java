@@ -20,7 +20,7 @@ public record ProductPostRequest(
       @NotBlank(message = "Description is mandatory.") 
       String description,
 
-      // @NotBlank(message = "Category is mandatory.")
+      @NotNull(message = "Category is mandatory")
       Category category,
 
       @DecimalMin(value = "0.01")

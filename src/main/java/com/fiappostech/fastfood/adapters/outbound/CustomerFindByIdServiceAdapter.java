@@ -19,14 +19,7 @@ public class CustomerFindByIdServiceAdapter implements CustomerIdentifyOutputPor
 
    @Transactional(readOnly = true)
    @Override
-   public CustomerResponse execute(String personalId) {
-
-      try {
-         return customerRepository.getReferenceById(personalId).toCustomerResponse();
-         
-      } catch (Exception e) {
-         // throw new NotFoundException(personalId);
-         throw e;
-      }
+   public CustomerResponse execute(String personalId) {         
+      return customerRepository.getReferenceById(personalId).toCustomerResponse();
    }
 }

@@ -24,14 +24,8 @@ public class ProductFindByCategoryServiceAdapter implements ProductFindByCategor
    @Transactional(readOnly = true)
    @Override
    public List<ProductResponse> execute(Category category) {
-
-      try {
-         List<ProductEntity> listProductEntity = productRepository.findAllByCategory(category);
-         return listProductEntity.stream().map(productEntity -> productEntity.toProductResponse()).toList();
-
-      } catch (Exception e) {
-         // throw new NotFoundException(personalId);
-         throw e;
-      }
+     
+      List<ProductEntity> listProductEntity = productRepository.findAllByCategory(category);
+      return listProductEntity.stream().map(productEntity -> productEntity.toProductResponse()).toList();
    }
 }

@@ -22,12 +22,6 @@ public class CustomerSaveServiceAdapter implements CustomerRegistryOutputPort {
    @Transactional
    @Override
    public CustomerResponse execute(CustomerRequest customerRequest) {
-      
-      try {
-         return customerRepository.save(new CustomerEntity(customerRequest)).toCustomerResponse();
-
-      } catch (Exception e) {
-         throw e;
-      }
+      return customerRepository.save(new CustomerEntity(customerRequest)).toCustomerResponse();
    }
 }

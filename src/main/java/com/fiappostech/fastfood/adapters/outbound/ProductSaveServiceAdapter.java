@@ -9,6 +9,7 @@ import com.fiappostech.fastfood.adapters.outbound.repository.ProductRepository;
 import com.fiappostech.fastfood.application.ports.dto.request.ProductRequest;
 import com.fiappostech.fastfood.application.ports.dto.response.ProductResponse;
 import com.fiappostech.fastfood.application.ports.outbound.ProductSaveOutputPort;
+import com.fiappostech.fastfood.infra.exception.RecordNotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -22,21 +23,20 @@ public class ProductSaveServiceAdapter implements ProductSaveOutputPort {
    @Transactional
    @Override
    public ProductResponse execute(ProductRequest productRequest) {
+      ProductEntity productEntity;
 
-      try {
-         ProductEntity productEntity;
-
-         if (productRequest.productId() == null) {
-            productEntity = new ProductEntity(productRequest);
-            productRepository.save(productEntity);
-         } else {
-            productEntity = productRepository.findById(productRequest.productId()).get();
-            productEntity.update(productRequest);
+      if (productRequest.productId() == null) {
+         productEntity = new ProductEntity(productRequest);
+         productRepository.save(productEntity);
+      } else {
+         
+         var productOptional = productRepository.findById(productRequest.productId());
+         if(productOptional.isEmpty()) {
+            throw new RecordNotFoundException(productRequest.productId());
          }
-         return productEntity.toProductResponse();
-
-      } catch (Exception e) {
-         throw e;
+         productEntity = productOptional.get();
+         productEntity.update(productRequest);
       }
+      return productEntity.toProductResponse();
    }
 }

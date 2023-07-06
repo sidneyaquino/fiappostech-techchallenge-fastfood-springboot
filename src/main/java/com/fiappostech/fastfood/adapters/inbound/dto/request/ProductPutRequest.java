@@ -10,7 +10,7 @@ import jakarta.validation.constraints.NotNull;
 
 public record ProductPutRequest(
 
-      @NotNull(message = "ProductId is mandatory.")
+      @NotNull(message = "ProductId is mandatory.") 
       UUID productId,
       String name,
       String description,

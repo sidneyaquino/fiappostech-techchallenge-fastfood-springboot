@@ -22,13 +22,6 @@ public class ProductFindByIdServiceAdapter implements ProductFindByIdOutputPort 
    @Transactional(readOnly = true)
    @Override
    public ProductResponse execute(UUID productId) {
-
-      try {
-         return productRepository.getReferenceById(productId).toProductResponse();
-
-      } catch (Exception e) {
-         // throw new NotFoundException(personalId);
-         throw e;
-      }
+      return productRepository.getReferenceById(productId).toProductResponse();
    }
 }

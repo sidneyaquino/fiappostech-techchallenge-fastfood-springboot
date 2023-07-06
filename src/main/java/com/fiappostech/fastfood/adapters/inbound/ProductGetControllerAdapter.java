@@ -3,7 +3,6 @@ package com.fiappostech.fastfood.adapters.inbound;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,38 +22,27 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping("/products")
 public class ProductGetControllerAdapter {
-   
+
    private final ProductFindByIdInputPort productFindByIdInputPort;
    private final ProductFindByCategoryInputPort productFindByCategoryInputPort;
 
-   @GetMapping("/{productID}")
-   public ResponseEntity<Object> productFindById(@PathVariable UUID productID){
+   @GetMapping("/{productId}")
+   public ResponseEntity<ProductFullResponse> productFindById(@PathVariable UUID productId) {
 
-      try {
-         var productResponse = productFindByIdInputPort.execute(productID);
-         return ResponseEntity.status(HttpStatus.OK).body(new ProductFullResponse(productResponse));
-         
+      var productResponse = productFindByIdInputPort.execute(productId);
+      return ResponseEntity.ok(new ProductFullResponse(productResponse));
+
       // } catch (CustomerNotFoundException e) {
-      //    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-
-      } catch (Exception e) {
-         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-      }
+      // return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
    }
 
    @GetMapping
-   public ResponseEntity<Object> productFindByCatetory(@RequestParam Category category){
+   public ResponseEntity<List<ProductFullResponse>> productFindByCatetory(@RequestParam Category category) {
 
-      try {
-         List<ProductResponse> listProductResponse = productFindByCategoryInputPort.execute(category);
-         var listProductFullResponse = listProductResponse.stream().map(productResponse -> new ProductFullResponse(productResponse)).toList();
-         return ResponseEntity.status(HttpStatus.OK).body(listProductFullResponse);
-         
-      // } catch (CustomerNotFoundException e) {
-      //    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+      List<ProductResponse> listProductResponse = productFindByCategoryInputPort.execute(category);
+      var listProductFullResponse = listProductResponse
+            .stream().map(item -> new ProductFullResponse(item)).toList();
 
-      } catch (Exception e) {
-         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-      }
+      return ResponseEntity.ok(listProductFullResponse);
    }
 }

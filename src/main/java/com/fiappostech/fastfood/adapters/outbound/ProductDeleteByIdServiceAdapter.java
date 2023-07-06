@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fiappostech.fastfood.adapters.outbound.repository.ProductRepository;
 import com.fiappostech.fastfood.application.ports.outbound.ProductDeleteByIdOutputPort;
+import com.fiappostech.fastfood.infra.exception.RecordNotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -21,14 +22,11 @@ public class ProductDeleteByIdServiceAdapter implements ProductDeleteByIdOutputP
    @Transactional
    @Override
    public void execute(UUID productId) {
-
-      try {
-         var productEntity = productRepository.findById(productId).get();
-         productRepository.delete(productEntity);
-
-      } catch (Exception e) {
-         // throw new NotFoundException(personalId);
-         throw e;
+      var productOptional = productRepository.findById(productId);
+      
+      if(productOptional.isEmpty()) {
+         throw new RecordNotFoundException(productId);
       }
+      productRepository.delete(productOptional.get());
    }
 }
