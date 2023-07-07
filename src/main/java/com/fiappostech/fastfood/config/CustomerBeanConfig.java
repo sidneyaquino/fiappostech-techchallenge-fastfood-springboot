@@ -3,8 +3,10 @@ package com.fiappostech.fastfood.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.fiappostech.fastfood.adapters.outbound.CustomerSaveServiceAdapter;
 import com.fiappostech.fastfood.adapters.outbound.CustomerFindByIdServiceAdapter;
+import com.fiappostech.fastfood.adapters.outbound.CustomerIdentifyServiceAdapter;
+import com.fiappostech.fastfood.adapters.outbound.CustomerSaveServiceAdapter;
+import com.fiappostech.fastfood.application.core.CustomerFindByIdUseCase;
 import com.fiappostech.fastfood.application.core.CustomerIdentifyUseCase;
 import com.fiappostech.fastfood.application.core.CustomerRegistryUseCase;
 
@@ -17,7 +19,12 @@ public class CustomerBeanConfig {
    }
 
    @Bean
-   public CustomerIdentifyUseCase customerIdentifyUseCase(CustomerFindByIdServiceAdapter customerFindByIdServiceAdapter) {
+   public CustomerFindByIdUseCase customerFindByIdUseCase(CustomerFindByIdServiceAdapter customerFindByIdServiceAdapter) {
+      return new CustomerFindByIdUseCase(customerFindByIdServiceAdapter);
+   }
+
+   @Bean
+   public CustomerIdentifyUseCase customerIdentifyUseCase(CustomerIdentifyServiceAdapter customerFindByIdServiceAdapter) {
       return new CustomerIdentifyUseCase(customerFindByIdServiceAdapter);
    }
 }

@@ -1,14 +1,18 @@
 -- CUSTOMERS
 CREATE TABLE "public"."customers" ( 
+  "id" UUID NOT NULL,
   "personal_id" VARCHAR(11) NOT NULL,
   "email" VARCHAR(255) NOT NULL,
   "name" VARCHAR(150) NOT NULL,
-  CONSTRAINT "customers_pkey" PRIMARY KEY ("personal_id"),
-  CONSTRAINT "uk_rfbvkrffamfql7cjmen8v976v" UNIQUE ("email")
+  CONSTRAINT "customers_pkey" PRIMARY KEY ("id"),
+  CONSTRAINT "uk_rfbvkrffamfql7cjmen8v976v" UNIQUE ("email"),
+  CONSTRAINT "uk_tm7tv6x6kgafot3226v38nnw2" UNIQUE ("personal_id")
 );
-INSERT INTO "public"."customers" ("personal_id", "email", "name") VALUES ('12345678902', 'otto@bismark.de', 'Otto Bismark');
-INSERT INTO "public"."customers" ("personal_id", "email", "name") VALUES ('12345678901', 'nikolas@grosskopf.com', 'Nikolas Grosskopf');
-INSERT INTO "public"."customers" ("personal_id", "email", "name") VALUES ('12345678903', 'michael@Huttemberg.com', 'Michael Huttemberg');
+INSERT INTO "public"."customers" ("id", "personal_id", "email", "name") VALUES ('5e5e53f6-97ba-4edb-b4a1-cb6b409a9ba7', '12345678902', 'otto@bismark.de', 'Otto Bismark');
+INSERT INTO "public"."customers" ("id", "personal_id", "email", "name") VALUES ('5e095b86-eba1-4fd3-b630-e97c58c2da8e', '12345678901', 'nikolas@grosskopf.com', 'Nikolas Grosskopf');
+INSERT INTO "public"."customers" ("id", "personal_id", "email", "name") VALUES ('4fee3c91-db14-434a-8dec-a140215573cd', '12345678903', 'michael@Huttemberg.com', 'Michael Huttemberg');
+INSERT INTO "public"."customers" ("id", "personal_id", "email", "name") VALUES ('1d9b9381-d7bc-4d97-adf8-a6f626eba5e1', '12345678904', 'mikki@einstein.com', 'Mikki Einstein');
+
 
 -- PRODUCTS
 CREATE TABLE "public"."products" ( 

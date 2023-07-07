@@ -21,7 +21,6 @@ public class ProductDeleteControllerAdapter {
 
    @DeleteMapping("/{productID}")
    public ResponseEntity<Object> productDeleteById(@PathVariable UUID productID){
-      
       productDeleteByIdInputPort.execute(productID);
       return ResponseEntity.noContent().build();
    }

@@ -1,7 +1,6 @@
 package com.fiappostech.fastfood.adapters.inbound.dto.request;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 import com.fiappostech.fastfood.application.ports.dto.Category;
 import com.fiappostech.fastfood.application.ports.dto.request.ProductRequest;
@@ -11,8 +10,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record ProductPostRequest(
-
-      UUID productId,
 
       @NotBlank(message = "Name is mandatory.") 
       String name,
@@ -28,6 +25,6 @@ public record ProductPostRequest(
       BigDecimal value) {
 
    public ProductRequest toProductRequest() {
-      return new ProductRequest(this.productId(), this.name(), this.description, this.category(), this.value());
+      return new ProductRequest(null, this.name(), this.description, this.category(), this.value());
    }
 }

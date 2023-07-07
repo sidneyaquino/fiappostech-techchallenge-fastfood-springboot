@@ -1,10 +1,14 @@
 package com.fiappostech.fastfood.adapters.outbound.entity;
 
+import java.util.UUID;
+
 import com.fiappostech.fastfood.application.ports.dto.request.CustomerRequest;
 import com.fiappostech.fastfood.application.ports.dto.response.CustomerResponse;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -23,7 +27,11 @@ import lombok.Setter;
 public class CustomerEntity {
 
    @Id
-   @Column(length = 11)
+   @GeneratedValue(strategy = GenerationType.AUTO)
+   @Column(name = "id")
+   private UUID customerId;
+
+   @Column(length = 11, unique = true, nullable = false)
    private String personalId;
 
    @Column(unique = true, nullable = false)
@@ -33,12 +41,13 @@ public class CustomerEntity {
    private String name;
 
    public CustomerEntity(CustomerRequest customerRequest) {
+      this.customerId = customerRequest.customerId();
       this.personalId = customerRequest.personalId();
       this.email = customerRequest.email();
       this.name = customerRequest.name();
    }
 
    public CustomerResponse toCustomerResponse() {
-      return new CustomerResponse(this.getPersonalId(), this.getEmail(), this.getName());
-   }   
+      return new CustomerResponse(this.getCustomerId(), this.getPersonalId(), this.getEmail(), this.getName());
+   }
 }

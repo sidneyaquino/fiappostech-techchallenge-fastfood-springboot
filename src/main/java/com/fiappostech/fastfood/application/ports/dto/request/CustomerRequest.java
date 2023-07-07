@@ -1,4 +1,6 @@
 package com.fiappostech.fastfood.application.ports.dto.request;
 
-public record CustomerRequest(String personalId, String email, String name) {
+import java.util.UUID;
+
+public record CustomerRequest(UUID customerId, String personalId, String email, String name) {
 }

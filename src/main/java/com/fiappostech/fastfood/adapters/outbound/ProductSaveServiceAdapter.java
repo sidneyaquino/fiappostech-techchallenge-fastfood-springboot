@@ -29,7 +29,7 @@ public class ProductSaveServiceAdapter implements ProductSaveOutputPort {
          productEntity = new ProductEntity(productRequest);
          productRepository.save(productEntity);
       } else {
-         
+
          var productOptional = productRepository.findById(productRequest.productId());
          if(productOptional.isEmpty()) {
             throw new RecordNotFoundException(productRequest.productId());

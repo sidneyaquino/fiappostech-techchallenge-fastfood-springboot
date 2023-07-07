@@ -23,7 +23,7 @@ public class ProductDeleteByIdServiceAdapter implements ProductDeleteByIdOutputP
    @Override
    public void execute(UUID productId) {
       var productOptional = productRepository.findById(productId);
-      
+
       if(productOptional.isEmpty()) {
          throw new RecordNotFoundException(productId);
       }
