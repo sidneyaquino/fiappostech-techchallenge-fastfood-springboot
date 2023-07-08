@@ -6,10 +6,6 @@ public class RecordNotFoundException extends RuntimeException {
         super(message(id));
     }
 
-    // public RecordNotFoundException(UUID id) {
-    //     super(message(id));
-    // }
-
     private static String message(Object id){
         return String.format("Unable to find record with id %s", id.toString());
     }

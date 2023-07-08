@@ -14,18 +14,24 @@ public class ProductDomain {
    private String description;
    private Category category;
    private BigDecimal value;
-   
+
    public ProductDomain() {
    }
 
-   public ProductDomain(UUID productId, String name, String description, Category category, BigDecimal value) {
+   public ProductDomain(
+         UUID productId,
+         String name,
+         String description,
+         Category category,
+         BigDecimal value) {
+
       this.productId = productId;
       this.name = name;
       this.description = description;
       this.category = category;
       this.value = value;
    }
-   
+
    public ProductDomain(ProductResponse productResponse) {
       this.productId = productResponse.productId();
       this.name = productResponse.name();
@@ -83,10 +89,20 @@ public class ProductDomain {
    }
 
    public ProductRequest toProductRequest() {
-      return new ProductRequest(this.getProductId(), this.getName(), this.getDescription(), this.getCategory(), this.getValue());
+      return new ProductRequest(
+            this.getProductId(),
+            this.getName(),
+            this.getDescription(),
+            this.getCategory(),
+            this.getValue());
    }
 
    public ProductResponse toProductResponse() {
-      return new ProductResponse(this.getProductId(), this.getName(), this.getDescription(), this.getCategory(), this.getValue());
+      return new ProductResponse(
+            this.getProductId(),
+            this.getName(),
+            this.getDescription(),
+            this.getCategory(),
+            this.getValue());
    }
 }

@@ -10,13 +10,17 @@ public record CustomerFullResponse(
       String name,
       String email) {
    public CustomerFullResponse(CustomerResponse customerResponse) {
-      this(customerResponse.customerId(), 
-            customerResponse.personalId(), 
+      this(customerResponse.customerId(),
+            customerResponse.personalId(),
             customerResponse.name(),
             customerResponse.email());
    }
 
    public CustomerResponse toCustomerResponse() {
-      return new CustomerResponse(this.customerId(), this.personalId(), this.name(), this.email());
+      return new CustomerResponse(
+            this.customerId(),
+            this.personalId(),
+            this.name(),
+            this.email());
    }
 }

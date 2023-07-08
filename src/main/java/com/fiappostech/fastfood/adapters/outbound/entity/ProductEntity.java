@@ -24,15 +24,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@EqualsAndHashCode(of = "productId")
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "productId")
 @Getter
 @Setter
-@Entity
-@SQLDelete(sql = "UPDATE products SET deleted=true WHERE id=?")
+@SQLDelete(sql = "UPDATE products SET deleted = true WHERE id=?")
 @Where(clause = "deleted = false")
 @Table(name = "products")
+@Entity
 public class ProductEntity {
 
    @Id
@@ -63,6 +63,15 @@ public class ProductEntity {
       this.value = productRequest.value();
    }
 
+   public ProductResponse toProductResponse() {
+      return new ProductResponse(
+            this.getProductId(),
+            this.getName(),
+            this.getDescription(),
+            this.getCategory(),
+            this.getValue());
+   }
+
    public void update(ProductRequest productRequest) {
       if (productRequest.name() != null) {
          this.name = productRequest.name();
@@ -76,9 +85,5 @@ public class ProductEntity {
       if (productRequest.value() != null) {
          this.value = productRequest.value();
       }
-   }
-
-   public ProductResponse toProductResponse() {
-      return new ProductResponse(this.getProductId(), this.getName(), this.getDescription(), this.getCategory(), this.getValue());
    }
 }

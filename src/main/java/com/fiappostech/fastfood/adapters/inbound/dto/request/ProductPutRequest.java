@@ -21,6 +21,11 @@ public record ProductPutRequest(
       BigDecimal value) {
 
    public ProductRequest toProductRequest() {
-      return new ProductRequest(this.productId(), this.name(), this.description, this.category(), this.value());
+      return new ProductRequest(
+            this.productId(),
+            this.name(),
+            this.description,
+            this.category(),
+            this.value());
    }
 }

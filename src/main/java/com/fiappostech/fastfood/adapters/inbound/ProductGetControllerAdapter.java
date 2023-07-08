@@ -28,12 +28,8 @@ public class ProductGetControllerAdapter {
 
    @GetMapping("/{productId}")
    public ResponseEntity<ProductFullResponse> productFindById(@PathVariable UUID productId) {
-
       var productResponse = productFindByIdInputPort.execute(productId);
       return ResponseEntity.ok(new ProductFullResponse(productResponse));
-
-      // } catch (CustomerNotFoundException e) {
-      // return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
    }
 
    @GetMapping

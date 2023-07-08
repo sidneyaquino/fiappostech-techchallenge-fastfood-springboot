@@ -28,3 +28,19 @@ INSERT INTO "public"."products" ("id", "category", "description", "name", "value
 INSERT INTO "public"."products" ("id", "category", "description", "name", "value", "deleted") VALUES ('4c987ae3-bdb8-4355-86de-2eb3ad2e0fe2', 0, 'Double Big Burger with a lot of Cheese', 'Super Burger Munich', '15.99', false);
 INSERT INTO "public"."products" ("id", "category", "description", "name", "value", "deleted") VALUES ('36c82b28-a66c-4cad-b77c-b39916bd0a1f', 2, 'Normal Coke 1L', 'Big Coke', '5.99', false);
 INSERT INTO "public"."products" ("id", "category", "description", "name", "value", "deleted") VALUES ('61c100ee-0e8b-41a9-915c-70892d5fac50', 2, 'Fanta 500 ml', 'Orange Fanta', '3.49', false);
+
+
+-- ORDERS
+CREATE TABLE "public"."orders" ( 
+  "id" UUID NOT NULL,
+  "created" TIMESTAMP NOT NULL,
+  "tracked" TIMESTAMP NULL,
+  "tracking" SMALLINT NULL,
+  "value" NUMERIC NOT NULL,
+  "customer_id" UUID NULL,
+  CONSTRAINT "orders_pkey" PRIMARY KEY ("id")
+);
+ALTER TABLE orders 
+    ADD CONSTRAINT FKpxtb8awmi0dk6smoh2vp1litg FOREIGN KEY ("customer_id") REFERENCES customers;
+
+-- INSERT INTO

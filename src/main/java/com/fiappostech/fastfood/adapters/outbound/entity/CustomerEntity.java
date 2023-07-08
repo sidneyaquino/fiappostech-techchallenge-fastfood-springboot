@@ -17,13 +17,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@EqualsAndHashCode(of = "personalId")
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "personalId")
 @Getter
 @Setter
-@Entity
 @Table(name = "customers")
+@Entity
 public class CustomerEntity {
 
    @Id
@@ -48,6 +48,10 @@ public class CustomerEntity {
    }
 
    public CustomerResponse toCustomerResponse() {
-      return new CustomerResponse(this.getCustomerId(), this.getPersonalId(), this.getEmail(), this.getName());
+      return new CustomerResponse(
+            this.getCustomerId(),
+            this.getPersonalId(),
+            this.getEmail(),
+            this.getName());
    }
 }

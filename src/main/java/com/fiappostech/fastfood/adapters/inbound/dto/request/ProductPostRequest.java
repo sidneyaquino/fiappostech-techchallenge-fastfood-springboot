@@ -11,20 +11,25 @@ import jakarta.validation.constraints.NotNull;
 
 public record ProductPostRequest(
 
-      @NotBlank(message = "Name is mandatory.") 
+      @NotBlank(message = "Name is mandatory.")
       String name,
 
-      @NotBlank(message = "Description is mandatory.") 
+      @NotBlank(message = "Description is mandatory.")
       String description,
 
       @NotNull(message = "Category is mandatory")
       Category category,
 
       @DecimalMin(value = "0.01")
-      @NotNull(message = "Value is mandatory.") 
+      @NotNull(message = "Value is mandatory.")
       BigDecimal value) {
 
    public ProductRequest toProductRequest() {
-      return new ProductRequest(null, this.name(), this.description, this.category(), this.value());
+      return new ProductRequest(
+            null,
+            this.name(),
+            this.description,
+            this.category(),
+            this.value());
    }
 }

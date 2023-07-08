@@ -17,7 +17,12 @@ public class CustomerDomain {
    public CustomerDomain() {
    }
 
-   public CustomerDomain(UUID customerId, PersonalIdDomain personalId, EmailAdressDomain emailAdress, String name) {
+   public CustomerDomain(
+         UUID customerId,
+         PersonalIdDomain personalId,
+         EmailAdressDomain emailAdress,
+         String name) {
+
       this.customerId = customerId;
       this.personalId = personalId;
       this.emailAdress = emailAdress;
@@ -71,10 +76,18 @@ public class CustomerDomain {
    }
 
    public CustomerRequest toCustomerRequest() {
-      return new CustomerRequest(this.getCustomerId(), this.getPersonalId().personalId(), this.emailAdress.emailAddress(), this.getName());
+      return new CustomerRequest(
+            this.getCustomerId(),
+            this.getPersonalId().personalId(),
+            this.emailAdress.emailAddress(),
+            this.getName());
    }
 
    public CustomerResponse toCustomerResponse() {
-      return new CustomerResponse(this.getCustomerId(), this.getPersonalId().personalId(), this.emailAdress.emailAddress(), this.getName());
+      return new CustomerResponse(
+            this.getCustomerId(),
+            this.getPersonalId().personalId(),
+            this.emailAdress.emailAddress(),
+            this.getName());
    }
 }

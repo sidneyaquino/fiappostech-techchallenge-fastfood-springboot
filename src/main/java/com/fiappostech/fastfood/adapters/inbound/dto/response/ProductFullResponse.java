@@ -7,20 +7,25 @@ import com.fiappostech.fastfood.application.ports.dto.Category;
 import com.fiappostech.fastfood.application.ports.dto.response.ProductResponse;
 
 public record ProductFullResponse(
-      UUID productId, 
-      String name, 
-      String description, 
+      UUID productId,
+      String name,
+      String description,
       Category category,
       BigDecimal value) {
    public ProductFullResponse(ProductResponse productResponse) {
-      this(productResponse.productId(), 
-            productResponse.name(), 
+      this(productResponse.productId(),
+            productResponse.name(),
             productResponse.description(),
-            productResponse.category(), 
+            productResponse.category(),
             productResponse.value());
    }
 
    public ProductResponse toProductResponse() {
-      return new ProductResponse(this.productId(), this.name(), this.description(), this.category(), this.value());
+      return new ProductResponse(
+            this.productId(),
+            this.name(),
+            this.description(),
+            this.category(),
+            this.value());
    }
 }
