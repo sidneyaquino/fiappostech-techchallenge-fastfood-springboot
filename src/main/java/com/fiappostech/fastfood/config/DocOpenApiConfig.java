@@ -21,9 +21,9 @@ public class DocOpenApiConfig {
                   .version("0.9")
                   .contact(new Contact()
                         .name("Sidney Aquino")
-                        .email("sidneyaquino@outlook.de"))
+                        .url("https://www.linkedin.com/in/sidneydeaquino/"))
                   .license(new License()
                         .name("MIT License")
-                        .url("https://github.com/sidneyaquino/fiappostech-techchallenge-fastfood-springboot/blob/main/LICENSE")));
+                        .url("https://github.com/sidneyaquino/fiappostech-techchallenge-fastfood-springboot/")));
    }
 }

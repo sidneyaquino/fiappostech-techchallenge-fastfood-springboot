@@ -12,5 +12,6 @@ public record OrderResponse(
       LocalDateTime created,
       LocalDateTime tracked,
       Tracking tracking,
+      Integer trackingTime,
       BigDecimal value) {
 }

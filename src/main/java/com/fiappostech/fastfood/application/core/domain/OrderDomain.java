@@ -15,6 +15,7 @@ public class OrderDomain {
    private LocalDateTime created;
    private LocalDateTime tracked;
    private Tracking tracking;
+   private Integer trackingTime;
    private BigDecimal value;
 
    public OrderDomain() {
@@ -26,6 +27,7 @@ public class OrderDomain {
          LocalDateTime created,
          LocalDateTime tracked,
          Tracking tracking,
+         Integer trackingTime,
          BigDecimal value) {
 
       this.orderId = orderId;
@@ -33,6 +35,7 @@ public class OrderDomain {
       this.created = created;
       this.tracked = tracked;
       this.tracking = tracking;
+      this.trackingTime = trackingTime;
       this.value = value;
    }
 
@@ -42,6 +45,7 @@ public class OrderDomain {
       this.created = orderResponse.created();
       this.tracked = orderResponse.tracked();
       this.tracking = orderResponse.tracking();
+      this.trackingTime = orderResponse.trackingTime();
       this.value = orderResponse.value();
    }
 
@@ -94,6 +98,14 @@ public class OrderDomain {
       this.tracking = tracking;
    }
 
+   public Integer getTrackingTime() {
+      return trackingTime;
+   }
+
+   public void setTrackingTime(Integer trackingTime) {
+      this.trackingTime = trackingTime;
+   }
+
    public BigDecimal getValue() {
       return value;
    }
@@ -119,6 +131,7 @@ public class OrderDomain {
             this.getCreated(),
             this.getTracked(),
             this.getTracking(),
+            this.getTrackingTime(),
             this.getValue());
    }
 }

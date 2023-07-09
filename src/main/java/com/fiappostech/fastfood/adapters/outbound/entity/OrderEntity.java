@@ -1,6 +1,7 @@
 package com.fiappostech.fastfood.adapters.outbound.entity;
 
 import java.math.BigDecimal;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -71,6 +72,7 @@ public class OrderEntity {
             this.getCreated(),
             this.getTracked(),
             this.getTracking(),
+            this.getTracked() == null ? null : Duration.between(this.getTracked(), LocalDateTime.now()).toMinutesPart(),
             this.getValue());
    }
 }

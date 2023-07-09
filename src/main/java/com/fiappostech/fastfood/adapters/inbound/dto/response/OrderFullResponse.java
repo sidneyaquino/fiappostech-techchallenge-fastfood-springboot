@@ -13,6 +13,7 @@ public record OrderFullResponse(
       LocalDateTime created,
       LocalDateTime tracked,
       Tracking traking,
+      Integer trakingTime,
       BigDecimal value) {
    public OrderFullResponse(OrderResponse orderResponse) {
       this(orderResponse.orderId(),
@@ -20,6 +21,7 @@ public record OrderFullResponse(
             orderResponse.created(),
             orderResponse.tracked(),
             orderResponse.tracking(),
+            orderResponse.trackingTime(),
             orderResponse.value());
    }
 
@@ -30,6 +32,7 @@ public record OrderFullResponse(
             this.created(),
             this.tracked(),
             this.traking(),
+            this.trakingTime(),
             this.value());
    }
 }
