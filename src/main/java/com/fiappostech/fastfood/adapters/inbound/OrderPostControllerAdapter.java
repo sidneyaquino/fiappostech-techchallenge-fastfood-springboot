@@ -28,9 +28,8 @@ public class OrderPostControllerAdapter {
 
       var orderRequest = orderPostRequest.toOrderRequest();
       var orderResponse = orderInsertInputPort.execute(orderRequest);
-      // var uri = uriComponentsBuilder.path("/orders/{orderId}").buildAndExpand(orderResponse.orderId()).toUri();
+      var uri = uriComponentsBuilder.path("/orders/{orderId}").buildAndExpand(orderResponse.orderId()).toUri();
 
-      return ResponseEntity.ok().body(new OrderFullResponse(orderResponse));
-      // return ResponseEntity.created(uri).body(new OrderFullResponse(orderResponse));
+      return ResponseEntity.created(uri).body(new OrderFullResponse(orderResponse));
    }
 }

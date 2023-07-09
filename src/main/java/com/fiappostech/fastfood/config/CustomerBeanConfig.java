@@ -14,17 +14,23 @@ import com.fiappostech.fastfood.application.core.CustomerRegistryUseCase;
 public class CustomerBeanConfig {
 
    @Bean
-   public CustomerRegistryUseCase customerRegistryUseCase(CustomerSaveServiceAdapter customerInsertServiceAdapter) {
+   public CustomerRegistryUseCase customerRegistryUseCase(
+         CustomerSaveServiceAdapter customerInsertServiceAdapter) {
+
       return new CustomerRegistryUseCase(customerInsertServiceAdapter);
    }
 
    @Bean
-   public CustomerFindByIdUseCase customerFindByIdUseCase(CustomerFindByIdServiceAdapter customerFindByIdServiceAdapter) {
+   public CustomerFindByIdUseCase customerFindByIdUseCase(
+         CustomerFindByIdServiceAdapter customerFindByIdServiceAdapter) {
+
       return new CustomerFindByIdUseCase(customerFindByIdServiceAdapter);
    }
 
    @Bean
-   public CustomerIdentifyUseCase customerIdentifyUseCase(CustomerIdentifyServiceAdapter customerFindByIdServiceAdapter) {
+   public CustomerIdentifyUseCase customerIdentifyUseCase(
+         CustomerIdentifyServiceAdapter customerFindByIdServiceAdapter) {
+
       return new CustomerIdentifyUseCase(customerFindByIdServiceAdapter);
    }
 }

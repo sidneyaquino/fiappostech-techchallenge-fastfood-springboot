@@ -1,0 +1,30 @@
+package com.fiappostech.fastfood.application.core;
+
+import java.util.UUID;
+
+import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
+import com.fiappostech.fastfood.application.ports.inbound.OrderFindByIdInputPort;
+import com.fiappostech.fastfood.application.ports.outbound.OrderFindByIdOutputPort;
+
+public class OrderFindByIdUseCase implements OrderFindByIdInputPort {
+   
+   private final OrderFindByIdOutputPort orderFindByIdOutputPort;
+
+   public OrderFindByIdUseCase(OrderFindByIdOutputPort orderFindByIdOutputPort) {
+      this.orderFindByIdOutputPort = orderFindByIdOutputPort;
+   }
+
+   @Override
+   public OrderResponse execute(UUID orderId) {
+      
+      //
+      // Business Rules before Request.
+      //
+      var orderResponse = this.orderFindByIdOutputPort.execute(orderId);
+      //
+      // Business Rules before Response.
+      //
+
+      return orderResponse;
+   }
+}

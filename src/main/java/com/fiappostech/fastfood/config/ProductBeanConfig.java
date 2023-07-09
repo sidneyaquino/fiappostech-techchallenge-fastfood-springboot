@@ -17,17 +17,23 @@ import com.fiappostech.fastfood.application.core.ProductUpdateUseCase;
 public class ProductBeanConfig {
 
    @Bean
-   public ProductInsertUseCase productInsertUseCase(ProductSaveServiceAdapter productSaveServiceAdapter) {
+   public ProductInsertUseCase productInsertUseCase(
+         ProductSaveServiceAdapter productSaveServiceAdapter) {
+
       return new ProductInsertUseCase(productSaveServiceAdapter);
    }
 
    @Bean
-   public ProductUpdateUseCase productUpdateUseCase(ProductSaveServiceAdapter productSaveServiceAdapter) {
+   public ProductUpdateUseCase productUpdateUseCase(
+         ProductSaveServiceAdapter productSaveServiceAdapter) {
+
       return new ProductUpdateUseCase(productSaveServiceAdapter);
    }
 
    @Bean
-   public ProductFindByIdUseCase productFindByIdUseCase(ProductFindByIdServiceAdapter productFindByIdServiceAdapter) {
+   public ProductFindByIdUseCase productFindByIdUseCase(
+         ProductFindByIdServiceAdapter productFindByIdServiceAdapter) {
+
       return new ProductFindByIdUseCase(productFindByIdServiceAdapter);
    }
 
