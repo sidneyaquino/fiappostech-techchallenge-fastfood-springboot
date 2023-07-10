@@ -24,7 +24,7 @@ public class CustomerGetControllerAdapter {
    private final CustomerIdentifyInputPort customerIdentifyInputPort;
 
    @GetMapping("/{customerId}")
-   public ResponseEntity<CustomerFullResponse> customerFindByPersonalId(@PathVariable UUID customerId) {
+   public ResponseEntity<CustomerFullResponse> customerFindBylId(@PathVariable UUID customerId) {
       var customerResponse = customerFindByIdInputPort.execute(customerId);
       return ResponseEntity.ok(new CustomerFullResponse(customerResponse));
    }
