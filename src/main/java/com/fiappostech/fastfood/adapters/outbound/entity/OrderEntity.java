@@ -1,7 +1,6 @@
 package com.fiappostech.fastfood.adapters.outbound.entity;
 
 import java.math.BigDecimal;
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -31,8 +30,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "orders")
 @Entity
+@Table(name = "orders")
 public class OrderEntity {
 
    @Id

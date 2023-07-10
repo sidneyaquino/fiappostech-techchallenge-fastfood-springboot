@@ -31,8 +31,8 @@ import lombok.Setter;
 @Setter
 @SQLDelete(sql = "UPDATE products SET deleted = true WHERE id=?")
 @Where(clause = "deleted = false")
-@Table(name = "products")
 @Entity
+@Table(name = "products")
 public class ProductEntity {
 
    @Id

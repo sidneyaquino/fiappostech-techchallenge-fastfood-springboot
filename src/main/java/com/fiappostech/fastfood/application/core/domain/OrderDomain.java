@@ -3,6 +3,7 @@ package com.fiappostech.fastfood.application.core.domain;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import com.fiappostech.fastfood.application.ports.dto.Tracking;
@@ -19,6 +20,7 @@ public class OrderDomain {
    private Tracking tracking;
    private Integer trackingTime;
    private BigDecimal value;
+   private List<OrderProductDomain> products;
 
    public OrderDomain() {
    }
@@ -30,7 +32,8 @@ public class OrderDomain {
          LocalDateTime tracked,
          Tracking tracking,
          Integer trackingTime,
-         BigDecimal value) {
+         BigDecimal value,
+         List<OrderProductDomain> products) {
 
       this.orderId = orderId;
       this.customer = customer;
@@ -39,6 +42,7 @@ public class OrderDomain {
       this.tracking = tracking;
       this.trackingTime = trackingTime;
       this.value = value;
+      this.products = products;
    }
 
    public OrderDomain(OrderResponse orderResponse) {
@@ -47,8 +51,10 @@ public class OrderDomain {
       this.created = orderResponse.created();
       this.tracked = orderResponse.tracked();
       this.tracking = orderResponse.tracking();
-      this.trackingTime = orderResponse.tracked() == null ? null : Duration.between(orderResponse.tracked(), LocalDateTime.now()).toMinutesPart();
+      this.trackingTime = orderResponse.tracked() == null ? null
+            : Duration.between(orderResponse.tracked(), LocalDateTime.now()).toMinutesPart();
       this.value = orderResponse.value();
+      this.products = null; // PENDENCIA!
    }
 
    public OrderDomain(OrderRequest orderRequest) {
@@ -58,13 +64,14 @@ public class OrderDomain {
       this.tracked = orderRequest.tracked();
       this.tracking = orderRequest.tracking();
       this.value = orderRequest.value();
+      this.products = orderRequest.products().stream().map(OrderProductDomain::new).toList();
    }
 
    public OrderDomain(OrderCheckoutRequest orderCheckoutRequest) {
-         this.orderId = orderCheckoutRequest.orderId();
-         this.tracked = LocalDateTime.now();
-         this.tracking = Tracking.RECEIVED;
-         this.value = orderCheckoutRequest.value();
+      this.orderId = orderCheckoutRequest.orderId();
+      this.tracked = LocalDateTime.now();
+      this.tracking = Tracking.RECEIVED;
+      this.value = orderCheckoutRequest.value();
    }
 
    public UUID getOrderId() {
@@ -123,14 +130,23 @@ public class OrderDomain {
       this.value = value;
    }
 
+   public List<OrderProductDomain> getProducts() {
+      return products;
+   }
+
+   public void setProducts(List<OrderProductDomain> products) {
+      this.products = products;
+   }
+
    public OrderRequest toOrderRequest() {
       return new OrderRequest(
             this.getOrderId(),
-            this.getCustomer() == null ? null :this.getCustomer().toCustomerRequest(),
+            this.getCustomer() == null ? null : this.getCustomer().toCustomerRequest(),
             this.getCreated(),
             this.getTracked(),
             this.getTracking(),
-            this.getValue());
+            this.getValue(),
+            this.getProducts().stream().map(item -> item.toOrderProductRequest()).toList());
    }
 
    public OrderResponse toOrderResponse() {
@@ -141,6 +157,6 @@ public class OrderDomain {
             this.getTracked(),
             this.getTracking(),
             this.getTrackingTime(),
-            this.getValue());
+            this.getValue()); // PENDENCIA!!!
    }
 }

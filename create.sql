@@ -5,15 +5,14 @@ CREATE TABLE "public"."customers" (
   "email" VARCHAR(255) NOT NULL,
   "name" VARCHAR(150) NOT NULL,
   CONSTRAINT "customers_pkey" PRIMARY KEY ("id"),
-  CONSTRAINT "customers_uk_email" UNIQUE ("email"),
-  -- CONSTRAINT "uk_rfbvkrffamfql7cjmen8v976v" UNIQUE ("email"),
-  CONSTRAINT "customers_uk_personal_id" UNIQUE ("personal_id")
-  -- CONSTRAINT "uk_tm7tv6x6kgafot3226v38nnw2" UNIQUE ("personal_id")
+  CONSTRAINT "uk_rfbvkrffamfql7cjmen8v976v" UNIQUE ("email"),
+  CONSTRAINT "uk_tm7tv6x6kgafot3226v38nnw2" UNIQUE ("personal_id")
 );
 INSERT INTO "public"."customers" ("id", "personal_id", "email", "name") VALUES ('5e5e53f6-97ba-4edb-b4a1-cb6b409a9ba7', '12345678902', 'otto@bismark.de', 'Otto Bismark');
 INSERT INTO "public"."customers" ("id", "personal_id", "email", "name") VALUES ('5e095b86-eba1-4fd3-b630-e97c58c2da8e', '12345678901', 'nikolas@grosskopf.com', 'Nikolas Grosskopf');
 INSERT INTO "public"."customers" ("id", "personal_id", "email", "name") VALUES ('4fee3c91-db14-434a-8dec-a140215573cd', '12345678903', 'michael@Huttemberg.com', 'Michael Huttemberg');
 INSERT INTO "public"."customers" ("id", "personal_id", "email", "name") VALUES ('1d9b9381-d7bc-4d97-adf8-a6f626eba5e1', '12345678904', 'mikki@einstein.com', 'Mikki Einstein');
+
 
 
 -- PRODUCTS
@@ -32,6 +31,7 @@ INSERT INTO "public"."products" ("id", "category", "description", "name", "value
 INSERT INTO "public"."products" ("id", "category", "description", "name", "value", "deleted") VALUES ('61c100ee-0e8b-41a9-915c-70892d5fac50', 2, 'Fanta 500 ml', 'Orange Fanta', '3.49', false);
 
 
+
 -- ORDERS
 CREATE TABLE "public"."orders" ( 
   "id" UUID NOT NULL,
@@ -41,8 +41,24 @@ CREATE TABLE "public"."orders" (
   "tracking" SMALLINT NULL CHECK (category BETWEEN 0 AND 3),
   "value" NUMERIC(38,2) NOT NULL,
   CONSTRAINT "orders_pkey" PRIMARY KEY ("id")
-  CONSTRAINT "orders_fkey_customers_id" FOREIGN KEY ("customer_id") REFERENCES customers;  
-  -- CONSTRAINT FKpxtb8awmi0dk6smoh2vp1litg FOREIGN KEY ("customer_id") REFERENCES customers;
+  CONSTRAINT FKpxtb8awmi0dk6smoh2vp1litg FOREIGN KEY ("customer_id") REFERENCES customers;
 );
 -- ALTER TABLE orders 
 --     ADD CONSTRAINT FKpxtb8awmi0dk6smoh2vp1litg FOREIGN KEY ("customer_id") REFERENCES customers;
+
+
+
+-- ORDER_PRODUCTS
+CREATE TABLE "public"."order_products" ( 
+  "order_id" UUID NOT NULL,
+  "product_id" UUID NOT NULL,
+  "quantity" SMALLINT NOT NULL,
+  "value" NUMERIC(38,2) NOT NULL,
+  CONSTRAINT "order_products_pkey" PRIMARY KEY ("order_id", "product_id")
+  CONSTRAINT FKdxjduvg7991r4qja26fsckxv8 FOREIGN KEY (product_id) REFERENCES products
+  CONSTRAINT FKawxpt1ns1sr7al76nvjkv21of FOREIGN KEY (order_id) REFERENCES orders
+);
+-- ALTER TABLE order_products 
+--   ADD CONSTRAINT FKdxjduvg7991r4qja26fsckxv8 FOREIGN KEY (product_id) REFERENCES products
+-- ALTER TABLE order_products 
+--   ADD CONSTRAINT FKawxpt1ns1sr7al76nvjkv21of FOREIGN KEY (order_id) REFERENCES orders

@@ -33,6 +33,11 @@ public class OrderInsertUseCase implements OrderInsertInputPort {
          var customerResponse = this.customerIdentifyOutputPort.execute(personalId);
          orderDomain.setCustomer(new CustomerDomain(customerResponse));
       }
+      
+      //
+      // PENDENCIA! Validar Itens.
+      // 
+
       orderDomain.setCreated(LocalDateTime.now());
       //
       // Request.
