@@ -5,8 +5,10 @@ CREATE TABLE "public"."customers" (
   "email" VARCHAR(255) NOT NULL,
   "name" VARCHAR(150) NOT NULL,
   CONSTRAINT "customers_pkey" PRIMARY KEY ("id"),
-  CONSTRAINT "uk_rfbvkrffamfql7cjmen8v976v" UNIQUE ("email"),
-  CONSTRAINT "uk_tm7tv6x6kgafot3226v38nnw2" UNIQUE ("personal_id")
+  CONSTRAINT "customers_uk_email" UNIQUE ("email"),
+  -- CONSTRAINT "uk_rfbvkrffamfql7cjmen8v976v" UNIQUE ("email"),
+  CONSTRAINT "customers_uk_personal_id" UNIQUE ("personal_id")
+  -- CONSTRAINT "uk_tm7tv6x6kgafot3226v38nnw2" UNIQUE ("personal_id")
 );
 INSERT INTO "public"."customers" ("id", "personal_id", "email", "name") VALUES ('5e5e53f6-97ba-4edb-b4a1-cb6b409a9ba7', '12345678902', 'otto@bismark.de', 'Otto Bismark');
 INSERT INTO "public"."customers" ("id", "personal_id", "email", "name") VALUES ('5e095b86-eba1-4fd3-b630-e97c58c2da8e', '12345678901', 'nikolas@grosskopf.com', 'Nikolas Grosskopf');
@@ -17,11 +19,11 @@ INSERT INTO "public"."customers" ("id", "personal_id", "email", "name") VALUES (
 -- PRODUCTS
 CREATE TABLE "public"."products" ( 
   "id" UUID NOT NULL,
-  "category" SMALLINT NOT NULL,
-  "deleted" BOOLEAN NOT NULL,
-  "description" TEXT NOT NULL,
   "name" VARCHAR(150) NOT NULL,
-  "value" NUMERIC NOT NULL,
+  "description" TEXT NOT NULL,
+  "category" SMALLINT NOT NULL CHECK (category BETWEEN 0 AND 3),
+  "value" NUMERIC(38,2) NOT NULL,
+  "deleted" BOOLEAN NOT NULL,
   CONSTRAINT "products_pkey" PRIMARY KEY ("id")
 );
 INSERT INTO "public"."products" ("id", "category", "description", "name", "value", "deleted") VALUES ('5ccf3357-150d-4661-8201-eceb744edbe9', 0, 'Double Burger with Many Mayo', 'Prima Burger Stuttgart', '13.99', false);
@@ -33,14 +35,14 @@ INSERT INTO "public"."products" ("id", "category", "description", "name", "value
 -- ORDERS
 CREATE TABLE "public"."orders" ( 
   "id" UUID NOT NULL,
-  "created" TIMESTAMP NOT NULL,
-  "tracked" TIMESTAMP NULL,
-  "tracking" SMALLINT NULL,
-  "value" NUMERIC NOT NULL,
   "customer_id" UUID NULL,
+  "created" TIMESTAMP(6) NOT NULL,
+  "tracked" TIMESTAMP(6) NULL,
+  "tracking" SMALLINT NULL CHECK (category BETWEEN 0 AND 3),
+  "value" NUMERIC(38,2) NOT NULL,
   CONSTRAINT "orders_pkey" PRIMARY KEY ("id")
+  CONSTRAINT "orders_fkey_customers_id" FOREIGN KEY ("customer_id") REFERENCES customers;  
+  -- CONSTRAINT FKpxtb8awmi0dk6smoh2vp1litg FOREIGN KEY ("customer_id") REFERENCES customers;
 );
-ALTER TABLE orders 
-    ADD CONSTRAINT FKpxtb8awmi0dk6smoh2vp1litg FOREIGN KEY ("customer_id") REFERENCES customers;
-
--- INSERT INTO
+-- ALTER TABLE orders 
+--     ADD CONSTRAINT FKpxtb8awmi0dk6smoh2vp1litg FOREIGN KEY ("customer_id") REFERENCES customers;

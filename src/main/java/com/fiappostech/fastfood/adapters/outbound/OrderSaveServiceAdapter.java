@@ -9,6 +9,7 @@ import com.fiappostech.fastfood.adapters.outbound.repository.OrderRepository;
 import com.fiappostech.fastfood.application.ports.dto.request.OrderRequest;
 import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
 import com.fiappostech.fastfood.application.ports.outbound.OrderSaveOutputPort;
+import com.fiappostech.fastfood.infrastructure.exception.RecordNotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -22,8 +23,19 @@ public class OrderSaveServiceAdapter implements OrderSaveOutputPort {
    @Transactional
    @Override
    public OrderResponse execute(OrderRequest orderRequest) {
-      OrderEntity orderEntity = new OrderEntity(orderRequest);
-      orderEntity = orderRepository.save(orderEntity);
+      OrderEntity orderEntity;
+      if (orderRequest.orderId() == null) {
+         orderEntity = new OrderEntity(orderRequest);
+         orderRepository.save(orderEntity);   
+      } else {
+
+         var orderOptional = orderRepository.findById(orderRequest.orderId());
+         if(orderOptional.isEmpty()) {
+            throw new RecordNotFoundException(orderRequest.orderId());
+         }
+         orderEntity = orderOptional.get();
+         orderEntity.update(orderRequest);
+      }
       return orderEntity.toOrderResponse();
    }
 }

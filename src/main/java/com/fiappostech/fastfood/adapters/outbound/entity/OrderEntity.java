@@ -72,7 +72,22 @@ public class OrderEntity {
             this.getCreated(),
             this.getTracked(),
             this.getTracking(),
-            this.getTracked() == null ? null : Duration.between(this.getTracked(), LocalDateTime.now()).toMinutesPart(),
+            0,
             this.getValue());
+   }
+
+   public void update(OrderRequest orderRequest) {
+      if (orderRequest.customer() != null) {
+         this.customer = new CustomerEntity(orderRequest.customer());
+      }
+      if (orderRequest.tracking() != null) {
+         this.tracking = orderRequest.tracking();
+      }
+      if (orderRequest.tracked() != null) {
+         this.tracked = orderRequest.tracked();
+      }
+      if (orderRequest.value() != null) {
+         this.value = orderRequest.value();
+      }
    }
 }

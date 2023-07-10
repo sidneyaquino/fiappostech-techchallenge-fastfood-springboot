@@ -2,6 +2,7 @@ package com.fiappostech.fastfood.application.core;
 
 import java.util.List;
 
+import com.fiappostech.fastfood.application.core.domain.OrderDomain;
 import com.fiappostech.fastfood.application.ports.dto.Tracking;
 import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
 import com.fiappostech.fastfood.application.ports.inbound.OrderFindByTrackingInputPort;
@@ -22,10 +23,11 @@ public class OrderFindByTrackingUseCase implements OrderFindByTrackingInputPort 
       // Business Rules before Request.
       //
       var listOrderResponse = this.orderFindByTrackingOutputPort.execute(tracking);
+      var listOrderDomain = listOrderResponse.stream().map(OrderDomain::new).toList();
       //
       // Business Rules before Response.
       //
 
-      return listOrderResponse;
+      return listOrderDomain.stream().map(item -> item.toOrderResponse()).toList();
    }
 }

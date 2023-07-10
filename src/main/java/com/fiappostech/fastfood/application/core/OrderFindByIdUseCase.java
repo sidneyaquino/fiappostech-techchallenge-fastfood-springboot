@@ -2,6 +2,7 @@ package com.fiappostech.fastfood.application.core;
 
 import java.util.UUID;
 
+import com.fiappostech.fastfood.application.core.domain.OrderDomain;
 import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
 import com.fiappostech.fastfood.application.ports.inbound.OrderFindByIdInputPort;
 import com.fiappostech.fastfood.application.ports.outbound.OrderFindByIdOutputPort;
@@ -21,10 +22,11 @@ public class OrderFindByIdUseCase implements OrderFindByIdInputPort {
       // Business Rules before Request.
       //
       var orderResponse = this.orderFindByIdOutputPort.execute(orderId);
+      var orderDomain = new OrderDomain(orderResponse);
       //
       // Business Rules before Response.
       //
 
-      return orderResponse;
+      return orderDomain.toOrderResponse();
    }
 }

@@ -1,10 +1,12 @@
 package com.fiappostech.fastfood.application.core.domain;
 
 import java.math.BigDecimal;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 import com.fiappostech.fastfood.application.ports.dto.Tracking;
+import com.fiappostech.fastfood.application.ports.dto.request.OrderCheckoutRequest;
 import com.fiappostech.fastfood.application.ports.dto.request.OrderRequest;
 import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
 
@@ -45,7 +47,7 @@ public class OrderDomain {
       this.created = orderResponse.created();
       this.tracked = orderResponse.tracked();
       this.tracking = orderResponse.tracking();
-      this.trackingTime = orderResponse.trackingTime();
+      this.trackingTime = orderResponse.tracked() == null ? null : Duration.between(orderResponse.tracked(), LocalDateTime.now()).toMinutesPart();
       this.value = orderResponse.value();
    }
 
@@ -56,6 +58,13 @@ public class OrderDomain {
       this.tracked = orderRequest.tracked();
       this.tracking = orderRequest.tracking();
       this.value = orderRequest.value();
+   }
+
+   public OrderDomain(OrderCheckoutRequest orderCheckoutRequest) {
+         this.orderId = orderCheckoutRequest.orderId();
+         this.tracked = LocalDateTime.now();
+         this.tracking = Tracking.RECEIVED;
+         this.value = orderCheckoutRequest.value();
    }
 
    public UUID getOrderId() {

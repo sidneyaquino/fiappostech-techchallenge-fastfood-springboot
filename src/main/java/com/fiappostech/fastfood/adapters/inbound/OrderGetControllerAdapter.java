@@ -33,7 +33,7 @@ public class OrderGetControllerAdapter {
    }
 
    @GetMapping
-   public ResponseEntity<List<OrderFullResponse>> orderFindByCatetory(@RequestParam Tracking tracking) {
+   public ResponseEntity<List<OrderFullResponse>> orderFindByTracking(@RequestParam Tracking tracking) {
 
       List<OrderResponse> listOrderResponse = orderFindByTrackingInputPort.execute(tracking);
       var listOrderFullResponse = listOrderResponse
