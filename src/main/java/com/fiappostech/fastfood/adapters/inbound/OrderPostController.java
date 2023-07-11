@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/orders")
-public class OrderPostControllerAdapter {
+public class OrderPostController {
 
    private final OrderInsertInputPort orderInsertInputPort;
 

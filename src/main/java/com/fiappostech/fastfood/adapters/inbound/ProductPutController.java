@@ -16,7 +16,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/products")
-public class ProductPutControllerAdapter {
+public class ProductPutController {
 
    private final ProductSaveInputPort productSaveInputPort;
 

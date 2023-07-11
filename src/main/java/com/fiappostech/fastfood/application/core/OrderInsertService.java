@@ -10,12 +10,12 @@ import com.fiappostech.fastfood.application.ports.inbound.OrderInsertInputPort;
 import com.fiappostech.fastfood.application.ports.outbound.CustomerIdentifyOutputPort;
 import com.fiappostech.fastfood.application.ports.outbound.OrderSaveOutputPort;
 
-public class OrderInsertUseCase implements OrderInsertInputPort {
+public class OrderInsertService implements OrderInsertInputPort {
 
    private final OrderSaveOutputPort orderSaveOutputPort;
    private final CustomerIdentifyOutputPort customerIdentifyOutputPort;
 
-   public OrderInsertUseCase(
+   public OrderInsertService(
          OrderSaveOutputPort orderSaveOutputPort,
          CustomerIdentifyOutputPort customerIdentifyOutputPort) {
 

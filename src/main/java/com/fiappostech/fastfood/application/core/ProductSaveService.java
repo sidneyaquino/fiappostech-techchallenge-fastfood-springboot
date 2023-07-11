@@ -6,11 +6,11 @@ import com.fiappostech.fastfood.application.ports.dto.response.ProductResponse;
 import com.fiappostech.fastfood.application.ports.inbound.ProductSaveInputPort;
 import com.fiappostech.fastfood.application.ports.outbound.ProductSaveOutputPort;
 
-public class ProductSaveUseCase implements ProductSaveInputPort{
+public class ProductSaveService implements ProductSaveInputPort{
    
    private final ProductSaveOutputPort productSaveOutputPort;
 
-   public ProductSaveUseCase(ProductSaveOutputPort productSaveOutputPort) {
+   public ProductSaveService(ProductSaveOutputPort productSaveOutputPort) {
       this.productSaveOutputPort = productSaveOutputPort;
    }
 

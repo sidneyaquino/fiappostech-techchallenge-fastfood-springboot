@@ -21,7 +21,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/orders")
-public class OrderGetControllerAdapter {
+public class OrderGetController {
 
    private final OrderFindByIdInputPort orderFindByIdInputPort;
    private final OrderFindByTrackingInputPort orderFindByTrackingInputPort;

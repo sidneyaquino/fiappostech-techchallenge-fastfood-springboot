@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Component
-public class ProductFindByIdServiceAdapter implements ProductFindByIdOutputPort {
+public class ProductFindByIdRepository implements ProductFindByIdOutputPort {
 
    @Autowired
    private final ProductRepository productRepository;

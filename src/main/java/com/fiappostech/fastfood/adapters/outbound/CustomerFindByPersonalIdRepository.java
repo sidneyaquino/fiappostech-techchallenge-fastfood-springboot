@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Component
-public class CustomerFindByPersonalIdServiceAdapter implements CustomerIdentifyOutputPort {
+public class CustomerFindByPersonalIdRepository implements CustomerIdentifyOutputPort {
 
    @Autowired
    private final CustomerRepository customerRepository;

@@ -15,7 +15,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Component
-public class ProductSaveServiceAdapter implements ProductSaveOutputPort {
+public class ProductSaveRepository implements ProductSaveOutputPort {
 
    @Autowired
    private final ProductRepository productRepository;

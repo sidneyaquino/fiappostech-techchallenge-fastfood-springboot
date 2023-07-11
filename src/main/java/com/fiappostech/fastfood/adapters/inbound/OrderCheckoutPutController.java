@@ -16,7 +16,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/orders/checkout")
-public class OrderCheckoutPutControllerAdapter {
+public class OrderCheckoutPutController {
 
    private final OrderCheckoutInputPort orderCheckoutInputPort;
 

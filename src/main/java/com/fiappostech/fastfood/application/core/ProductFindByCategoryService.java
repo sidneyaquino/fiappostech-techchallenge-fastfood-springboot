@@ -8,11 +8,11 @@ import com.fiappostech.fastfood.application.ports.dto.response.ProductResponse;
 import com.fiappostech.fastfood.application.ports.inbound.ProductFindByCategoryInputPort;
 import com.fiappostech.fastfood.application.ports.outbound.ProductFindByCategoryOutputPort;
 
-public class ProductFindByCategoryUseCase implements ProductFindByCategoryInputPort {
+public class ProductFindByCategoryService implements ProductFindByCategoryInputPort {
    
    private final ProductFindByCategoryOutputPort productFindByCategoryOutputPort;
 
-   public ProductFindByCategoryUseCase(ProductFindByCategoryOutputPort productFindByCategoryOutputPort) {
+   public ProductFindByCategoryService(ProductFindByCategoryOutputPort productFindByCategoryOutputPort) {
       this.productFindByCategoryOutputPort = productFindByCategoryOutputPort;
    }
 

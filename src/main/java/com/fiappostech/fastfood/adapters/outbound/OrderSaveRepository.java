@@ -21,7 +21,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Component
-public class OrderSaveServiceAdapter implements OrderSaveOutputPort {
+public class OrderSaveRepository implements OrderSaveOutputPort {
 
    @Autowired
    private final OrderRepository orderRepository;
@@ -48,7 +48,7 @@ public class OrderSaveServiceAdapter implements OrderSaveOutputPort {
                throw new RecordNotFoundException(item.productId());
             }
             var productEntity = orderOptional.get();
-            
+
             listOrderProductEntity.add(new OrderProductEntity(item, orderEntity, productEntity));
          }
          orderProductRepository.saveAll(listOrderProductEntity);

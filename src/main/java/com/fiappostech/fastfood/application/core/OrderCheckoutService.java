@@ -7,12 +7,12 @@ import com.fiappostech.fastfood.application.ports.inbound.OrderCheckoutInputPort
 import com.fiappostech.fastfood.application.ports.outbound.OrderFindByIdOutputPort;
 import com.fiappostech.fastfood.application.ports.outbound.OrderSaveOutputPort;
 
-public class OrderCheckoutUseCase implements OrderCheckoutInputPort {
+public class OrderCheckoutService implements OrderCheckoutInputPort {
 
    private final OrderSaveOutputPort orderSaveOutputPort;
    private final OrderFindByIdOutputPort orderFindByIdOutputPort;
 
-   public OrderCheckoutUseCase(
+   public OrderCheckoutService(
          OrderSaveOutputPort orderSaveOutputPort,
          OrderFindByIdOutputPort orderFindByIdOutputPort) {
 

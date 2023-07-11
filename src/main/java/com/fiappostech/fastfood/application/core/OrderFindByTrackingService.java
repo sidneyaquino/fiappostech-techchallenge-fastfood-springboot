@@ -8,11 +8,11 @@ import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
 import com.fiappostech.fastfood.application.ports.inbound.OrderFindByTrackingInputPort;
 import com.fiappostech.fastfood.application.ports.outbound.OrderFindByTrackingOutputPort;
 
-public class OrderFindByTrackingUseCase implements OrderFindByTrackingInputPort {
+public class OrderFindByTrackingService implements OrderFindByTrackingInputPort {
    
    private final OrderFindByTrackingOutputPort orderFindByTrackingOutputPort;
 
-   public OrderFindByTrackingUseCase(OrderFindByTrackingOutputPort orderFindByTrackingOutputPort) {
+   public OrderFindByTrackingService(OrderFindByTrackingOutputPort orderFindByTrackingOutputPort) {
       this.orderFindByTrackingOutputPort = orderFindByTrackingOutputPort;
    }
 

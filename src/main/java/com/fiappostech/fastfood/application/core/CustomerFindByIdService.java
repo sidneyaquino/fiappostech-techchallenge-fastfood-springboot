@@ -7,12 +7,12 @@ import com.fiappostech.fastfood.application.ports.dto.response.CustomerResponse;
 import com.fiappostech.fastfood.application.ports.inbound.CustomerFindByIdInputPort;
 import com.fiappostech.fastfood.application.ports.outbound.CustomerFindByIdOutputPort;
 
-public class CustomerFindByIdUseCase implements CustomerFindByIdInputPort {
+public class CustomerFindByIdService implements CustomerFindByIdInputPort {
 
-   private final CustomerFindByIdOutputPort customerFindByIdAdapterPort;
+   private final CustomerFindByIdOutputPort customerFindByIdOutputPort;
 
-   public CustomerFindByIdUseCase(CustomerFindByIdOutputPort customerFindByIdAdapterPort) {
-      this.customerFindByIdAdapterPort = customerFindByIdAdapterPort;
+   public CustomerFindByIdService(CustomerFindByIdOutputPort customerFindByIdOutputPort) {
+      this.customerFindByIdOutputPort = customerFindByIdOutputPort;
    }
 
    @Override
@@ -21,7 +21,7 @@ public class CustomerFindByIdUseCase implements CustomerFindByIdInputPort {
       //
       // Business Rules before Request.
       //
-      var customerResponse = this.customerFindByIdAdapterPort.execute(customerId);
+      var customerResponse = this.customerFindByIdOutputPort.execute(customerId);
       var customerDomain = new CustomerDomain(customerResponse);
       //
       // Business Rules before Response.

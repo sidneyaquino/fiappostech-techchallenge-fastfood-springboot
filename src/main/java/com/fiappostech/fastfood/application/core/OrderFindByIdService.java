@@ -7,11 +7,11 @@ import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
 import com.fiappostech.fastfood.application.ports.inbound.OrderFindByIdInputPort;
 import com.fiappostech.fastfood.application.ports.outbound.OrderFindByIdOutputPort;
 
-public class OrderFindByIdUseCase implements OrderFindByIdInputPort {
+public class OrderFindByIdService implements OrderFindByIdInputPort {
    
    private final OrderFindByIdOutputPort orderFindByIdOutputPort;
 
-   public OrderFindByIdUseCase(OrderFindByIdOutputPort orderFindByIdOutputPort) {
+   public OrderFindByIdService(OrderFindByIdOutputPort orderFindByIdOutputPort) {
       this.orderFindByIdOutputPort = orderFindByIdOutputPort;
    }
 

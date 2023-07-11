@@ -18,7 +18,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/customers")
-public class CustomerGetControllerAdapter {
+public class CustomerGetController {
 
    private final CustomerFindByIdInputPort customerFindByIdInputPort;
    private final CustomerIdentifyInputPort customerIdentifyInputPort;

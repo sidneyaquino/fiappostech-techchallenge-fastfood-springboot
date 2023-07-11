@@ -6,12 +6,12 @@ import com.fiappostech.fastfood.application.ports.dto.response.CustomerResponse;
 import com.fiappostech.fastfood.application.ports.inbound.CustomerIdentifyInputPort;
 import com.fiappostech.fastfood.application.ports.outbound.CustomerIdentifyOutputPort;
 
-public class CustomerIdentifyUseCase implements CustomerIdentifyInputPort {
+public class CustomerIdentifyService implements CustomerIdentifyInputPort {
 
-   private final CustomerIdentifyOutputPort customerIdentifyAdapterPort;
+   private final CustomerIdentifyOutputPort customerIdentifyOutputPort;
 
-   public CustomerIdentifyUseCase(CustomerIdentifyOutputPort customerIdentifyOutputPort) {
-      this.customerIdentifyAdapterPort = customerIdentifyOutputPort;
+   public CustomerIdentifyService(CustomerIdentifyOutputPort customerIdentifyOutputPort) {
+      this.customerIdentifyOutputPort = customerIdentifyOutputPort;
    }
 
    @Override
@@ -21,7 +21,7 @@ public class CustomerIdentifyUseCase implements CustomerIdentifyInputPort {
       //
       // Business Rules before Request.
       //
-      var customerResponse = this.customerIdentifyAdapterPort.execute(personalIdDomain.personalId());
+      var customerResponse = this.customerIdentifyOutputPort.execute(personalIdDomain.personalId());
       var customerDomain = new CustomerDomain(customerResponse);      
       //
       // Business Rules before Response.

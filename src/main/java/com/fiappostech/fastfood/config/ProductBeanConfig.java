@@ -3,43 +3,43 @@ package com.fiappostech.fastfood.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.fiappostech.fastfood.adapters.outbound.ProductDeleteByIdServiceAdapter;
-import com.fiappostech.fastfood.adapters.outbound.ProductFindByCategoryServiceAdapter;
-import com.fiappostech.fastfood.adapters.outbound.ProductFindByIdServiceAdapter;
-import com.fiappostech.fastfood.adapters.outbound.ProductSaveServiceAdapter;
-import com.fiappostech.fastfood.application.core.ProductDeleteByIdUseCase;
-import com.fiappostech.fastfood.application.core.ProductFindByCategoryUseCase;
-import com.fiappostech.fastfood.application.core.ProductFindByIdUseCase;
-import com.fiappostech.fastfood.application.core.ProductSaveUseCase;
+import com.fiappostech.fastfood.adapters.outbound.ProductDeleteByIdRepository;
+import com.fiappostech.fastfood.adapters.outbound.ProductFindByCategoryRepository;
+import com.fiappostech.fastfood.adapters.outbound.ProductFindByIdRepository;
+import com.fiappostech.fastfood.adapters.outbound.ProductSaveRepository;
+import com.fiappostech.fastfood.application.core.ProductDeleteByIdService;
+import com.fiappostech.fastfood.application.core.ProductFindByCategoryService;
+import com.fiappostech.fastfood.application.core.ProductFindByIdService;
+import com.fiappostech.fastfood.application.core.ProductSaveService;
 
 @Configuration
 public class ProductBeanConfig {
 
    @Bean
-   public ProductSaveUseCase productSaveUseCase(  
-         ProductSaveServiceAdapter productSaveServiceAdapter) {
+   public ProductSaveService productSaveService(  
+         ProductSaveRepository productSaveRepository) {
 
-      return new ProductSaveUseCase(productSaveServiceAdapter);
+      return new ProductSaveService(productSaveRepository);
    }
 
    @Bean
-   public ProductFindByIdUseCase productFindByIdUseCase(
-         ProductFindByIdServiceAdapter productFindByIdServiceAdapter) {
+   public ProductFindByIdService productFindByIdService(
+         ProductFindByIdRepository productFindByIdRepository) {
 
-      return new ProductFindByIdUseCase(productFindByIdServiceAdapter);
+      return new ProductFindByIdService(productFindByIdRepository);
    }
 
    @Bean
-   public ProductFindByCategoryUseCase productFindUseCase(
-         ProductFindByCategoryServiceAdapter productFindByCategoryServiceAdapter) {
+   public ProductFindByCategoryService productFindByCategoryService(
+         ProductFindByCategoryRepository productFindByCategoryRepository) {
 
-      return new ProductFindByCategoryUseCase(productFindByCategoryServiceAdapter);
+      return new ProductFindByCategoryService(productFindByCategoryRepository);
    }
 
    @Bean
-   public ProductDeleteByIdUseCase productDeleteByIdUseCase(
-         ProductDeleteByIdServiceAdapter productDeleteByIdServiceAdapter) {
+   public ProductDeleteByIdService productDeleteByIdService(
+         ProductDeleteByIdRepository productDeleteByIdRepository) {
 
-      return new ProductDeleteByIdUseCase(productDeleteByIdServiceAdapter);
+      return new ProductDeleteByIdService(productDeleteByIdRepository);
    }
 }

@@ -6,11 +6,11 @@ import com.fiappostech.fastfood.application.ports.dto.response.CustomerResponse;
 import com.fiappostech.fastfood.application.ports.inbound.CustomerRegistryInputPort;
 import com.fiappostech.fastfood.application.ports.outbound.CustomerRegistryOutputPort;
 
-public class CustomerRegistryUseCase implements CustomerRegistryInputPort {
+public class CustomerRegistryService implements CustomerRegistryInputPort {
 
    private final CustomerRegistryOutputPort customerRegistryOutputPort;
 
-   public CustomerRegistryUseCase(CustomerRegistryOutputPort customerRegistryOutputPort) {
+   public CustomerRegistryService(CustomerRegistryOutputPort customerRegistryOutputPort) {
       this.customerRegistryOutputPort = customerRegistryOutputPort;
    }
 

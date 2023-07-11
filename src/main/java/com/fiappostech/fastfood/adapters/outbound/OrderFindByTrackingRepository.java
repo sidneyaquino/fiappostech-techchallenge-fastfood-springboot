@@ -16,7 +16,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Component
-public class OrderFindByTrackingServiceAdapter implements OrderFindByTrackingOutputPort {
+public class OrderFindByTrackingRepository implements OrderFindByTrackingOutputPort {
 
    @Autowired
    private final OrderRepository orderRepository;

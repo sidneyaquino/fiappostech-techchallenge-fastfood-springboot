@@ -3,34 +3,34 @@ package com.fiappostech.fastfood.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.fiappostech.fastfood.adapters.outbound.CustomerFindByIdServiceAdapter;
-import com.fiappostech.fastfood.adapters.outbound.CustomerFindByPersonalIdServiceAdapter;
-import com.fiappostech.fastfood.adapters.outbound.CustomerSaveServiceAdapter;
-import com.fiappostech.fastfood.application.core.CustomerFindByIdUseCase;
-import com.fiappostech.fastfood.application.core.CustomerIdentifyUseCase;
-import com.fiappostech.fastfood.application.core.CustomerRegistryUseCase;
+import com.fiappostech.fastfood.adapters.outbound.CustomerFindByIdRepository;
+import com.fiappostech.fastfood.adapters.outbound.CustomerFindByPersonalIdRepository;
+import com.fiappostech.fastfood.adapters.outbound.CustomerSaveRepository;
+import com.fiappostech.fastfood.application.core.CustomerFindByIdService;
+import com.fiappostech.fastfood.application.core.CustomerIdentifyService;
+import com.fiappostech.fastfood.application.core.CustomerRegistryService;
 
 @Configuration
 public class CustomerBeanConfig {
 
    @Bean
-   public CustomerRegistryUseCase customerRegistryUseCase(
-         CustomerSaveServiceAdapter customerInsertServiceAdapter) {
+   public CustomerRegistryService customerRegistryService(
+         CustomerSaveRepository customerSaveRepository) {
 
-      return new CustomerRegistryUseCase(customerInsertServiceAdapter);
+      return new CustomerRegistryService(customerSaveRepository);
    }
 
    @Bean
-   public CustomerFindByIdUseCase customerFindByIdUseCase(
-         CustomerFindByIdServiceAdapter customerFindByIdServiceAdapter) {
+   public CustomerFindByIdService customerFindByIdService(
+         CustomerFindByIdRepository customerFindByIdRepository) {
 
-      return new CustomerFindByIdUseCase(customerFindByIdServiceAdapter);
+      return new CustomerFindByIdService(customerFindByIdRepository);
    }
 
    @Bean
-   public CustomerIdentifyUseCase customerIdentifyUseCase(
-         CustomerFindByPersonalIdServiceAdapter customerFindByIdServiceAdapter) {
+   public CustomerIdentifyService customerIdentifyService(
+         CustomerFindByPersonalIdRepository customerFindByPersonalIdRepository) {
 
-      return new CustomerIdentifyUseCase(customerFindByIdServiceAdapter);
+      return new CustomerIdentifyService(customerFindByPersonalIdRepository);
    }
 }

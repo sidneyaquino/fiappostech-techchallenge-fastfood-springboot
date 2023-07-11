@@ -15,7 +15,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/products")
-public class ProductDeleteControllerAdapter {
+public class ProductDeleteController {
    
    private final ProductDeleteByIdInputPort productDeleteByIdInputPort;
 

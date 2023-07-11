@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Component
-public class ProductDeleteByIdServiceAdapter implements ProductDeleteByIdOutputPort {
+public class ProductDeleteByIdRepository implements ProductDeleteByIdOutputPort {
 
    @Autowired
    private final ProductRepository productRepository;

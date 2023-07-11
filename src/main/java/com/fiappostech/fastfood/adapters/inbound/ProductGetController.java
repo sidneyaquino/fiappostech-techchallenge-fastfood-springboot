@@ -21,7 +21,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/products")
-public class ProductGetControllerAdapter {
+public class ProductGetController {
 
    private final ProductFindByIdInputPort productFindByIdInputPort;
    private final ProductFindByCategoryInputPort productFindByCategoryInputPort;

@@ -5,11 +5,11 @@ import java.util.UUID;
 import com.fiappostech.fastfood.application.ports.inbound.ProductDeleteByIdInputPort;
 import com.fiappostech.fastfood.application.ports.outbound.ProductDeleteByIdOutputPort;
 
-public class ProductDeleteByIdUseCase implements ProductDeleteByIdInputPort {
+public class ProductDeleteByIdService implements ProductDeleteByIdInputPort {
 
    private final ProductDeleteByIdOutputPort productDeleteByIdOutputPort;
 
-   public ProductDeleteByIdUseCase(ProductDeleteByIdOutputPort productDeleteByIdOutputPort) {
+   public ProductDeleteByIdService(ProductDeleteByIdOutputPort productDeleteByIdOutputPort) {
       this.productDeleteByIdOutputPort = productDeleteByIdOutputPort;
    }
 

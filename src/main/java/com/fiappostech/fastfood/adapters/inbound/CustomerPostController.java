@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/customers")
-public class CustomerPostControllerAdapter {
+public class CustomerPostController {
 
    private final CustomerRegistryInputPort customerRegistryInputPort;
 

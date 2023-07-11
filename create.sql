@@ -14,7 +14,6 @@ INSERT INTO "public"."customers" ("id", "personal_id", "email", "name") VALUES (
 INSERT INTO "public"."customers" ("id", "personal_id", "email", "name") VALUES ('1d9b9381-d7bc-4d97-adf8-a6f626eba5e1', '12345678904', 'mikki@einstein.com', 'Mikki Einstein');
 
 
-
 -- PRODUCTS
 CREATE TABLE "public"."products" ( 
   "id" UUID NOT NULL,
@@ -31,7 +30,6 @@ INSERT INTO "public"."products" ("id", "category", "description", "name", "value
 INSERT INTO "public"."products" ("id", "category", "description", "name", "value", "deleted") VALUES ('61c100ee-0e8b-41a9-915c-70892d5fac50', 2, 'Fanta 500 ml', 'Orange Fanta', '3.49', false);
 
 
-
 -- ORDERS
 CREATE TABLE "public"."orders" ( 
   "id" UUID NOT NULL,
@@ -41,11 +39,9 @@ CREATE TABLE "public"."orders" (
   "tracking" SMALLINT NULL CHECK (category BETWEEN 0 AND 3),
   "value" NUMERIC(38,2) NOT NULL,
   CONSTRAINT "orders_pkey" PRIMARY KEY ("id")
-  CONSTRAINT FKpxtb8awmi0dk6smoh2vp1litg FOREIGN KEY ("customer_id") REFERENCES customers;
 );
--- ALTER TABLE orders 
---     ADD CONSTRAINT FKpxtb8awmi0dk6smoh2vp1litg FOREIGN KEY ("customer_id") REFERENCES customers;
-
+ALTER TABLE orders 
+    ADD CONSTRAINT FKpxtb8awmi0dk6smoh2vp1litg FOREIGN KEY ("customer_id") REFERENCES customers;
 
 
 -- ORDER_PRODUCTS
@@ -55,10 +51,8 @@ CREATE TABLE "public"."order_products" (
   "quantity" SMALLINT NOT NULL,
   "value" NUMERIC(38,2) NOT NULL,
   CONSTRAINT "order_products_pkey" PRIMARY KEY ("order_id", "product_id")
-  CONSTRAINT FKdxjduvg7991r4qja26fsckxv8 FOREIGN KEY (product_id) REFERENCES products
-  CONSTRAINT FKawxpt1ns1sr7al76nvjkv21of FOREIGN KEY (order_id) REFERENCES orders
 );
--- ALTER TABLE order_products 
---   ADD CONSTRAINT FKdxjduvg7991r4qja26fsckxv8 FOREIGN KEY (product_id) REFERENCES products
--- ALTER TABLE order_products 
---   ADD CONSTRAINT FKawxpt1ns1sr7al76nvjkv21of FOREIGN KEY (order_id) REFERENCES orders
+ALTER TABLE order_products 
+  ADD CONSTRAINT FKdxjduvg7991r4qja26fsckxv8 FOREIGN KEY (product_id) REFERENCES products
+ALTER TABLE order_products 
+  ADD CONSTRAINT FKawxpt1ns1sr7al76nvjkv21of FOREIGN KEY (order_id) REFERENCES orders
