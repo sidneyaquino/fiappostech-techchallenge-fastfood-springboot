@@ -2,7 +2,7 @@ package com.fiappostech.fastfood.adapters.outbound.entity;
 
 import java.math.BigDecimal;
 
-import com.fiappostech.fastfood.application.ports.dto.request.OrderProductRequest;
+import com.fiappostech.fastfood.application.ports.dto.response.OrderProductResponse;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
@@ -14,7 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@EqualsAndHashCode(of = "orderProductId")
+@EqualsAndHashCode(of = "pkId")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -22,41 +22,29 @@ import lombok.Setter;
 @Entity
 @Table(name = "order_products")
 public class OrderProductEntity {
-   
+
    @EmbeddedId
    // @Column(name = "id")
-   private OrderProductPk orderProductId = new OrderProductPk();
+   private OrderProductPk pkId = new OrderProductPk();
 
    @Column(nullable = false)
-   private Short quantity; 
+   private Short quantity;
 
    @Column(nullable = false)
    private BigDecimal value;
 
-   public OrderProductEntity(OrderProductRequest orderProductRequest, OrderEntity orderEntity, ProductEntity productEntity){
-      this.orderProductId.setOrder(orderEntity);
-      this.orderProductId.setProduct(productEntity);
-      this.quantity = orderProductRequest.quantity();
+   public OrderProductEntity(OrderEntity orderEntity, ProductEntity productEntity, Short quantity) {
+      this.pkId.setOrder(orderEntity);
+      this.pkId.setProduct(productEntity);
       this.value = productEntity.getValue();
+      this.quantity = quantity;
    }
 
-   // public OrderEntity(OrderRequest orderRequest) {
-   //    this.orderId = orderRequest.orderId();
-   //    this.customer = (orderRequest.customer() == null ? null : new CustomerEntity(orderRequest.customer()));
-   //    this.created = orderRequest.created();
-   //    this.tracked = orderRequest.tracked();
-   //    this.tracking = orderRequest.tracking();
-   //    this.value = orderRequest.value();
-   // }
-
-   // public OrderResponse toOrderResponse() {
-   //    return new OrderResponse(
-   //          this.getOrderId(),
-   //          this.getCustomer() == null ? null : this.getCustomer().toCustomerResponse(),
-   //          this.getCreated(),
-   //          this.getTracked(),
-   //          this.getTracking(),
-   //          0,
-   //          this.getValue());
-   // }
+   public OrderProductResponse toOrderProductResponse() {
+      return new OrderProductResponse(
+            this.getPkId().getProduct().getProductId(),
+            this.getPkId().getProduct().getName(),
+            this.getQuantity(),
+            this.getValue());
+   }
 }

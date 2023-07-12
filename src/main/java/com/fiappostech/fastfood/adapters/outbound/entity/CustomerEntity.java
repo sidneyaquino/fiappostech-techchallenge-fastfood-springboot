@@ -27,7 +27,7 @@ import lombok.Setter;
 public class CustomerEntity {
 
    @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @GeneratedValue(strategy = GenerationType.UUID)
    @Column(name = "id")
    private UUID customerId;
 

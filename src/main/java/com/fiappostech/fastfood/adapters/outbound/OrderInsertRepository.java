@@ -13,15 +13,16 @@ import com.fiappostech.fastfood.adapters.outbound.repository.OrderProductReposit
 import com.fiappostech.fastfood.adapters.outbound.repository.OrderRepository;
 import com.fiappostech.fastfood.adapters.outbound.repository.ProductRepository;
 import com.fiappostech.fastfood.application.ports.dto.request.OrderRequest;
+import com.fiappostech.fastfood.application.ports.dto.response.OrderProductResponse;
 import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
-import com.fiappostech.fastfood.application.ports.outbound.OrderSaveOutputPort;
+import com.fiappostech.fastfood.application.ports.outbound.OrderInsertOutputPort;
 import com.fiappostech.fastfood.infrastructure.exception.RecordNotFoundException;
 
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Component
-public class OrderSaveRepository implements OrderSaveOutputPort {
+public class OrderInsertRepository implements OrderInsertOutputPort {
 
    @Autowired
    private final OrderRepository orderRepository;
@@ -35,32 +36,25 @@ public class OrderSaveRepository implements OrderSaveOutputPort {
    @Transactional
    @Override
    public OrderResponse execute(OrderRequest orderRequest) {
-      List<OrderProductEntity> listOrderProductEntity = new ArrayList<>();
-      OrderEntity orderEntity;
+      OrderEntity orderEntity = new OrderEntity(orderRequest);
+      orderRepository.save(orderEntity);
 
-      if (orderRequest.orderId() == null) {
-         orderEntity = new OrderEntity(orderRequest);
-         orderRepository.save(orderEntity);
+      List<OrderProductEntity> listOrderProductEntity = new ArrayList<>();      
+      for (var item : orderRequest.products()) {
 
-         for (var item : orderRequest.products()) {
-            var orderOptional = productRepository.findById(item.productId());
-            if (orderOptional.isEmpty()) {
-               throw new RecordNotFoundException(item.productId());
-            }
-            var productEntity = orderOptional.get();
-
-            listOrderProductEntity.add(new OrderProductEntity(item, orderEntity, productEntity));
-         }
-         orderProductRepository.saveAll(listOrderProductEntity);
-      } else {
-
-         var orderOptional = orderRepository.findById(orderRequest.orderId());
+         var orderOptional = productRepository.findById(item.productId());
          if (orderOptional.isEmpty()) {
-            throw new RecordNotFoundException(orderRequest.orderId());
+            throw new RecordNotFoundException(item.productId());
          }
-         orderEntity = orderOptional.get();
-         orderEntity.update(orderRequest);
+         var productEntity = orderOptional.get();
+         listOrderProductEntity.add(new OrderProductEntity(orderEntity, productEntity, item.quantity()));
       }
-      return orderEntity.toOrderResponse();
+      orderProductRepository.saveAll(listOrderProductEntity);
+
+      List<OrderProductResponse> listOrderProductResponse = new ArrayList<>();
+      for (OrderProductEntity item : listOrderProductEntity) {
+         listOrderProductResponse.add(item.toOrderProductResponse());
+      }
+      return orderEntity.toOrderResponse(listOrderProductResponse);
    }
 }

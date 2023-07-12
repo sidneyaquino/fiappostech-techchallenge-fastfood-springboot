@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fiappostech.fastfood.adapters.inbound.dto.request.OrderCheckoutPutRequest;
-import com.fiappostech.fastfood.adapters.inbound.dto.response.OrderFullResponse;
+import com.fiappostech.fastfood.adapters.inbound.dto.response.OrderTrackingResponse;
 import com.fiappostech.fastfood.application.ports.inbound.OrderCheckoutInputPort;
 
 import jakarta.validation.Valid;
@@ -21,10 +21,10 @@ public class OrderCheckoutPutController {
    private final OrderCheckoutInputPort orderCheckoutInputPort;
 
    @PutMapping
-   public ResponseEntity<OrderFullResponse> orderSave(
+   public ResponseEntity<OrderTrackingResponse> orderSave(
          @RequestBody @Valid OrderCheckoutPutRequest orderCheckoutPutRequest) {
 
       var orderResponse = orderCheckoutInputPort.execute(orderCheckoutPutRequest.toOrderCheckoutRequest());
-      return ResponseEntity.ok(new OrderFullResponse(orderResponse));
+      return ResponseEntity.ok(new OrderTrackingResponse(orderResponse));
    }
 }

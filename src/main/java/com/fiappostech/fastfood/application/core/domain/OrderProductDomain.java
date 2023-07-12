@@ -4,47 +4,37 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 import com.fiappostech.fastfood.application.ports.dto.request.OrderProductRequest;
+import com.fiappostech.fastfood.application.ports.dto.response.OrderProductResponse;
 
 public class OrderProductDomain {
 
-   private UUID orderId;
    private UUID productId;
+   private String description;
    private Short quantity;
    private BigDecimal value;
 
    public OrderProductDomain() {
    }
 
-   public OrderProductDomain(UUID orderId, UUID productId, Short quantity, BigDecimal value) {
-      this.orderId = orderId;
+   public OrderProductDomain(UUID productId, String description, Short quantity, BigDecimal value) {
       this.productId = productId;
+      this.description = description;
       this.quantity = quantity;
       this.value = value;
    }
 
    public OrderProductDomain(OrderProductRequest orderProductRequest) {
-      this.orderId = orderProductRequest.orderId();
       this.productId = orderProductRequest.productId();
+      this.description = null;
       this.quantity = orderProductRequest.quantity();
       this.value = orderProductRequest.value();
    }
 
-   // public OrderProductDomain(OrderProductResponse orderProductResponse) {
-   // this.orderId = orderProductResponse.orderId();
-   // this.created = orderProductResponse.created();
-   // this.tracked = orderProductResponse.tracked();
-   // this.tracking = orderProductResponse.tracking();
-   // this.value = orderResponse.value();
-   // this.customer = orderProductResponse.customer() == null ? null : new
-   // CustomerDomain(orderResponse.customer());
-   // }
-
-   public UUID getOrderId() {
-      return orderId;
-   }
-
-   public void setOrderId(UUID orderId) {
-      this.orderId = orderId;
+   public OrderProductDomain(OrderProductResponse orderProductResponse) {
+      this.productId = orderProductResponse.productId();
+      this.description = orderProductResponse.description();
+      this.quantity = orderProductResponse.quantity();
+      this.value = orderProductResponse.value();
    }
 
    public UUID getProductId() {
@@ -53,6 +43,14 @@ public class OrderProductDomain {
 
    public void setProductId(UUID productId) {
       this.productId = productId;
+   }
+
+   public String getDescription() {
+      return description;
+   }
+
+   public void setDescription(String description) {
+      this.description = description;
    }
 
    public Short getQuantity() {
@@ -73,20 +71,16 @@ public class OrderProductDomain {
 
    public OrderProductRequest toOrderProductRequest() {
       return new OrderProductRequest(
-            this.getOrderId(),
             this.getProductId(),
             this.getQuantity(),
             this.getValue());
    }
 
-   // public OrderResponse toOrderResponse() {
-   // return new OrderResponse(
-   // this.getOrderId(),
-   // this.getCustomer() == null ? null : this.getCustomer().toCustomerResponse(),
-   // this.getCreated(),
-   // this.getTracked(),
-   // this.getTracking(),
-   // this.getTrackingTime(),
-   // this.getValue());
-   // }
+   public OrderProductResponse toOrderProductResponse() {
+      return new OrderProductResponse(
+            this.getProductId(),
+            this.getDescription(),
+            this.getQuantity(),
+            this.getValue());
+   }
 }

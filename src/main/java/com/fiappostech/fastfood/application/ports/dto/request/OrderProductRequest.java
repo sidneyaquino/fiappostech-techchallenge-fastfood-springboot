@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 public record OrderProductRequest(
-      UUID orderId,
       UUID productId,
       Short quantity,
       BigDecimal value) {

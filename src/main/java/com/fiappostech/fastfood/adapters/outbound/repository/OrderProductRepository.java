@@ -8,5 +8,5 @@ import com.fiappostech.fastfood.adapters.outbound.entity.OrderProductPk;
 
 @Repository
 public interface OrderProductRepository extends JpaRepository<OrderProductEntity, OrderProductPk> {
-   // List<OrderEntity> findAllByTracking(Tracking tracking);
+   // List<OrderProductEntity> findAllByOrder(UUID orderI);
 }

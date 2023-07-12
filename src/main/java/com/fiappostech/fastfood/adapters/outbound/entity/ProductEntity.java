@@ -36,7 +36,7 @@ import lombok.Setter;
 public class ProductEntity {
 
    @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @GeneratedValue(strategy = GenerationType.UUID)
    @Column(name = "id")
    private UUID productId;
 

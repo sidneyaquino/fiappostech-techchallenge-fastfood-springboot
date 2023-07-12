@@ -2,6 +2,7 @@ package com.fiappostech.fastfood.application.ports.dto.response;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import com.fiappostech.fastfood.application.ports.dto.Tracking;
@@ -13,5 +14,6 @@ public record OrderResponse(
       LocalDateTime tracked,
       Tracking tracking,
       Integer trackingTime,
-      BigDecimal value) {
+      BigDecimal value, 
+      List<OrderProductResponse> products) {
 }

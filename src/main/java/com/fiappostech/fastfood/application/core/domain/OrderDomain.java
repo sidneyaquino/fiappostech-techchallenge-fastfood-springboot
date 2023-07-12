@@ -54,7 +54,8 @@ public class OrderDomain {
       this.trackingTime = orderResponse.tracked() == null ? null
             : Duration.between(orderResponse.tracked(), LocalDateTime.now()).toMinutesPart();
       this.value = orderResponse.value();
-      this.products = null; // PENDENCIA!
+      this.products = orderResponse.products() == null ? null
+            : orderResponse.products().stream().map(OrderProductDomain::new).toList();
    }
 
    public OrderDomain(OrderRequest orderRequest) {
@@ -64,7 +65,8 @@ public class OrderDomain {
       this.tracked = orderRequest.tracked();
       this.tracking = orderRequest.tracking();
       this.value = orderRequest.value();
-      this.products = orderRequest.products().stream().map(OrderProductDomain::new).toList();
+      this.products = orderRequest.products() == null ? null
+            : orderRequest.products().stream().map(OrderProductDomain::new).toList();
    }
 
    public OrderDomain(OrderCheckoutRequest orderCheckoutRequest) {
@@ -146,7 +148,8 @@ public class OrderDomain {
             this.getTracked(),
             this.getTracking(),
             this.getValue(),
-            this.getProducts().stream().map(item -> item.toOrderProductRequest()).toList());
+            this.getProducts() == null ? null
+                  : this.getProducts().stream().map(item -> item.toOrderProductRequest()).toList());
    }
 
    public OrderResponse toOrderResponse() {
@@ -157,6 +160,8 @@ public class OrderDomain {
             this.getTracked(),
             this.getTracking(),
             this.getTrackingTime(),
-            this.getValue()); // PENDENCIA!!!
+            this.getValue(),
+            this.getProducts() == null ? null
+                  : this.getProducts().stream().map(item -> item.toOrderProductResponse()).toList());
    }
 }

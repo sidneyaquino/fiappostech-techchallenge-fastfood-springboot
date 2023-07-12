@@ -20,7 +20,6 @@ public record OrderProdutcPostRequest(
 
    public OrderProductRequest toOrderProductRequest() {
       return new OrderProductRequest(
-            null,
             this.produtcId(),
             this.quantity(),
             null);

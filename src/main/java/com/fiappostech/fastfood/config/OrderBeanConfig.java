@@ -6,27 +6,30 @@ import org.springframework.context.annotation.Configuration;
 import com.fiappostech.fastfood.adapters.outbound.CustomerFindByPersonalIdRepository;
 import com.fiappostech.fastfood.adapters.outbound.OrderFindByIdRepository;
 import com.fiappostech.fastfood.adapters.outbound.OrderFindByTrackingRepository;
-import com.fiappostech.fastfood.adapters.outbound.OrderSaveRepository;
+import com.fiappostech.fastfood.adapters.outbound.OrderInsertRepository;
+import com.fiappostech.fastfood.adapters.outbound.OrderUpdateRepository;
+import com.fiappostech.fastfood.application.core.OrderCheckoutService;
 import com.fiappostech.fastfood.application.core.OrderFindByIdService;
 import com.fiappostech.fastfood.application.core.OrderFindByTrackingService;
 import com.fiappostech.fastfood.application.core.OrderInsertService;
-import com.fiappostech.fastfood.application.core.OrderCheckoutService;
 
 @Configuration
 public class OrderBeanConfig {
 
    @Bean
-   public OrderInsertService orderInsertService(OrderSaveRepository orderSaveRepository,
+   public OrderInsertService orderInsertService(
+         OrderInsertRepository orderInsertRepository,
          CustomerFindByPersonalIdRepository customerFindByPersonalIdRepository) {
 
-      return new OrderInsertService(orderSaveRepository, customerFindByPersonalIdRepository);
+      return new OrderInsertService(orderInsertRepository, customerFindByPersonalIdRepository);
    }
 
    @Bean
-   public OrderCheckoutService orderCheckoutService(OrderSaveRepository orderSaveRepository,
+   public OrderCheckoutService orderCheckoutService(
+         OrderUpdateRepository orderUpdateRepository,
          OrderFindByIdRepository orderFindByIdRepository) {
 
-      return new OrderCheckoutService(orderSaveRepository, orderFindByIdRepository);
+      return new OrderCheckoutService(orderUpdateRepository, orderFindByIdRepository);
    }
 
    @Bean

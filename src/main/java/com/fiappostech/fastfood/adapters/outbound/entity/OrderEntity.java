@@ -2,10 +2,13 @@ package com.fiappostech.fastfood.adapters.outbound.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.fiappostech.fastfood.application.ports.dto.Tracking;
 import com.fiappostech.fastfood.application.ports.dto.request.OrderRequest;
+import com.fiappostech.fastfood.application.ports.dto.response.OrderProductResponse;
 import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
 
 import jakarta.persistence.Column;
@@ -35,7 +38,7 @@ import lombok.Setter;
 public class OrderEntity {
 
    @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @GeneratedValue(strategy = GenerationType.UUID)
    @Column(name = "id")
    private UUID orderId;
 
@@ -55,6 +58,8 @@ public class OrderEntity {
    @Column(nullable = false)
    private BigDecimal value;
 
+   // private List<OrderProductEntity> products;
+   
    public OrderEntity(OrderRequest orderRequest) {
       this.orderId = orderRequest.orderId();
       this.customer = (orderRequest.customer() == null ? null : new CustomerEntity(orderRequest.customer()));
@@ -65,6 +70,10 @@ public class OrderEntity {
    }
 
    public OrderResponse toOrderResponse() {
+      return toOrderResponse(new ArrayList<OrderProductResponse>());
+   }
+
+   public OrderResponse toOrderResponse(List<OrderProductResponse> listOrderProductResponse) {
       return new OrderResponse(
             this.getOrderId(),
             this.getCustomer() == null ? null : this.getCustomer().toCustomerResponse(),
@@ -72,7 +81,8 @@ public class OrderEntity {
             this.getTracked(),
             this.getTracking(),
             0,
-            this.getValue());
+            this.getValue(),
+            listOrderProductResponse);
    }
 
    public void update(OrderRequest orderRequest) {

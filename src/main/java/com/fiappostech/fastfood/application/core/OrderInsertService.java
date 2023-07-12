@@ -8,18 +8,18 @@ import com.fiappostech.fastfood.application.ports.dto.request.OrderRequest;
 import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
 import com.fiappostech.fastfood.application.ports.inbound.OrderInsertInputPort;
 import com.fiappostech.fastfood.application.ports.outbound.CustomerIdentifyOutputPort;
-import com.fiappostech.fastfood.application.ports.outbound.OrderSaveOutputPort;
+import com.fiappostech.fastfood.application.ports.outbound.OrderInsertOutputPort;
 
 public class OrderInsertService implements OrderInsertInputPort {
 
-   private final OrderSaveOutputPort orderSaveOutputPort;
+   private final OrderInsertOutputPort orderInsertOutputPort;
    private final CustomerIdentifyOutputPort customerIdentifyOutputPort;
 
    public OrderInsertService(
-         OrderSaveOutputPort orderSaveOutputPort,
+         OrderInsertOutputPort orderInsertOutputPort,
          CustomerIdentifyOutputPort customerIdentifyOutputPort) {
 
-      this.orderSaveOutputPort = orderSaveOutputPort;
+      this.orderInsertOutputPort = orderInsertOutputPort;
       this.customerIdentifyOutputPort = customerIdentifyOutputPort;
    }
 
@@ -33,7 +33,6 @@ public class OrderInsertService implements OrderInsertInputPort {
          var customerResponse = this.customerIdentifyOutputPort.execute(personalId);
          orderDomain.setCustomer(new CustomerDomain(customerResponse));
       }
-      
       //
       // PENDENCIA! Validar Itens.
       // 
@@ -41,7 +40,7 @@ public class OrderInsertService implements OrderInsertInputPort {
       orderDomain.setCreated(LocalDateTime.now());
       //
       // Request.
-      var orderResponse = this.orderSaveOutputPort.execute(orderDomain.toOrderRequest());
+      var orderResponse = this.orderInsertOutputPort.execute(orderDomain.toOrderRequest());
       orderDomain = new OrderDomain(orderResponse);
       //
       // Business Rules before Response.
