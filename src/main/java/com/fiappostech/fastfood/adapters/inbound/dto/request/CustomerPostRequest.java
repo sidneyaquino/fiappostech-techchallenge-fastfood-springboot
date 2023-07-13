@@ -16,6 +16,7 @@ public record CustomerPostRequest(
       @JsonAlias("id")
       String personalId,
 
+      // @Pattern(regexp = "^(.+)@(\\S+)$", message = "Email should be valid")
       @Email(message = "Email should be valid")
       @NotBlank(message = "Email is mandatory.")
       String email,

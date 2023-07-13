@@ -13,7 +13,7 @@ public record OrderResponse(
       LocalDateTime created,
       LocalDateTime tracked,
       Tracking tracking,
-      Integer trackingTime,
+      Long trackingTime,
       BigDecimal value, 
       List<OrderProductResponse> products) {
 }

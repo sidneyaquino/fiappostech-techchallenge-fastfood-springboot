@@ -9,7 +9,7 @@ import com.fiappostech.fastfood.adapters.outbound.repository.OrderRepository;
 import com.fiappostech.fastfood.application.ports.dto.request.OrderRequest;
 import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
 import com.fiappostech.fastfood.application.ports.outbound.OrderUpdateOutputPort;
-import com.fiappostech.fastfood.infrastructure.exception.RecordNotFoundException;
+import com.fiappostech.fastfood.config.exception.RecordNotFoundException;
 
 import lombok.AllArgsConstructor;
 

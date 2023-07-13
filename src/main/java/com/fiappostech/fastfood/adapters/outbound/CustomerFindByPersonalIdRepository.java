@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fiappostech.fastfood.adapters.outbound.repository.CustomerRepository;
 import com.fiappostech.fastfood.application.ports.dto.response.CustomerResponse;
 import com.fiappostech.fastfood.application.ports.outbound.CustomerIdentifyOutputPort;
-import com.fiappostech.fastfood.infrastructure.exception.RecordNotFoundException;
+import com.fiappostech.fastfood.config.exception.RecordNotFoundException;
 
 import lombok.AllArgsConstructor;
 

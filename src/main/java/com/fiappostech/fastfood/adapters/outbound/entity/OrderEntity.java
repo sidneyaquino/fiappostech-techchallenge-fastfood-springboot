@@ -80,7 +80,7 @@ public class OrderEntity {
             this.getCreated(),
             this.getTracked(),
             this.getTracking(),
-            0,
+            0L,
             this.getValue(),
             listOrderProductResponse);
    }

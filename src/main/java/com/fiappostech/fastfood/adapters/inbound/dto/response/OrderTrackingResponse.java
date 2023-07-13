@@ -12,7 +12,7 @@ public record OrderTrackingResponse(
       LocalDateTime created,
       LocalDateTime tracked,
       Tracking traking,
-      Integer trakingTime) {
+      Long trakingTime) {
    public OrderTrackingResponse(OrderResponse orderResponse) {
       this(orderResponse.orderId(),
             orderResponse.customer() == null ? null : new CustomerTrackingResponse(orderResponse.customer()),

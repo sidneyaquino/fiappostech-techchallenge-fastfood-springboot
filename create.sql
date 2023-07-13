@@ -5,7 +5,6 @@ CREATE TABLE "public"."customers" (
   "email" VARCHAR(255) NOT NULL,
   "name" VARCHAR(150) NOT NULL,
   CONSTRAINT "customers_pkey" PRIMARY KEY ("id"),
-  CONSTRAINT "uk_rfbvkrffamfql7cjmen8v976v" UNIQUE ("email"),
   CONSTRAINT "uk_tm7tv6x6kgafot3226v38nnw2" UNIQUE ("personal_id")
 );
 INSERT INTO "public"."customers" ("id", "personal_id", "email", "name") VALUES ('5e5e53f6-97ba-4edb-b4a1-cb6b409a9ba7', '12345678902', 'otto@bismark.de', 'Otto Bismark');

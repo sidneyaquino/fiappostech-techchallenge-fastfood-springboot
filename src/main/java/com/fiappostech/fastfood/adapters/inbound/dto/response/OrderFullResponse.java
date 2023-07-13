@@ -14,7 +14,7 @@ public record OrderFullResponse(
       LocalDateTime created,
       LocalDateTime tracked,
       Tracking traking,
-      Integer trakingTime,
+      Long trakingTime,
       BigDecimal value,
       List<OrderProductFullResponse> products) {
    public OrderFullResponse(OrderResponse orderResponse) {

@@ -18,7 +18,7 @@ public class OrderDomain {
    private LocalDateTime created;
    private LocalDateTime tracked;
    private Tracking tracking;
-   private Integer trackingTime;
+   private Long trackingTime;
    private BigDecimal value;
    private List<OrderProductDomain> products;
 
@@ -31,7 +31,7 @@ public class OrderDomain {
          LocalDateTime created,
          LocalDateTime tracked,
          Tracking tracking,
-         Integer trackingTime,
+         Long trackingTime,
          BigDecimal value,
          List<OrderProductDomain> products) {
 
@@ -52,7 +52,7 @@ public class OrderDomain {
       this.tracked = orderResponse.tracked();
       this.tracking = orderResponse.tracking();
       this.trackingTime = orderResponse.tracked() == null ? null
-            : Duration.between(orderResponse.tracked(), LocalDateTime.now()).toMinutesPart();
+            : Duration.between(orderResponse.tracked(), LocalDateTime.now()).toMinutes();
       this.value = orderResponse.value();
       this.products = orderResponse.products() == null ? null
             : orderResponse.products().stream().map(OrderProductDomain::new).toList();
@@ -71,8 +71,6 @@ public class OrderDomain {
 
    public OrderDomain(OrderCheckoutRequest orderCheckoutRequest) {
       this.orderId = orderCheckoutRequest.orderId();
-      this.tracked = LocalDateTime.now();
-      this.tracking = Tracking.RECEIVED;
       this.value = orderCheckoutRequest.value();
    }
 
@@ -116,11 +114,11 @@ public class OrderDomain {
       this.tracking = tracking;
    }
 
-   public Integer getTrackingTime() {
+   public Long getTrackingTime() {
       return trackingTime;
    }
 
-   public void setTrackingTime(Integer trackingTime) {
+   public void setTrackingTime(Long trackingTime) {
       this.trackingTime = trackingTime;
    }
 

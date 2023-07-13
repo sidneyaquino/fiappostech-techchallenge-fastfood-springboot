@@ -34,7 +34,7 @@ public class CustomerEntity {
    @Column(length = 11, unique = true, nullable = false)
    private String personalId;
 
-   @Column(unique = true, nullable = false)
+   @Column(nullable = false)
    private String email;
 
    @Column(length = 150, nullable = false)

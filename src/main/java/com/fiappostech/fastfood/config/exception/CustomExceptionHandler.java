@@ -1,4 +1,4 @@
-package com.fiappostech.fastfood.infrastructure.exception;
+package com.fiappostech.fastfood.config.exception;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import com.fiappostech.fastfood.application.ports.exception.ApplicationException;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -54,6 +56,15 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
             WebRequest request) {
 
         ApiErrorMessage apiErrorMessage = new ApiErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
+        return new ResponseEntity<>(apiErrorMessage, new HttpHeaders(), apiErrorMessage.getStatus());
+    }
+
+    @ExceptionHandler(ApplicationException.class)
+    public ResponseEntity<Object> handleApplicationException(       // 422
+            ApplicationException exception,
+            WebRequest request) {
+
+        ApiErrorMessage apiErrorMessage = new ApiErrorMessage(HttpStatus.UNPROCESSABLE_ENTITY, exception.getMessage());
         return new ResponseEntity<>(apiErrorMessage, new HttpHeaders(), apiErrorMessage.getStatus());
     }
 }

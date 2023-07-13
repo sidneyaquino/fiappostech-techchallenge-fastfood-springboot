@@ -1,4 +1,4 @@
-package com.fiappostech.fastfood.infrastructure.exception;
+package com.fiappostech.fastfood.config.exception;
 
 public class RecordNotFoundException extends RuntimeException {
 
