@@ -9,7 +9,7 @@ RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 FROM bellsoft/liberica-runtime-container:jre-17-slim-musl
 RUN addgroup --system javauser && \
-   adduser -S -s /usr/sbin/nologin -D -H -G javauser javauser  # alpine
+   adduser -S -s /usr/sbin/nologin -D -H -G javauser javauser
 ARG DEPENDENCY=/tmp/target/dependency
 COPY --link --chown=javauser --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --link --chown=javauser --from=build ${DEPENDENCY}/META-INF /app/META-INF

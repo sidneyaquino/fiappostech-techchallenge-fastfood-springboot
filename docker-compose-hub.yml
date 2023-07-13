@@ -4,25 +4,14 @@ services:
   # APP
   # ====================================================================================================================
   web:
-    image: bellsoft/liberica-runtime-container:jdk-17-slim-musl
+    image: sidneyaquino/fiappostech-fastfood:1.0.0
     container_name: app
-    working_dir: /app
-    volumes:
-      - $PWD:/app
-      - ${HOME}/.m2/repository:/root/.m2/repository
     ports:
-      - 5005:5005
       - $PORT:$PORT
     environment:
       - PORT:8080
       # - PORT:${PORT}
       # - APP_PROFILE:prod
-    command:
-      [
-        /bin/sh,
-        -c,
-        "./mvnw spring-boot:run -Dspring-boot.run.arguments='--server.port='$PORT"
-      ]
     depends_on:
       - sql
     networks:
