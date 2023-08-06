@@ -14,8 +14,7 @@ services:
       - 5005:5005
       - $PORT:$PORT
     environment:
-      - PORT:8080
-      # - PORT:${PORT}
+      - PORT:${PORT}
       # - APP_PROFILE:prod
     command:
       [
@@ -39,6 +38,7 @@ services:
       POSTGRES_DB: dev
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      # PGDATA: /var/lib/postgresql/data/pgdata
       TZ: GMT
     ports:
       - 5432:5432

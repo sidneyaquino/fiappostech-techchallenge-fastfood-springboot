@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: data-pvc
+  labels:
+    name: data-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: csi-hostpath-sc   # aws (gp2/gp2-csi/gp3/gp3-csi) minikube (csi-hostpath-sc)
+  resources:
+    requests:
+      storage: 1Gi

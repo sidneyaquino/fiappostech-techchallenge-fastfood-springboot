@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: data-statefulset
+
+spec:
+  # replicas: 1
+  serviceName: "sql"
+  selector:
+    matchLabels:
+      app: data-pod
+  template:
+    metadata:
+      name: data-pod
+      labels:
+        app: data-pod
+
+    spec:
+      containers:
+        - name: data-pod-container
+          # image: registry.redhat.io/rhel9/postgresql-15
+          image: postgres:15-alpine
+          imagePullPolicy: Always
+
+          # ENVIROMENT
+          envFrom:
+            - configMapRef:   
+                name: data-configmap
+            - secretRef:
+                name: data-secret
+
+          # LIFECYCLE
+          livenessProbe:
+            exec:
+              command:
+                [
+                  bash,
+                  -ec,
+                  'PGPASSWORD=$POSTGRES_PASSWORD psql -w -U "postgres" -d "postgres"  -h 127.0.0.1 -c "SELECT 1"'
+                ]
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 3
+
+          # MACHINE
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: data-volume
+              mountPath: /var/lib/postgresql/data
+
+      # DISK
+      volumes:
+        - name: data-volume
+          persistentVolumeClaim:
+            claimName: data-pvc

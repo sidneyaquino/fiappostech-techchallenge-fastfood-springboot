@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+
+spec:
+  # replicas: 1
+  selector:
+    matchLabels:
+      app: app-pod
+  template:
+    metadata:
+      name: app-pod
+      labels:
+        app: app-pod
+
+    spec:
+      containers:
+        - name: app-pod-container
+          image: sidneyaquino/fiappostech-fastfood:1.1.0
+          imagePullPolicy: Always
+
+          # ENVIROMENT
+          envFrom:
+            - configMapRef:
+                name: app-configmap
+          env:
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: data-configmap
+                  key: DATABASE_HOST
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: data-configmap
+                  key: POSTGRES_DB
+            - name: DB_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: data-configmap
+                  key: POSTGRES_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: data-secret
+                  key: POSTGRES_PASSWORD
+
+          # LIFECYCLE
+          lifecycle:
+            preStop:
+              exec:
+                command: ["sh", "-c", "sleep 10"]
+
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            periodSeconds: 10
+            failureThreshold: 3
+            initialDelaySeconds: 180
+            # timeoutSecounds:
+
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+            periodSeconds: 10
+            failureThreshold: 18
+            initialDelaySeconds: 30
+            # timeoutSecounds:
+
+          # MACHINE
+          resources:
+            requests:
+              memory: "384Mi"
+              cpu: "300m"
+            limits:
+              memory: "512Mi"
+              cpu: "600m"
+          ports:
+            - containerPort: 8080

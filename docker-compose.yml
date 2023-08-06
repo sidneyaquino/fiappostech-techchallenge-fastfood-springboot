@@ -7,7 +7,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: sidneyaquino/fiappostech-fastfood:1.0.1      
+    image: sidneyaquino/fiappostech-fastfood:1.1.0
     container_name: app
     ports:
       - $PORT:$PORT
@@ -31,6 +31,7 @@ services:
       POSTGRES_DB: dev
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      # PGDATA: /var/lib/postgresql/data/pgdata
       TZ: GMT
     ports:
       - 5432:5432

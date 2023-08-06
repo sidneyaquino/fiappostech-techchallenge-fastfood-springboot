@@ -35,7 +35,7 @@ CREATE TABLE "public"."orders" (
   "customer_id" UUID NULL,
   "created" TIMESTAMP(6) NOT NULL,
   "tracked" TIMESTAMP(6) NULL,
-  "tracking" SMALLINT NULL CHECK (category BETWEEN 0 AND 3),
+  "tracking" SMALLINT NULL CHECK (tracking BETWEEN 0 AND 3),
   "value" NUMERIC(38,2) NOT NULL,
   CONSTRAINT "orders_pkey" PRIMARY KEY ("id")
 );
@@ -52,6 +52,6 @@ CREATE TABLE "public"."order_products" (
   CONSTRAINT "order_products_pkey" PRIMARY KEY ("order_id", "product_id")
 );
 ALTER TABLE order_products 
-  ADD CONSTRAINT FKdxjduvg7991r4qja26fsckxv8 FOREIGN KEY (product_id) REFERENCES products
+  ADD CONSTRAINT FKdxjduvg7991r4qja26fsckxv8 FOREIGN KEY (product_id) REFERENCES products;
 ALTER TABLE order_products 
-  ADD CONSTRAINT FKawxpt1ns1sr7al76nvjkv21of FOREIGN KEY (order_id) REFERENCES orders
+  ADD CONSTRAINT FKawxpt1ns1sr7al76nvjkv21of FOREIGN KEY (order_id) REFERENCES orders;

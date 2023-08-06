@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-configmap
+data:
+  PORT: "8080"
+  APP_PROFILE: prod
+  JAVA_OPTS: "-XX:+UseContainerSupport -XX:CICompilerCount=2 -Dfile.encoding=UTF-8"
+  # JAVA_OPTS: "-XX:+UseContainerSupport -Xmx300m -Xss512k -XX:CICompilerCount=2 -Dfile.encoding=UTF-8"
