@@ -56,27 +56,31 @@ spec:
             httpGet:
               path: /actuator/health/liveness
               port: 8080
+            initialDelaySeconds: 180
             periodSeconds: 10
             failureThreshold: 3
-            initialDelaySeconds: 180
-            # timeoutSecounds:
+            successThreshold: 1
 
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
               port: 8080
+            initialDelaySeconds: 30
             periodSeconds: 10
             failureThreshold: 18
-            initialDelaySeconds: 30
-            # timeoutSecounds:
+            successThreshold: 1
 
           # MACHINE
           resources:
             requests:
-              memory: "384Mi"
-              cpu: "300m"
+              # memory: "384Mi" # Minikube
+              # cpu: "300m"
+              memory: "1536Mi"  # Openshift
+              cpu: "500m"
             limits:
-              memory: "512Mi"
-              cpu: "600m"
+              # memory: "512Mi" # Minikube
+              # cpu: "600m"
+              memory: "2048Mi"  # Openshift
+              cpu: "1000m"
           ports:
             - containerPort: 8080

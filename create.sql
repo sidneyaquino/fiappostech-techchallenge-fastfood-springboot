@@ -1,3 +1,7 @@
+-- psql -U postgres -d fastfood
+-- psql -q -U "postgres" -d "fastfood" -h 127.0.0.1 -p 5432 -f create.sql
+-- psql -w -U "postgres" -d "fastfood" -h 127.0.0.1 -p 5432 -c "SELECT * FROM CUSTOMERS"
+
 -- CUSTOMERS
 CREATE TABLE "public"."customers" ( 
   "id" UUID NOT NULL,

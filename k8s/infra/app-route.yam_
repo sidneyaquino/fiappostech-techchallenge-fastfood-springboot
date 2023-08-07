@@ -1,0 +1,12 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: fastfood
+  namespace: sidneyaquino-dev
+spec:
+  to:
+    kind: Service
+    name: web
+  path: /
+  port: 
+    targetPort: 8080

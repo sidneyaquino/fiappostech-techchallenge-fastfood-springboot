@@ -7,6 +7,7 @@ export const options = {
 };
 
 export default function() {
-   http.get("http://localhost:8080/customers?personalId=12345678902");
+   http.get("http://fastfood.apps.sandbox-m4.g2pi.p1.openshiftapps.com/customers?personalId=12345678902");
+   // http.get("http://localhost:8080/customers?personalId=12345678902");
    sleep(1);
 }
