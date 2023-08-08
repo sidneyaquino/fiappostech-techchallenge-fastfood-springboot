@@ -1,4 +1,4 @@
-package com.fiappostech.fastfood.application.core;
+package com.fiappostech.fastfood.application.core.usecase;
 
 import com.fiappostech.fastfood.application.core.domain.CustomerDomain;
 import com.fiappostech.fastfood.application.core.valueobject.PersonalIdDomain;

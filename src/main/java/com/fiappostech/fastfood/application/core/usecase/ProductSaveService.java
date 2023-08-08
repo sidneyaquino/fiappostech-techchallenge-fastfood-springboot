@@ -1,4 +1,4 @@
-package com.fiappostech.fastfood.application.core;
+package com.fiappostech.fastfood.application.core.usecase;
 
 import com.fiappostech.fastfood.application.core.domain.ProductDomain;
 import com.fiappostech.fastfood.application.ports.dto.request.ProductRequest;

@@ -9,10 +9,10 @@ import com.fiappostech.fastfood.adapters.outbound.OrderFindByTrackingRepository;
 import com.fiappostech.fastfood.adapters.outbound.OrderInsertRepository;
 import com.fiappostech.fastfood.adapters.outbound.OrderUpdateRepository;
 import com.fiappostech.fastfood.adapters.outbound.ProductFindByIdRepository;
-import com.fiappostech.fastfood.application.core.OrderCheckoutService;
-import com.fiappostech.fastfood.application.core.OrderFindByIdService;
-import com.fiappostech.fastfood.application.core.OrderFindByTrackingService;
-import com.fiappostech.fastfood.application.core.OrderInsertService;
+import com.fiappostech.fastfood.application.core.usecase.OrderCheckoutService;
+import com.fiappostech.fastfood.application.core.usecase.OrderFindByIdService;
+import com.fiappostech.fastfood.application.core.usecase.OrderFindByTrackingService;
+import com.fiappostech.fastfood.application.core.usecase.OrderInsertService;
 
 @Configuration
 public class OrderBeanConfig {

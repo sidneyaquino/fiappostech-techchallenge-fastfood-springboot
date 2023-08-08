@@ -19,7 +19,7 @@ spec:
       containers:
         - name: data-pod-container
           image: postgres:15-alpine
-          imagePullPolicy: Always
+          imagePullPolicy: Always   # Always/IfNotPresent/Never
 
           # ENVIROMENT
           envFrom:

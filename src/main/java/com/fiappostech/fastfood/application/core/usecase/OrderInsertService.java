@@ -1,4 +1,4 @@
-package com.fiappostech.fastfood.application.core;
+package com.fiappostech.fastfood.application.core.usecase;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

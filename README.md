@@ -132,6 +132,7 @@ The project's structure is as follows::
 │   │   │               ├── application
 │   │   │               │   ├── core
 │   │   │               │   │   ├── domain
+│   │   │               │   │   ├── usecase
 │   │   │               │   │   └── valueobject
 │   │   │               │   └── ports
 │   │   │               │       ├── dto
@@ -153,8 +154,8 @@ They are the implementation of your external dependencies (user interface/inboun
 
 #### Application
 Here we have all our classes that don't have any dependency, including framework dependencies.
-- `core`: this is where the implementation of the internal services (`usecases`) are.
 - `core/domain`: this is where all __domains__ are.
+- `core/usecase`: this is where the implementation of the internal services (__usecases__) are.
 - `core/valueobjects`: this is where all __value objects__ are.
 - `ports/inbound`: this is where our `input interfaces`, that represents our internal services (usecases) are.
 - `ports/outbound`: this is where our `output interfces`, that represents external services are. Note that here we do not have any naming connected to the technologies.

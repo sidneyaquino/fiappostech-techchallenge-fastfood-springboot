@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import com.fiappostech.fastfood.adapters.outbound.CustomerFindByIdRepository;
 import com.fiappostech.fastfood.adapters.outbound.CustomerFindByPersonalIdRepository;
 import com.fiappostech.fastfood.adapters.outbound.CustomerSaveRepository;
-import com.fiappostech.fastfood.application.core.CustomerFindByIdService;
-import com.fiappostech.fastfood.application.core.CustomerIdentifyService;
-import com.fiappostech.fastfood.application.core.CustomerRegistryService;
+import com.fiappostech.fastfood.application.core.usecase.CustomerFindByIdService;
+import com.fiappostech.fastfood.application.core.usecase.CustomerIdentifyService;
+import com.fiappostech.fastfood.application.core.usecase.CustomerRegistryService;
 
 @Configuration
 public class CustomerBeanConfig {
