@@ -15,7 +15,7 @@
 
 <!-- PROJECT'S STATUS -->
 <h4 align="center"> 
-  Status: MAN AT WORK...
+  Status: 🚧 MAN AT WORK 🚧
 </h4>
 
 <!-- TABLE OF CONTENTS DETAIL -->
@@ -65,32 +65,56 @@
 An order control system for a fast food restaurant, which will manage orders and stock.
 
 #### __FIRST SPRINT__ / phase1 branch
-__(1)__ A backend application (`monolithic`) developed using `Ports and Adapters Architecture` (_Hexagonal Architecture_), the APIs should have the following capabilities:
-- Customer registration; 
-- Customer identification by personal ID;
-- Insert, update and delete products;
-- Find products by category (`burger`, `drink`, `side` and `dessert`);
-- Order Checkout (fake) - Only send the order to the queue received** after the checkout( successfully), initially we will use queues in any database.
+__(1)__ A backend application (`monolithic`):
+- [x] Application should be developed using `Ports and Adapters Architecture` (_Hexagonal Architecture_). 
 
-Order Tracking (queries):
-- `Received`** : Payment made successfully;
-- `Preparing` : In progress in the kitchen;
-- `Ready` : Available for pickup by the customer;
-- `Finished` : Delivered to the customer.
+_The APIs should have the following capabilities_:
+- [x] Customer registration; 
+- [x] Customer identification by Personal ID;
+- [x] Insert, update and delete Products;
+- [x] Find Products by Category (`burger`, `drink`, `side` and `dessert`);
+- [x] (fake) Order Checkout: send the order to the queue `received`__**__ after the checkout( successfully_), initially we will use queues in any database.
 
-__(2)__ The application must be delivered with a Dockerfile configured to run correctly. For validation we will have the following infra restrictions:
-- 1 instance for database;
-- 1 instance to run the application;
+_Order Tracking (queries)_:
+- [x] `received`__**__ : Payment made successfully;
+- `preparing` : In progress in the kitchen;
+- `ready` : Available for pickup by the customer;
+- `finished` : Delivered to the customer.
 
+__(2)__ The application must be delivered with `Dockerfile` and `docker-compose` configured to run correctly. For validation we will have the following infra restrictions:
+- [x] 1 instance to run the `application`;
+- [x] 1 instance for `database`.
 
+---
 #### __SECOND SPRINT__ / phase2 branch
+__(1)__ A backend application (`monolithic`):
+- [ ] Update the application developed in __phase1__ by refactoring the code to follow `Clean Code` and `Clean Architecture` standards.
 
+_The APIs should have the following capabilities_:
+- [ ] Order Checkout: which should receive the Products Ordered and return the Order ID;
+- [ ] Check Order Payment Status: Payment has been approved or not;
+- [ ] `Webhook` to receive confirmation: Approved Payment or Declined Payment;
+- [ ] Order List should return Orders with their descriptions, sorted by Tracking with the following priority: 
+> `ready`  >  `preparation`  >  `received`
+> `finalized` tracking should NOT appear in the list;
+- [ ] Update the Order Tracking.
 
+_Order Tracking (queries)_:
+- `received` : Payment made successfully;
+- [ ] `preparing` : In progress in the kitchen;
+- [ ] `ready` : Available for pickup by the customer;
+- [ ] `finished` : Delivered to the customer.
 
+__(2)__ The application must be delivered with `k8s files` configured to run correctly. 
+- [x] `Deployment` or `HPA` of the application with at least 2 `Pods`.
+- [x] Service for `LoadBalancer`;
+- [x] Configuration of the database credential via `Secret`.
 
+_For validation we will have the following infra restrictions_:
+- [x] 2 instances minimal to run the application;
+- [x] 1 instance for `database`.
 
-
-
+---
 Let's do it?
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -101,8 +125,41 @@ Let's do it?
 ### :rocket: Built With
 This project was developed with the following technology:
 
-[![Springboot][springboot-shield]][springboot-url] [![Java][java-shield]][java-url] [![Swagger][swagger-shield]][swagger-url] [![Postgresql][postgresql-shield]][postgresql-url] [![Docker][docker-shield]][docker-url] [![Heroku][heroku-shield]][heroku-url]
+[![Springboot][springboot-shield]][springboot-url] [![Java][java-shield]][java-url] [![Maven][maven-shield]][maven-url] [![Swagger][swagger-shield]][swagger-url] [![Postgresql][postgresql-shield]][postgresql-url] [![Docker][docker-shield]][docker-url][![kubernetes][kubernetes-shield]][kubernetes-url] [![openshift][openshift-shield]][openshift-url] [![prometheus][prometheus-shield]][prometheus-url] [![grafana][grafana-shield]][grafana-url] [![K6][k6-shield]][k6-url]
 <!-- [![Editor-Config][editor-config-shield]][editor-config-url] -->
+
+#### **Spring**  ([spring.io](https://spring.io/))
+
+-   **[Bean Validation](https://docs.spring.io/spring-framework/reference/core/validation/beanvalidation.html)**
+-   **[Flyway Migration](https://flywaydb.org/)**
+-   **[Lombok](https://projectlombok.org/)**
+-   **[Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/)**
+-   **[Spring Boot Devtools](https://docs.spring.io/spring-boot/docs/1.5.16.RELEASE/reference/html/using-boot-devtools.html)**
+-   **[Spring Data JPA](https://spring.io/projects/spring-data-jpa)**
+-   **[Spring Web](https://spring.io/projects/spring-framework)**
+
+> Veja o arquivo  [pom.xml](https://github.com/sidneyaquino/fiappostech-techchallenge-fastfood-springboot/blob/main/pom.xml)
+
+#### [](https://github.com/tgmarinho/Ecoleta#utilit%C3%A1rios)**Utility Software**
+
+-   Editor:  **[Visual Studio Code](https://code.visualstudio.com/)** 
+-   Markdown:  **[Obsidian](https://obsidian.md/)**
+-   API Client:  **[Postman](https://www.postman.com/)**
+-   Database Manager:  **[DbGate](https://dbgate.org/)**
+-   Kubernetes:  **[Minikube](https://minikube.sigs.k8s.io/docs/)** and **[k9s](https://k9scli.io/)**
+-   Terminal emulator:  **[Alacritty](https://alacritty.org/)**
+-   Command Line: **[asdf](https://asdf-vm.com/)**, **[git](https://git-scm.com/)**, **[helm](https://helm.sh/)**, **[kubectl](https://kubernetes.io/docs/reference/kubectl/)**, **[oc](https://docs.openshift.com/container-platform/4.11/cli_reference/openshift_cli/getting-started-cli.html)**, **[stern](https://github.com/stern/stern)**, **[dive](https://gochronicles.com/dive/)** and others...
+
+
+
+
+
+
+
+
+
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -150,7 +207,7 @@ The project's structure is as follows::
 #### Adapters 
 They are the implementation of your external dependencies (user interface/inbound and infrastructure/outbound)
 - `inbound`: this is where all our controllers are.
-- `outbound`: this is where all our external integrations are (repository, API integration and etc).
+- `outbound`: this is where all our external integrations are (repository, API integration and etc).---
 
 #### Application
 Here we have all our classes that don't have any dependency, including framework dependencies.
@@ -174,10 +231,12 @@ The idea is that your business rule is fully protected from these external facto
 ## Prerequisites
 
 For this project you should to have basic konwledgement about: 
-- Java and Springboot / Spring;
-- Http verbs, request and response;
-- Basic knowledgement about request's parameters;
-- Basic knowledgement about SGDB;
+- Java, Springboot and Spring Framework;
+- Http verbs, status codes, request and response;
+- Request's parameters;
+- SQL language fundation;
+- Docker and Kubernetes;
+- Git, Github and Linux.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -185,10 +244,9 @@ For this project you should to have basic konwledgement about:
 
 ## Requirements
 
-For this project you will need:
-- `Docker` ||
-- `JDK 17` &&
-- `PostegreSql 15`.
+For run this project, you will need:
+- `docker v24` __&&__ `docker-compose v2.20` __||__
+- `docker v24` __&&__ `minikube v1.30` __&&__ `kubectl v1.27`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -206,8 +264,11 @@ git clone git@github.com:sidneyaquino/fiappostech-techchallenge-fastfood-springb
 ```
 2. Go into the project folder
 
+---
 <a name="running"></a>
 ### :zap: Runnig...
+
+##### 1.1. __Docker__ - smart choice! o/
 In the projet folder execute the commands:
 ```bash
 docker compose up     # download the app and database images and then run them.
@@ -222,6 +283,29 @@ or
 docker compose -f docker-compose-dev.yml up   # download the database and jdk17 images, then run the database and build app with the command `./mvnw springboot:run`
 ```
 Then it's now possible to access the project here: http://localhost:8080/swagger-ui/index.html
+
+or
+
+##### 1.2. __Kubernetes__ - best choice! \o/
+In the projet folder execute the commands:
+```bash
+minikube start
+minikube addons enable csi-hostpath-driver
+minikube addons enable volumesnapshots
+minikube addons enable metrics-server
+kubectl apply -f k8s/infra/data-pvc.yaml
+kubectl apply -f k8s/data
+kubectl apply -f k8s/app
+minikube tunnel --bind-address='localhost'
+```
+Then it's now possible to access the project here: http://localhost:8080/swagger-ui/index.html
+
+---
+##### 2. __API access using Postman__ 
+You can fork the "_Public Postman Workspace_" here: [![Fastfood WorkSpace][fastfood-workspace-shield]][fastfood-workspace-url]
+It is also possible to import a copy or fork each collection individually:
+[![Customers Collection][customers-collection-shield]][customers-collection-url] [![Orders Collection][orders-collection-shield]][orders-collection-url] [![Products Collection][products-collection-shield]][products-collection-url]
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -257,22 +341,40 @@ Made by *Sidney Aquino*, **get in Touch!**  [![LinkedIn][linkedin-shield]][linke
 [java-shield]: https://img.shields.io/badge/Java-17-C74634?style=for-the-badge&logo=openjdk&logoColor=white
 [java-url]: https://openjdk.org/
 
+[maven-shield]: https://img.shields.io/badge/Maven-3.9-EE3A43?style=for-the-badge&logo=apache&logoColor=white
+[maven-url]: https://maven.apache.org/
+
 <!-- Color 6db33f or 43853D -->
 [springboot-shield]: https://img.shields.io/badge/SpringBoot-3.1-6db33f?style=for-the-badge&logo=springboot&logoColor=white
-[springboot-url]: https://spring.io/
+[springboot-url]: https://spring.io/projects/spring-boot
 
 [postgresql-shield]: https://img.shields.io/badge/Postgresql-15-336791?style=for-the-badge&logo=postgresql&logoColor=white
 [postgresql-url]: https://www.postgresql.org/
 
 <!-- Dark Color 384d54 and 0db7ed -->
-[docker-shield]: https://img.shields.io/badge/Docker-384d54?style=for-the-badge&logo=docker&logoColor=white
+[docker-shield]: https://img.shields.io/badge/Docker-24-384d54?style=for-the-badge&logo=docker&logoColor=white
 [docker-url]: https://www.docker.com/
 
 [heroku-shield]: https://img.shields.io/badge/Heroku-6567a5?style=for-the-badge&logo=heroku&logoColor=white
 [heroku-url]: http://www.heroku.com/
 
+[openshift-shield]: https://img.shields.io/badge/OpenShift-CC0000?style=for-the-badge&logo=redhat&logoColor=white
+[openshift-url]: https://developers.redhat.com/developer-sandbox
+
+[kubernetes-shield]: https://img.shields.io/badge/Kubernetes-0f3074?style=for-the-badge&logo=kubernetes&logoColor=white
+[kubernetes-url]: https://kubernetes.io/
+
 [swagger-shield]: https://img.shields.io/badge/Swagger-2.1-19b6b5?style=for-the-badge&logo=swagger&logoColor=white
 [swagger-url]: https://springdoc.org/
+
+[prometheus-shield]: https://img.shields.io/badge/Prometheus-dd4f2a?style=for-the-badge&logo=prometheus&logoColor=black
+[prometheus-url]: https://prometheus.io/
+
+[grafana-shield]: https://img.shields.io/badge/Grafana-ff671d?style=for-the-badge&logo=grafana&logoColor=black
+[grafana-url]: https://grafana.com/
+
+[k6-shield]: https://img.shields.io/badge/k6-7d64ff?style=for-the-badge&logo=k6&logoColor=white
+[k6-url]: https://grafana.com/
 
 [editor-config-shield]: https://img.shields.io/badge/Editor%20Config-E0EFEF?style=for-the-badge&logo=editorconfig&logoColor=000
 [editor-config-url]: https://editorconfig.org/
@@ -280,3 +382,16 @@ Made by *Sidney Aquino*, **get in Touch!**  [![LinkedIn][linkedin-shield]][linke
 <!-- [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-0db7ed.svg?style=for-the-badge&logo=linkedin&colorB=555 -->
 [linkedin-shield]: https://img.shields.io/badge/Linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white
 [linkedin-url]: https://de.linkedin.com/in/sidneydeaquino
+
+<!-- Postman Workspace & Collections -->
+[fastfood-workspace-shield]: https://img.shields.io/badge/Fastfood-ff6c37?style=for-the-badge&logo=postman&logoColor=white
+[fastfood-workspace-url]: https://www.postman.com/sidneyaquino/workspace/fiappostech-techchallenge-fastfood-springboot
+
+[customers-collection-shield]: https://img.shields.io/badge/Customers-262626?style=for-the-badge&logo=postman&logoColor=white
+[customers-collection-url]: https://god.gw.postman.com/run-collection/1122292-f0346b97-be41-4775-bb4b-7a82ac1f8779?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D1122292-f0346b97-be41-4775-bb4b-7a82ac1f8779%26entityType%3Dcollection%26workspaceId%3D2ada5531-a649-402c-ad26-977b88d19424#?env%5BDev%20-%20Local%5D=W3sia2V5IjoidXJsIiwidmFsdWUiOiJsb2NhbGhvc3Q6ODA4MCIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoibG9jYWxob3N0OjgwODAiLCJzZXNzaW9uSW5kZXgiOjB9LHsia2V5IjoicG9ydCIsInZhbHVlIjoiODA4MCIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiODA4MCIsInNlc3Npb25JbmRleCI6MX1d
+
+[orders-collection-shield]: https://img.shields.io/badge/Orders-262626?style=for-the-badge&logo=postman&logoColor=white
+[orders-collection-url]: https://god.gw.postman.com/run-collection/1122292-5be35a0c-e38c-4bb0-9436-c3046e750359?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D1122292-5be35a0c-e38c-4bb0-9436-c3046e750359%26entityType%3Dcollection%26workspaceId%3D2ada5531-a649-402c-ad26-977b88d19424#?env%5BDev%20-%20Local%5D=W3sia2V5IjoidXJsIiwidmFsdWUiOiJsb2NhbGhvc3Q6ODA4MCIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoibG9jYWxob3N0OjgwODAiLCJzZXNzaW9uSW5kZXgiOjB9LHsia2V5IjoicG9ydCIsInZhbHVlIjoiODA4MCIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiODA4MCIsInNlc3Npb25JbmRleCI6MX1d
+
+[products-collection-shield]: https://img.shields.io/badge/Products-262626?style=for-the-badge&logo=postman&logoColor=white
+[products-collection-url]: https://god.gw.postman.com/run-collection/1122292-bd981efd-7ffd-4d70-b1b5-92b721dd49ae?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D1122292-bd981efd-7ffd-4d70-b1b5-92b721dd49ae%26entityType%3Dcollection%26workspaceId%3D2ada5531-a649-402c-ad26-977b88d19424#?env%5BDev%20-%20Local%5D=W3sia2V5IjoidXJsIiwidmFsdWUiOiJsb2NhbGhvc3Q6ODA4MCIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoibG9jYWxob3N0OjgwODAiLCJzZXNzaW9uSW5kZXgiOjB9LHsia2V5IjoicG9ydCIsInZhbHVlIjoiODA4MCIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiODA4MCIsInNlc3Npb25JbmRleCI6MX1d

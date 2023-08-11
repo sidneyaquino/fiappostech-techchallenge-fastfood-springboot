@@ -8,4 +8,4 @@ spec:
     app: app-pod
   ports:
     - port: 8080
-      # nodePort: 30808
+      nodePort: 30808

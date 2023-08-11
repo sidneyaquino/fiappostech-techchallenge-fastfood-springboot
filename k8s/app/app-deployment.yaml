@@ -4,7 +4,7 @@ metadata:
   name: app-deployment
 
 spec:
-  # replicas: 1
+  # replicas: 2   # It's in app-hpa.yaml
   selector:
     matchLabels:
       app: app-pod
@@ -18,7 +18,7 @@ spec:
       containers:
         - name: app-pod-container
           image: sidneyaquino/fiappostech-fastfood:1.1.0
-          imagePullPolicy: Always   # Always/IfNotPresent/Never
+          imagePullPolicy: IfNotPresent # Always/IfNotPresent/Never
 
           # ENVIROMENT
           envFrom:
@@ -56,7 +56,8 @@ spec:
             httpGet:
               path: /actuator/health/liveness
               port: 8080
-            initialDelaySeconds: 180
+            initialDelaySeconds: 150  # Loacl
+            # initialDelaySeconds: 15 # Cloud
             periodSeconds: 10
             failureThreshold: 3
             successThreshold: 1
@@ -65,22 +66,24 @@ spec:
             httpGet:
               path: /actuator/health/readiness
               port: 8080
-            initialDelaySeconds: 30
-            periodSeconds: 10
-            failureThreshold: 18
+            initialDelaySeconds: 25   # Local
+            periodSeconds: 5
+            # initialDelaySeconds: 10 # Cloud
+            # periodSeconds: 2
+            failureThreshold: 30
             successThreshold: 1
 
           # MACHINE
           resources:
             requests:
-              # memory: "384Mi" # Minikube
-              # cpu: "300m"
-              memory: "1536Mi"  # Openshift
+              memory: "384Mi"     # Local
               cpu: "500m"
+              # memory: "1792Mi"  # Cloud
+              # cpu: "750m"
             limits:
-              # memory: "512Mi" # Minikube
-              # cpu: "600m"
-              memory: "2048Mi"  # Openshift
-              cpu: "1000m"
+              memory: "512Mi"     # Local
+              cpu: "750m"
+              # memory: "2048Mi"  # Cloud
+              # cpu: "1000m"
           ports:
             - containerPort: 8080

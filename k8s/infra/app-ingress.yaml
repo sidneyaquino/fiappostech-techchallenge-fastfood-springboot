@@ -5,7 +5,7 @@ metadata:
   namespace: sidneyaquino-dev
 spec:
   rules:
-  - host: fastfood.apps.sandbox-m4.g2pi.p1.openshiftapps.com
+  - host: fiappostech-fastfood.apps.sandbox-m4.g2pi.p1.openshiftapps.com
     http:
       paths:
       - pathType: Prefix
