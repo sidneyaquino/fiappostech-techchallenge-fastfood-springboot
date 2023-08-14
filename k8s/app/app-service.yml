@@ -2,10 +2,18 @@ apiVersion: v1
 kind: Service
 metadata:
   name: web
+  # annotations:
+  #   service.beta.kubernetes.io/aws-load-balancer-internal: "true"
 spec:
   type: LoadBalancer
+  # loadBalancerClass: service.k8s.aws/nlb
   selector:
     app: app-pod
   ports:
-    - port: 8080
+    - protocol: TCP
+      port: 8080
       nodePort: 30808
+status:
+  loadBalancer:
+    ingress:
+    - ip: 127.0.0.1   # localhost

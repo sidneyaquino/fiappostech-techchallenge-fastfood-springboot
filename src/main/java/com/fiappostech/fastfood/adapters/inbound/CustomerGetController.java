@@ -1,5 +1,7 @@
 package com.fiappostech.fastfood.adapters.inbound;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,7 @@ public class CustomerGetController {
 
    private final CustomerFindByIdInputPort customerFindByIdInputPort;
    private final CustomerIdentifyInputPort customerIdentifyInputPort;
+   private static int request = 0;
 
    @GetMapping("/{customerId}")
    public ResponseEntity<CustomerFullResponse> customerFindBylId(@PathVariable UUID customerId) {
@@ -30,7 +33,8 @@ public class CustomerGetController {
    }
 
    @GetMapping
-   public ResponseEntity<CustomerFullResponse> customerFindByPersonalId(@RequestParam String personalId) {
+   public ResponseEntity<CustomerFullResponse> customerFindByPersonalId(@RequestParam String personalId) throws UnknownHostException {
+      System.out.println("Request: " + ++request + " - " + InetAddress.getLocalHost().getHostName() + "\n");
       var customerResponse = customerIdentifyInputPort.execute(personalId);
       return ResponseEntity.ok(new CustomerFullResponse(customerResponse));
    }

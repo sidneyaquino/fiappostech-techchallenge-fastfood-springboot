@@ -15,14 +15,14 @@
 
 <!-- PROJECT'S STATUS -->
 <h4 align="center"> 
-  Status: 🚧 MAN AT WORK 🚧
+  Status:  🚧 MAN AT WORK 🚧
 </h4>
 
 <!-- TABLE OF CONTENTS DETAIL -->
 <p align="center">
   <a href="#about-the-project">About</a> •
   <a href="#features">💻 Features</a> •
-  <a href="#prerequisites">Prerequisites</a> •
+  <a href="#built-with">:rocket: Built With</a> •
   <a href="#requirements">Requirements</a> •
   <a href="#starting">Starting</a> •
   <a href="#license">:memo: License</a> •
@@ -37,11 +37,11 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
-        <li><a href="#built-with">:rocket: Built With</a></li>
+        <li><a href="#prerequisites">Prerequisites</a></li>
       </ul>
     </li>
     <li><a href="#features">💻 Features</a></li>
-    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#built-with">:rocket: Built With</a></li>
     <li><a href="#requirements">Requirements</a></li>
     <li>
       <a href="#starting">Getting Started</a>
@@ -121,45 +121,15 @@ Let's do it?
 
 
 
-<a name="built-with"></a>
-### :rocket: Built With
-This project was developed with the following technology:
+### Prerequisites
 
-[![Springboot][springboot-shield]][springboot-url] [![Java][java-shield]][java-url] [![Maven][maven-shield]][maven-url] [![Swagger][swagger-shield]][swagger-url] [![Postgresql][postgresql-shield]][postgresql-url] [![Docker][docker-shield]][docker-url][![kubernetes][kubernetes-shield]][kubernetes-url] [![openshift][openshift-shield]][openshift-url] [![prometheus][prometheus-shield]][prometheus-url] [![grafana][grafana-shield]][grafana-url] [![K6][k6-shield]][k6-url]
-<!-- [![Editor-Config][editor-config-shield]][editor-config-url] -->
-
-#### **Spring**  ([spring.io](https://spring.io/))
-
--   **[Bean Validation](https://docs.spring.io/spring-framework/reference/core/validation/beanvalidation.html)**
--   **[Flyway Migration](https://flywaydb.org/)**
--   **[Lombok](https://projectlombok.org/)**
--   **[Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/)**
--   **[Spring Boot Devtools](https://docs.spring.io/spring-boot/docs/1.5.16.RELEASE/reference/html/using-boot-devtools.html)**
--   **[Spring Data JPA](https://spring.io/projects/spring-data-jpa)**
--   **[Spring Web](https://spring.io/projects/spring-framework)**
-
-> Veja o arquivo  [pom.xml](https://github.com/sidneyaquino/fiappostech-techchallenge-fastfood-springboot/blob/main/pom.xml)
-
-#### [](https://github.com/tgmarinho/Ecoleta#utilit%C3%A1rios)**Utility Software**
-
--   Editor:  **[Visual Studio Code](https://code.visualstudio.com/)** 
--   Markdown:  **[Obsidian](https://obsidian.md/)**
--   API Client:  **[Postman](https://www.postman.com/)**
--   Database Manager:  **[DbGate](https://dbgate.org/)**
--   Kubernetes:  **[Minikube](https://minikube.sigs.k8s.io/docs/)** and **[k9s](https://k9scli.io/)**
--   Terminal emulator:  **[Alacritty](https://alacritty.org/)**
--   Command Line: **[asdf](https://asdf-vm.com/)**, **[git](https://git-scm.com/)**, **[helm](https://helm.sh/)**, **[kubectl](https://kubernetes.io/docs/reference/kubectl/)**, **[oc](https://docs.openshift.com/container-platform/4.11/cli_reference/openshift_cli/getting-started-cli.html)**, **[stern](https://github.com/stern/stern)**, **[dive](https://gochronicles.com/dive/)** and others...
-
-
-
-
-
-
-
-
-
-
-
+For this project you should to have basic konwledgement about: 
+- Java, Springboot and Spring Framework;
+- Http verbs, status codes, request and response;
+- Request's parameters;
+- SQL language fundation;
+- Docker and Kubernetes;
+- Git, Github and Linux.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -228,15 +198,34 @@ The idea is that your business rule is fully protected from these external facto
 
 
 
-## Prerequisites
+<a name="built-with"></a>
+## :rocket: Built With
+This project was developed with the following technology:
 
-For this project you should to have basic konwledgement about: 
-- Java, Springboot and Spring Framework;
-- Http verbs, status codes, request and response;
-- Request's parameters;
-- SQL language fundation;
-- Docker and Kubernetes;
-- Git, Github and Linux.
+[![Springboot][springboot-shield]][springboot-url] [![Java][java-shield]][java-url] [![Maven][maven-shield]][maven-url] [![Swagger][swagger-shield]][swagger-url] [![Postgresql][postgresql-shield]][postgresql-url] [![Docker][docker-shield]][docker-url][![kubernetes][kubernetes-shield]][kubernetes-url] [![openshift][openshift-shield]][openshift-url] [![prometheus][prometheus-shield]][prometheus-url] [![grafana][grafana-shield]][grafana-url] [![K6][k6-shield]][k6-url]
+<!-- [![Editor-Config][editor-config-shield]][editor-config-url] -->
+
+#### **Spring**  ([spring.io](https://spring.io/))
+
+-   **[Bean Validation](https://docs.spring.io/spring-framework/reference/core/validation/beanvalidation.html)**
+-   **[Flyway Migration](https://flywaydb.org/)**
+-   **[Lombok](https://projectlombok.org/)**
+-   **[Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/)**
+-   **[Spring Boot Devtools](https://docs.spring.io/spring-boot/docs/1.5.16.RELEASE/reference/html/using-boot-devtools.html)**
+-   **[Spring Data JPA](https://spring.io/projects/spring-data-jpa)**
+-   **[Spring Web](https://spring.io/projects/spring-framework)**
+
+> See the file:  [pom.xml](https://github.com/sidneyaquino/fiappostech-techchallenge-fastfood-springboot/blob/main/pom.xml)
+
+#### [](https://github.com/tgmarinho/Ecoleta#utilit%C3%A1rios)**Utility Software**
+
+-   Editor:  **[Visual Studio Code](https://code.visualstudio.com/)** 
+-   Markdown:  **[Obsidian](https://obsidian.md/)**
+-   API Client:  **[Postman](https://www.postman.com/)**
+-   Database Manager:  **[DbGate](https://dbgate.org/)**
+-   Kubernetes:  **[Minikube](https://minikube.sigs.k8s.io/docs/)** and **[k9s](https://k9scli.io/)**
+-   Terminal emulator:  **[Alacritty](https://alacritty.org/)**
+-   Command Line: **[asdf](https://asdf-vm.com/)**, **[git](https://git-scm.com/)**, **[helm](https://helm.sh/)**, **[kubectl](https://kubernetes.io/docs/reference/kubectl/)**, **[oc](https://docs.openshift.com/container-platform/4.11/cli_reference/openshift_cli/getting-started-cli.html)**, **[stern](https://github.com/stern/stern)**, **[dive](https://gochronicles.com/dive/)** and others...
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -303,7 +292,9 @@ Then it's now possible to access the project here: http://localhost:8080/swagger
 ---
 ##### 2. __API access using Postman__ 
 You can fork the "_Public Postman Workspace_" here: [![Fastfood WorkSpace][fastfood-workspace-shield]][fastfood-workspace-url]
+
 It is also possible to import a copy or fork each collection individually:
+
 [![Customers Collection][customers-collection-shield]][customers-collection-url] [![Orders Collection][orders-collection-shield]][orders-collection-url] [![Products Collection][products-collection-shield]][products-collection-url]
 
 
