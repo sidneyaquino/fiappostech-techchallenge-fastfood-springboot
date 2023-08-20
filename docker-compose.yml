@@ -7,8 +7,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: sidneyaquino/fiappostech-fastfood:1.1.0
-    container_name: app
+    image: docker.io/sidneyaquino/fiappostech-fastfood:1.1.1
+    container_name: fastfood
     ports:
       - $PORT:$PORT
     environment:
@@ -24,7 +24,7 @@ services:
   # POSTGRES SERVER
   # ====================================================================================================================
   sql:
-    image: postgres:15-alpine
+    image: docker.io/library/postgres:15-alpine
     container_name: postgres
     environment:
       POSTGRES_DB: fastfood

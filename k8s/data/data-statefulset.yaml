@@ -42,8 +42,8 @@ spec:
                   -c,
                   'psql -w -U "postgres" -d "postgres" -h 127.0.0.1 -p 5432 -c "SELECT 1"'
                 ]
-            initialDelaySeconds: 30     # Local
-            # initialDelaySeconds: 10   # Cloud
+            initialDelaySeconds: 180  # Local
+            # initialDelaySeconds: 10 # Cloud
             periodSeconds: 10
             timeoutSeconds: 5
             failureThreshold: 6
@@ -62,7 +62,7 @@ spec:
             # initialDelaySeconds: 2  # Cloud
             # periodSeconds: 3
             timeoutSeconds: 5
-            failureThreshold: 6
+            failureThreshold: 18
             successThreshold: 1
 
           # MACHINE

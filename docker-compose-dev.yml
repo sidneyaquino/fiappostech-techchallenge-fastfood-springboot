@@ -4,8 +4,8 @@ services:
   # APP
   # ====================================================================================================================
   web:
-    image: bellsoft/liberica-runtime-container:jdk-17-slim-musl
-    container_name: app
+    image: docker.io/bellsoft/liberica-runtime-container:jdk-17-slim-musl
+    container_name: fastfood
     working_dir: /app
     volumes:
       - $PWD:/app
@@ -32,7 +32,7 @@ services:
   # POSTGRES SERVER
   # ====================================================================================================================
   sql:
-    image: postgres:15-alpine
+    image: docker.io/library/postgres:15-alpine
     container_name: postgres
     environment:
       POSTGRES_DB: fastfood

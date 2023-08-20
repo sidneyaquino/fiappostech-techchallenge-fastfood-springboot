@@ -11,11 +11,12 @@
 <a name="readme-top"></a>
 <h1 align="center">
   <a href="#"> TECH-CHALLENGE FIAP POSTECH - 2nd PHASE</a>
+  
 </h1>
 
 <!-- PROJECT'S STATUS -->
 <h4 align="center"> 
-  Status:  🚧 MAN AT WORK 🚧
+  Status:   🚧 MAN AT WORK 🚧
 </h4>
 
 <!-- TABLE OF CONTENTS DETAIL -->
@@ -64,7 +65,7 @@
 
 An order control system for a fast food restaurant, which will manage orders and stock.
 
-#### __FIRST SPRINT__ / phase1 branch
+### __FIRST SPRINT__ / phase1 branch
 __(1)__ A backend application (`monolithic`):
 - [x] Application should be developed using `Ports and Adapters Architecture` (_Hexagonal Architecture_). 
 
@@ -73,10 +74,10 @@ _The APIs should have the following capabilities_:
 - [x] Customer identification by Personal ID;
 - [x] Insert, update and delete Products;
 - [x] Find Products by Category (`burger`, `drink`, `side` and `dessert`);
-- [x] (fake) Order Checkout: send the order to the queue `received`__**__ after the checkout( successfully_), initially we will use queues in any database.
+- [x] (fake) Order Checkout: send the order to the queue `received` after the checkout( successfully_), initially we will use queues in any database.
 
 _Order Tracking (queries)_:
-- [x] `received`__**__ : Payment made successfully;
+- [x] `received` : Payment made successfully;
 - `preparing` : In progress in the kitchen;
 - `ready` : Available for pickup by the customer;
 - `finished` : Delivered to the customer.
@@ -86,7 +87,7 @@ __(2)__ The application must be delivered with `Dockerfile` and `docker-compose`
 - [x] 1 instance for `database`.
 
 ---
-#### __SECOND SPRINT__ / phase2 branch
+### __SECOND SPRINT__ / phase2 branch
 __(1)__ A backend application (`monolithic`):
 - [ ] Update the application developed in __phase1__ by refactoring the code to follow `Clean Code` and `Clean Architecture` standards.
 
@@ -95,15 +96,15 @@ _The APIs should have the following capabilities_:
 - [ ] Check Order Payment Status: Payment has been approved or not;
 - [ ] `Webhook` to receive confirmation: Approved Payment or Declined Payment;
 - [ ] Order List should return Orders with their descriptions, sorted by Tracking with the following priority: 
-> `ready`  >  `preparation`  >  `received`
-> `finalized` tracking should NOT appear in the list;
-- [ ] Update the Order Tracking.
+>  `ready`  **>**  `preparation`  **>**  `received`
+>  `finalized` tracking should NOT appear in the list;
+- [x] Update the Order Tracking.
 
 _Order Tracking (queries)_:
 - `received` : Payment made successfully;
-- [ ] `preparing` : In progress in the kitchen;
-- [ ] `ready` : Available for pickup by the customer;
-- [ ] `finished` : Delivered to the customer.
+- [x] `preparing` : In progress in the kitchen;
+- [x] `ready` : Available for pickup by the customer;
+- [x] `finished` : Delivered to the customer.
 
 __(2)__ The application must be delivered with `k8s files` configured to run correctly. 
 - [x] `Deployment` or `HPA` of the application with at least 2 `Pods`.
@@ -124,11 +125,11 @@ Let's do it?
 ### Prerequisites
 
 For this project you should to have basic konwledgement about: 
-- Java, Springboot and Spring Framework;
+- Java, Spring Boot and Spring Framework;
 - Http verbs, status codes, request and response;
 - Request's parameters;
 - SQL language fundation;
-- Docker and Kubernetes;
+- Containers and Kubernetes;
 - Git, Github and Linux.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -202,7 +203,7 @@ The idea is that your business rule is fully protected from these external facto
 ## :rocket: Built With
 This project was developed with the following technology:
 
-[![Springboot][springboot-shield]][springboot-url] [![Java][java-shield]][java-url] [![Maven][maven-shield]][maven-url] [![Swagger][swagger-shield]][swagger-url] [![Postgresql][postgresql-shield]][postgresql-url] [![Docker][docker-shield]][docker-url][![kubernetes][kubernetes-shield]][kubernetes-url] [![openshift][openshift-shield]][openshift-url] [![prometheus][prometheus-shield]][prometheus-url] [![grafana][grafana-shield]][grafana-url] [![K6][k6-shield]][k6-url]
+[![Springboot][springboot-shield]][springboot-url] [![Java][java-shield]][java-url] [![Maven][maven-shield]][maven-url] [![Swagger][swagger-shield]][swagger-url] [![Postgresql][postgresql-shield]][postgresql-url] [![Podman][podman-shield]][podman-url][![kubernetes][kubernetes-shield]][kubernetes-url] [![openshift][openshift-shield]][openshift-url] [![prometheus][prometheus-shield]][prometheus-url] [![grafana][grafana-shield]][grafana-url] [![K6][k6-shield]][k6-url]
 <!-- [![Editor-Config][editor-config-shield]][editor-config-url] -->
 
 #### **Spring**  ([spring.io](https://spring.io/))
@@ -223,6 +224,7 @@ This project was developed with the following technology:
 -   Markdown:  **[Obsidian](https://obsidian.md/)**
 -   API Client:  **[Postman](https://www.postman.com/)**
 -   Database Manager:  **[DbGate](https://dbgate.org/)**
+-   Container Tool:  **[Docker](https://www.docker.com/)** or **[Podman](https://podman.io/)**
 -   Kubernetes:  **[Minikube](https://minikube.sigs.k8s.io/docs/)** and **[k9s](https://k9scli.io/)**
 -   Terminal emulator:  **[Alacritty](https://alacritty.org/)**
 -   Command Line: **[asdf](https://asdf-vm.com/)**, **[git](https://git-scm.com/)**, **[helm](https://helm.sh/)**, **[kubectl](https://kubernetes.io/docs/reference/kubectl/)**, **[oc](https://docs.openshift.com/container-platform/4.11/cli_reference/openshift_cli/getting-started-cli.html)**, **[stern](https://github.com/stern/stern)**, **[dive](https://gochronicles.com/dive/)** and others...
@@ -319,7 +321,7 @@ Made by *Sidney Aquino*, **get in Touch!**  [![LinkedIn][linkedin-shield]][linke
 
 
 ## Acknowledgments
->[FIAP POSTECH - Postgraduate Diploma in Software Architecture (360 Hours)](https://postech.fiap.com.br/curso/software-architecture/)
+>[FIAP POSTECH - Postgraduate Diploma in Software Architecture (360 hours in 1 year)](https://postech.fiap.com.br/curso/software-architecture/)
 
 `Master` practical knowledge of `software development` and `architecture` to work on projects with high levels of complexity using `microservices`, `containers`, `serverless applications`, `secure development` and more. Expand your `technical knowledge`, incorporate the latest skills and prepare for the next phase of your `software development` career.
 
@@ -345,6 +347,9 @@ Made by *Sidney Aquino*, **get in Touch!**  [![LinkedIn][linkedin-shield]][linke
 <!-- Dark Color 384d54 and 0db7ed -->
 [docker-shield]: https://img.shields.io/badge/Docker-24-384d54?style=for-the-badge&logo=docker&logoColor=white
 [docker-url]: https://www.docker.com/
+
+[podman-shield]: https://img.shields.io/badge/Podman-4.6-8d33a3?style=for-the-badge&logo=podman&logoColor=white
+[podman-url]: https://podman.io/
 
 [heroku-shield]: https://img.shields.io/badge/Heroku-6567a5?style=for-the-badge&logo=heroku&logoColor=white
 [heroku-url]: http://www.heroku.com/
