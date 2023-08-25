@@ -3,7 +3,5 @@ kind: ConfigMap
 metadata:
   name: app-configmap
 data:
-  PORT: "8080"
+  JAVA_OPTS: "-XX:+UseContainerSupport -Xmx300m -Xss512k -XX:CICompilerCount=2 -Dspring.backgroundpreinitializer.ignore=true -Dfile.encoding=UTF-8"
   APP_PROFILE: prod
-  JAVA_OPTS: "-XX:+UseContainerSupport -XX:CICompilerCount=2 -Dfile.encoding=UTF-8"
-  # JAVA_OPTS: "-XX:+UseContainerSupport -Xmx300m -Xss512k -XX:CICompilerCount=2 -Dfile.encoding=UTF-8"

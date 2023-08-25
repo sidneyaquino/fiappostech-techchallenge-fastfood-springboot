@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: sql
 spec:
-  # type: NodePort
+  type: ClusterIP
   selector:
     app: data-pod
   ports:
     - protocol: TCP
       port: 5432
-      # nodePort: 32345
+      targetPort: 5432

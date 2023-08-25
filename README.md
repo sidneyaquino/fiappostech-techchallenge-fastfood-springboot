@@ -11,12 +11,11 @@
 <a name="readme-top"></a>
 <h1 align="center">
   <a href="#"> TECH-CHALLENGE FIAP POSTECH - 2nd PHASE</a>
-  
 </h1>
 
 <!-- PROJECT'S STATUS -->
 <h4 align="center"> 
-  Status:   🚧 MAN AT WORK 🚧
+  STATUS: 🚧 Man At Work...
 </h4>
 
 <!-- TABLE OF CONTENTS DETAIL -->
@@ -65,6 +64,7 @@
 
 An order control system for a fast food restaurant, which will manage orders and stock.
 
+---
 ### __FIRST SPRINT__ / phase1 branch
 __(1)__ A backend application (`monolithic`):
 - [x] Application should be developed using `Ports and Adapters Architecture` (_Hexagonal Architecture_). 
@@ -203,7 +203,11 @@ The idea is that your business rule is fully protected from these external facto
 ## :rocket: Built With
 This project was developed with the following technology:
 
-[![Springboot][springboot-shield]][springboot-url] [![Java][java-shield]][java-url] [![Maven][maven-shield]][maven-url] [![Swagger][swagger-shield]][swagger-url] [![Postgresql][postgresql-shield]][postgresql-url] [![Podman][podman-shield]][podman-url][![kubernetes][kubernetes-shield]][kubernetes-url] [![openshift][openshift-shield]][openshift-url] [![prometheus][prometheus-shield]][prometheus-url] [![grafana][grafana-shield]][grafana-url] [![K6][k6-shield]][k6-url]
+[![Springboot][springboot-shield]][springboot-url] [![Java][java-shield]][java-url] [![Maven][maven-shield]][maven-url] [![Swagger][swagger-shield]][swagger-url] [![Postgresql][postgresql-shield]][postgresql-url] [![K6][k6-shield]][k6-url] [![Podman][podman-shield]][podman-url] [![kubernetes][kubernetes-shield]][kubernetes-url] [![openshift][openshift-shield]][openshift-url]
+
+<!-- [![flyway][flyway-shield]][flyway-url]  -->
+<!-- [![prometheus][prometheus-shield]][prometheus-url]  -->
+<!-- [![grafana][grafana-shield]][grafana-url] -->
 <!-- [![Editor-Config][editor-config-shield]][editor-config-url] -->
 
 #### **Spring**  ([spring.io](https://spring.io/))
@@ -218,11 +222,11 @@ This project was developed with the following technology:
 
 > See the file:  [pom.xml](https://github.com/sidneyaquino/fiappostech-techchallenge-fastfood-springboot/blob/main/pom.xml)
 
-#### [](https://github.com/tgmarinho/Ecoleta#utilit%C3%A1rios)**Utility Software**
+#### **Utility Software**
 
 -   Editor:  **[Visual Studio Code](https://code.visualstudio.com/)** 
+-   API Client:  **[Postman](https://www.postman.com/)** or **[RESTClient for VSCode](https://www.postman.com/)**
 -   Markdown:  **[Obsidian](https://obsidian.md/)**
--   API Client:  **[Postman](https://www.postman.com/)**
 -   Database Manager:  **[DbGate](https://dbgate.org/)**
 -   Container Tool:  **[Docker](https://www.docker.com/)** or **[Podman](https://podman.io/)**
 -   Kubernetes:  **[Minikube](https://minikube.sigs.k8s.io/docs/)** and **[k9s](https://k9scli.io/)**
@@ -269,10 +273,7 @@ or
 docker compose build  # build app image.
 docker compose up     # download only the database image and then run them.
 ```
-or
-```bash
-docker compose -f docker-compose-dev.yml up   # download the database and jdk17 images, then run the database and build app with the command `./mvnw springboot:run`
-```
+
 Then it's now possible to access the project here: http://localhost:8080/swagger-ui/index.html
 
 or
@@ -280,9 +281,12 @@ or
 ##### 1.2. __Kubernetes__ - best choice! \o/
 In the projet folder execute the commands:
 ```bash
-minikube start
-minikube addons enable csi-hostpath-driver
+minikube start \
+  --cpus='3' --memory='3g' \
+  --container-runtime=containerd \
+  --feature-gates=InPlacePodVerticalScaling=true
 minikube addons enable volumesnapshots
+minikube addons enable csi-hostpath-driver
 minikube addons enable metrics-server
 kubectl apply -f k8s/infra/data-pvc.yaml
 kubectl apply -f k8s/data
@@ -306,7 +310,7 @@ It is also possible to import a copy or fork each collection individually:
 
 <a name="license"></a>
 ## :memo: License
-This project is under the MIT license. See the file [LICENSE](LICENSE.md) for more details.
+This project is under the MIT license. See the file [LICENSE](https://github.com/sidneyaquino/fiappostech-techchallenge-fastfood-springboot/blob/main/LICENSE) for more details.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -344,6 +348,9 @@ Made by *Sidney Aquino*, **get in Touch!**  [![LinkedIn][linkedin-shield]][linke
 [postgresql-shield]: https://img.shields.io/badge/Postgresql-15-336791?style=for-the-badge&logo=postgresql&logoColor=white
 [postgresql-url]: https://www.postgresql.org/
 
+[flyway-shield]: https://img.shields.io/badge/Flyway-cc0000?style=for-the-badge&logo=flyway&logoColor=white
+[flyway-url]: https://flywaydb.org/
+
 <!-- Dark Color 384d54 and 0db7ed -->
 [docker-shield]: https://img.shields.io/badge/Docker-24-384d54?style=for-the-badge&logo=docker&logoColor=white
 [docker-url]: https://www.docker.com/
@@ -357,10 +364,10 @@ Made by *Sidney Aquino*, **get in Touch!**  [![LinkedIn][linkedin-shield]][linke
 [openshift-shield]: https://img.shields.io/badge/OpenShift-CC0000?style=for-the-badge&logo=redhat&logoColor=white
 [openshift-url]: https://developers.redhat.com/developer-sandbox
 
-[kubernetes-shield]: https://img.shields.io/badge/Kubernetes-0f3074?style=for-the-badge&logo=kubernetes&logoColor=white
+[kubernetes-shield]: https://img.shields.io/badge/K8s-1.27-0f3074?style=for-the-badge&logo=kubernetes&logoColor=white
 [kubernetes-url]: https://kubernetes.io/
 
-[swagger-shield]: https://img.shields.io/badge/Swagger-2.1-19b6b5?style=for-the-badge&logo=swagger&logoColor=white
+[swagger-shield]: https://img.shields.io/badge/Swagger-2.2-19b6b5?style=for-the-badge&logo=swagger&logoColor=white
 [swagger-url]: https://springdoc.org/
 
 [prometheus-shield]: https://img.shields.io/badge/Prometheus-dd4f2a?style=for-the-badge&logo=prometheus&logoColor=black
@@ -369,7 +376,7 @@ Made by *Sidney Aquino*, **get in Touch!**  [![LinkedIn][linkedin-shield]][linke
 [grafana-shield]: https://img.shields.io/badge/Grafana-ff671d?style=for-the-badge&logo=grafana&logoColor=black
 [grafana-url]: https://grafana.com/
 
-[k6-shield]: https://img.shields.io/badge/k6-7d64ff?style=for-the-badge&logo=k6&logoColor=white
+[k6-shield]: https://img.shields.io/badge/k6-0.4-7d64ff?style=for-the-badge&logo=k6&logoColor=white
 [k6-url]: https://grafana.com/
 
 [editor-config-shield]: https://img.shields.io/badge/Editor%20Config-E0EFEF?style=for-the-badge&logo=editorconfig&logoColor=000

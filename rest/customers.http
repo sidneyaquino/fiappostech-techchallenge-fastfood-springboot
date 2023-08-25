@@ -1,0 +1,23 @@
+@resource=customers
+@url={{$dotenv HOST_NAME}}/{{resource}}
+@content-type={{$dotenv CONTENT_TYPE}}
+
+
+### Find by id
+GET {{url}}/1d9b9381-d7bc-4d97-adf8-a6f626eba5e1
+
+
+### Find by personalId
+GET {{url}}?personalId=12345678903
+
+
+### Insert
+POST {{url}} HTTP/1.1
+content-type: {{content-type}}
+
+{
+   "test": "{{$dotenv PORT}}",
+   "personalId": "12345678908",
+   "name": "uuid constraipinId",
+   "email": "name@domain.de"
+}

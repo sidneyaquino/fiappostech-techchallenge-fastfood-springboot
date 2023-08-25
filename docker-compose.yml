@@ -7,13 +7,17 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: docker.io/sidneyaquino/fiappostech-fastfood:1.1.1
+    image: docker.io/sidneyaquino/fiappostech-fastfood:1.1.4
     container_name: fastfood
     ports:
-      - $PORT:$PORT
+      - 8080:8080
     environment:
-      - PORT:${PORT}
-      # - APP_PROFILE:prod
+      JAVA_OPTS: "-XX:+UseContainerSupport -Xmx300m -Xss512k -XX:CICompilerCount=2 -Dspring.backgroundpreinitializer.ignore=true -Dfile.encoding=UTF-8"
+      APP_PROFILE: prod
+      DB_HOST: sql
+      DB_NAME: fastfood
+      DB_USER: postgres
+      DB_PASS: postgres
     depends_on:
       - sql
     networks:

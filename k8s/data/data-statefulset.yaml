@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: data-pod-container
-          image: postgres:15-alpine
+          image: docker.io/library/postgres:15-alpine
           imagePullPolicy: IfNotPresent # Always/IfNotPresent/Never
 
           # ENVIROMENT
@@ -42,8 +42,7 @@ spec:
                   -c,
                   'psql -w -U "postgres" -d "postgres" -h 127.0.0.1 -p 5432 -c "SELECT 1"'
                 ]
-            initialDelaySeconds: 180  # Local
-            # initialDelaySeconds: 10 # Cloud
+            # initialDelaySeconds: 180
             periodSeconds: 10
             timeoutSeconds: 5
             failureThreshold: 6
@@ -57,18 +56,22 @@ spec:
                   -ec,
                   'pg_isready -U "postgres" -h 127.0.0.1 -p 5432'
                 ]
-            initialDelaySeconds: 5    # Local
-            periodSeconds: 10
-            # initialDelaySeconds: 2  # Cloud
-            # periodSeconds: 3
+            # initialDelaySeconds: 5
+            periodSeconds: 3
             timeoutSeconds: 5
-            failureThreshold: 18
+            failureThreshold: 10
             successThreshold: 1
+
+          startupProbe:
+            tcpSocket:
+              port: 5432
+            failureThreshold: 100
+            periodSeconds: 3
 
           # MACHINE
           resources:
             requests:
-              memory: "512Mi"
+              memory: "768Mi"
               cpu: "500m"
             limits:
               memory: "768Mi"

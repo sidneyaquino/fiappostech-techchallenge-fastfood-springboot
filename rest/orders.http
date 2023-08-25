@@ -1,0 +1,41 @@
+@resource=orders
+@url={{$dotenv HOST_NAME}}/{{resource}}
+@content-type={{$dotenv CONTENT_TYPE}}
+
+
+### Find by id
+GET {{url}}/59d6bb0a-c543-40c6-86b5-c1fcb15a88bf
+
+   
+### Find by tracking - RECEIVED | PREPARING | READY | FINISHED
+GET {{url}}?tracking=RECEIVED
+
+
+### Insert
+POST {{url}} HTTP/1.1
+content-type: {{content-type}}
+
+{
+    "personalId": "12345678904",
+    "products": 
+    [
+        {
+            "produtcId": "4c987ae3-bdb8-4355-86de-2eb3ad2e0fe2",
+            "quantity": 1
+        },
+        {
+            "produtcId": "61c100ee-0e8b-41a9-915c-70892d5fac50",
+            "quantity": 2
+        }
+    ]
+}
+
+
+### Update checkout (fake)
+PUT {{url}}/checkout HTTP/1.1
+content-type: {{content-type}}
+
+{
+    "orderId": "59d6bb0a-c543-40c6-86b5-c1fcb15a88bf",
+    "value": 22.97
+}

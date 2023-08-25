@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: app-pod-container
-          image: sidneyaquino/fiappostech-fastfood:1.1.1
+          image: docker.io/sidneyaquino/fiappostech-fastfood:1.1.4
           imagePullPolicy: IfNotPresent # Always/IfNotPresent/Never
 
           # ENVIROMENT
@@ -35,12 +35,12 @@ spec:
                 configMapKeyRef:
                   name: data-configmap
                   key: POSTGRES_DB
-            - name: DB_USERNAME
+            - name: DB_USER
               valueFrom:
                 configMapKeyRef:
                   name: data-configmap
                   key: POSTGRES_USER
-            - name: DB_PASSWORD
+            - name: DB_PASS
               valueFrom:
                 secretKeyRef:
                   name: data-secret
@@ -56,8 +56,7 @@ spec:
             httpGet:
               path: /actuator/health/liveness
               port: 8080
-            initialDelaySeconds: 150  # Loacl
-            # initialDelaySeconds: 15 # Cloud
+            # initialDelaySeconds: 150
             periodSeconds: 10
             failureThreshold: 3
             successThreshold: 1
@@ -66,24 +65,26 @@ spec:
             httpGet:
               path: /actuator/health/readiness
               port: 8080
-            initialDelaySeconds: 25   # Local
+            # initialDelaySeconds: 25
             periodSeconds: 5
-            # initialDelaySeconds: 10 # Cloud
-            # periodSeconds: 2
-            failureThreshold: 30
+            failureThreshold: 15
             successThreshold: 1
+
+          startupProbe:
+            tcpSocket:
+              port: 8080
+            failureThreshold: 50
+            periodSeconds: 3
 
           # MACHINE
           resources:
             requests:
-              memory: "384Mi"     # Local
-              cpu: "500m"
-              # memory: "1792Mi"  # Cloud
-              # cpu: "750m"
+              # memory: "2048Mi"   # Cloud
+              memory: "768Mi"    # Local
+              cpu: "600m"
             limits:
-              memory: "512Mi"     # Local
+              # memory: "2048Mi"   # Cloud
+              memory: "768Mi"    # Local
               cpu: "750m"
-              # memory: "2048Mi"  # Cloud
-              # cpu: "1000m"
           ports:
             - containerPort: 8080

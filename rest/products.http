@@ -1,0 +1,39 @@
+@resource=products
+@url={{$dotenv HOST_NAME}}/{{resource}}
+@content-type={{$dotenv CONTENT_TYPE}}
+
+
+### Find by id
+GET {{url}}/5bc5e89a-4093-4be1-875d-d337c6e273f4
+
+
+### Find by category - BURGER | DRINK | SIDE | DESSERT
+GET {{url}}?category=DRINK
+
+
+### Insert
+POST {{url}} HTTP/1.1
+content-type: {{content-type}}
+
+{
+   "name": "Test Double Bacon Cheese",
+   "description": "Testtest Buger with bacon and cheese",
+   "category": "BURGER",
+   "value": 12.12
+}
+
+
+### Update
+PUT {{url}} HTTP/1.1
+content-type: {{content-type}}
+
+{
+    "productId": "5bc5e89a-4093-4be1-875d-d337c6e273f4",
+    "name": "Test Test Berlim",
+    "category": "BURGER",
+    "value": 29.99
+}
+
+
+### Delete
+DELETE {{url}}/5bc5e89a-4093-4be1-875d-d337c6e273f4

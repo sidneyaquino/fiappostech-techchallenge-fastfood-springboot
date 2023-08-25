@@ -1,0 +1,14 @@
+@resource=actuator
+@url={{$dotenv HOST_NAME}}/{{resource}}
+
+
+### Find resource
+GET {{url}}
+
+
+### Find health
+GET {{url}}/health
+
+
+### Find prometheus
+GET {{url}}/prometheus
