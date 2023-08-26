@@ -12,7 +12,7 @@
 
 	<groupId>com.fiappostech</groupId>
 	<artifactId>fastfood</artifactId>
-	<version>1.1.4-SNAPSHOT</version>
+	<version>1.1.9-SNAPSHOT</version>
 	<name>fastfood</name>
 	<description>Tech Challenge project for Spring Boot</description>
 	
@@ -22,30 +22,14 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-validation</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
 		</dependency>
 
 		<dependency>
@@ -67,20 +51,53 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-indexer</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>io.micrometer</groupId>
-			<artifactId>micrometer-registry-prometheus</artifactId>
-			<scope>runtime</scope>
-		 </dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+		  </exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-undertow</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -133,7 +150,7 @@
 					</image>
 
 					<jvmArguments>
-						<!-- -Dserver.port=8080 -->
+						-Dserver.port=8080
 						-Dfile.encoding=UTF-8
 						-Dspring.backgroundpreinitializer.ignore=true
 						<!-- -XX:+UseContainerSupport -Xmx300m -Xss512k -XX:CICompilerCount=2 --> 
@@ -141,19 +158,19 @@
 						<!-- -agentlib:native-image-agent=config-output-dir=target/native-image -->						
 					</jvmArguments>
 
-					<systemPropertyVariables>
-							<springAot>true</springAot>
-					</systemPropertyVariables>
+					<!-- <systemPropertyVariables>
+						<springAot>true</springAot>
+					</systemPropertyVariables> -->
 				</configuration>
 
-				<executions>
+				<!-- <executions>
 					<execution>
 						 <id>process-aot</id>
 						 <goals>
 						<goal>process-aot</goal>
 						 </goals>
 					</execution>
-				</executions>
+				</executions> -->
 			</plugin>
 
 			<!-- <plugin>

@@ -203,9 +203,9 @@ The idea is that your business rule is fully protected from these external facto
 ## :rocket: Built With
 This project was developed with the following technology:
 
-[![Springboot][springboot-shield]][springboot-url] [![Java][java-shield]][java-url] [![Maven][maven-shield]][maven-url] [![Swagger][swagger-shield]][swagger-url] [![Postgresql][postgresql-shield]][postgresql-url] [![K6][k6-shield]][k6-url] [![Podman][podman-shield]][podman-url] [![kubernetes][kubernetes-shield]][kubernetes-url] [![openshift][openshift-shield]][openshift-url]
+[![Springboot][springboot-shield]][springboot-url] [![Java][java-shield]][java-url] [![Maven][maven-shield]][maven-url] [![Swagger][swagger-shield]][swagger-url] [![flyway][flyway-shield]][flyway-url] [![Postgresql][postgresql-shield]][postgresql-url] [![K6][k6-shield]][k6-url] [![Podman][podman-shield]][podman-url] [![kubernetes][kubernetes-shield]][kubernetes-url] [![openshift][openshift-shield]][openshift-url]
 
-<!-- [![flyway][flyway-shield]][flyway-url]  -->
+
 <!-- [![prometheus][prometheus-shield]][prometheus-url]  -->
 <!-- [![grafana][grafana-shield]][grafana-url] -->
 <!-- [![Editor-Config][editor-config-shield]][editor-config-url] -->
@@ -213,7 +213,6 @@ This project was developed with the following technology:
 #### **Spring**  ([spring.io](https://spring.io/))
 
 -   **[Bean Validation](https://docs.spring.io/spring-framework/reference/core/validation/beanvalidation.html)**
--   **[Flyway Migration](https://flywaydb.org/)**
 -   **[Lombok](https://projectlombok.org/)**
 -   **[Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/)**
 -   **[Spring Boot Devtools](https://docs.spring.io/spring-boot/docs/1.5.16.RELEASE/reference/html/using-boot-devtools.html)**
@@ -281,12 +280,9 @@ or
 ##### 1.2. __Kubernetes__ - best choice! \o/
 In the projet folder execute the commands:
 ```bash
-minikube start \
-  --cpus='3' --memory='3g' \
-  --container-runtime=containerd \
-  --feature-gates=InPlacePodVerticalScaling=true
-minikube addons enable volumesnapshots
+minikube start --container-runtime=containerd
 minikube addons enable csi-hostpath-driver
+minikube addons enable volumesnapshots
 minikube addons enable metrics-server
 kubectl apply -f k8s/infra/data-pvc.yaml
 kubectl apply -f k8s/data
@@ -348,7 +344,7 @@ Made by *Sidney Aquino*, **get in Touch!**  [![LinkedIn][linkedin-shield]][linke
 [postgresql-shield]: https://img.shields.io/badge/Postgresql-15-336791?style=for-the-badge&logo=postgresql&logoColor=white
 [postgresql-url]: https://www.postgresql.org/
 
-[flyway-shield]: https://img.shields.io/badge/Flyway-cc0000?style=for-the-badge&logo=flyway&logoColor=white
+[flyway-shield]: https://img.shields.io/badge/Flyway-9.1-cc0000?style=for-the-badge&logo=flyway&logoColor=white
 [flyway-url]: https://flywaydb.org/
 
 <!-- Dark Color 384d54 and 0db7ed -->

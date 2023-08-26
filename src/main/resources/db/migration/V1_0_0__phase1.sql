@@ -76,4 +76,4 @@ ALTER TABLE order_products
 -- ON "public"."flyway_schema_history" (
 --   "success" ASC
 -- );
--- INSERT INTO "public"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "installed_on", "execution_time", "success") VALUES (1, '1.0.0', 'phase1 migration', 'SQL', 'V1_0_0__phase1_migration.sql', 554950033, 'postgres', '2023-08-25 10:55:29.702102', 104, true);
+-- INSERT INTO "public"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "installed_on", "execution_time", "success") VALUES (1, '1.0.0', 'phase1', 'SQL', 'V1_0_0__phase1.sql', 554950033, 'postgres', '2023-08-25 10:55:29.702102', 104, true);

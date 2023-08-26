@@ -56,7 +56,7 @@ spec:
                   -ec,
                   'pg_isready -U "postgres" -h 127.0.0.1 -p 5432'
                 ]
-            # initialDelaySeconds: 5
+            initialDelaySeconds: 5
             periodSeconds: 3
             timeoutSeconds: 5
             failureThreshold: 10
@@ -71,10 +71,10 @@ spec:
           # MACHINE
           resources:
             requests:
-              memory: "768Mi"
+              memory: "750Mi"
               cpu: "500m"
             limits:
-              memory: "768Mi"
+              memory: "750Mi"
               cpu: "750m"
           ports:
             - containerPort: 5432
