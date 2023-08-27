@@ -4,7 +4,7 @@ services:
   # APP
   # ====================================================================================================================
   web:
-    image: docker.io/bellsoft/liberica-runtime-container:jdk-17-slim-musl
+    image: docker.io/bellsoft/liberica-runtime-container:jdk-17-slim-glibc
     container_name: fastfood
     working_dir: /app
     volumes:

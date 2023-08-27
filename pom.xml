@@ -153,9 +153,9 @@
 						-Dserver.port=8080
 						-Dfile.encoding=UTF-8
 						-Dspring.backgroundpreinitializer.ignore=true
-						<!-- -XX:+UseContainerSupport -Xmx300m -Xss512k -XX:CICompilerCount=2 --> 
+						<!-- -XX:+UseContainerSupport -Xmx300m -Xss512k -XX:CICompilerCount=2 -->
 						-Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
-						<!-- -agentlib:native-image-agent=config-output-dir=target/native-image -->						
+						<!-- -agentlib:native-image-agent=config-output-dir=target/native-image -->
 					</jvmArguments>
 
 					<!-- <systemPropertyVariables>
@@ -176,7 +176,7 @@
 			<!-- <plugin>
 				<groupId>org.graalvm.buildtools</groupId>
 				<artifactId>native-maven-plugin</artifactId>
-			</plugin> -->			
+			</plugin> -->
 		</plugins>
 	</build>
 </project>

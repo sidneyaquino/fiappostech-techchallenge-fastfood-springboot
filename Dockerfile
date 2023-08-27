@@ -1,13 +1,14 @@
-FROM docker.io/bellsoft/liberica-runtime-container:jdk-17-slim-musl AS build
+FROM docker.io/bellsoft/liberica-runtime-container:jdk-17-slim-glibc AS build
 WORKDIR /tmp
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 RUN --mount=type=cache,target=/root/.m2 ./mvnw dependency:resolve
 COPY src/ src
 RUN --mount=type=cache,target=/root/.m2 ./mvnw install -DskipTests -Djacoco.skip
-RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
+RUN mkdir -p target/dependency \
+   && (cd target/dependency; jar -xf ../*.jar)
 
-FROM docker.io/bellsoft/liberica-runtime-container:jre-17-slim-musl
+FROM docker.io/bellsoft/liberica-runtime-container:jre-17-slim-glibc AS runtime
 RUN addgroup --system javauser && \
    adduser -S -s /usr/sbin/nologin -D -H -G javauser javauser
 ARG DEPENDENCY=/tmp/target/dependency
