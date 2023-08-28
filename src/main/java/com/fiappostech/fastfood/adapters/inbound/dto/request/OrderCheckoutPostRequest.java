@@ -9,7 +9,7 @@ import com.fiappostech.fastfood.application.ports.dto.request.OrderCheckoutReque
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 
-public record OrderCheckoutPutRequest(
+public record OrderCheckoutPostRequest(
 
       @NotNull(message = "OrderId is mandatory.")
       @JsonAlias("id")

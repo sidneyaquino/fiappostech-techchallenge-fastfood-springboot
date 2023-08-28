@@ -2,13 +2,13 @@
 @url={{$dotenv HOST_NAME}}/{{resource}}
 
 
-### Find resource
+### FIND resource
 GET {{url}}
 
 
-### Find health
+### FIND health
 GET {{url}}/health
 
 
-### Find prometheus
+### FIND prometheus
 GET {{url}}/prometheus

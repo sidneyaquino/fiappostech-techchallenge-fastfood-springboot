@@ -1,4 +1,4 @@
-package com.fiappostech.fastfood.application.core.usecase;
+package com.fiappostech.fastfood.application.core.usecases;
 
 import java.util.List;
 

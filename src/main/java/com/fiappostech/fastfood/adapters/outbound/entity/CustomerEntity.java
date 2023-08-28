@@ -2,6 +2,8 @@ package com.fiappostech.fastfood.adapters.outbound.entity;
 
 import java.util.UUID;
 
+import org.hibernate.annotations.AnyKeyJavaClass;
+
 import com.fiappostech.fastfood.application.ports.dto.request.CustomerRequest;
 import com.fiappostech.fastfood.application.ports.dto.response.CustomerResponse;
 
@@ -17,7 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@EqualsAndHashCode(of = "personalId")
+@EqualsAndHashCode(of = {"customerId", "personalId"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -27,6 +29,7 @@ import lombok.Setter;
 public class CustomerEntity {
 
    @Id
+   @AnyKeyJavaClass(UUID.class)
    @GeneratedValue(strategy = GenerationType.UUID)
    @Column(name = "id")
    private UUID customerId;
@@ -54,4 +57,6 @@ public class CustomerEntity {
             this.getEmail(),
             this.getName());
    }
+
+   
 }

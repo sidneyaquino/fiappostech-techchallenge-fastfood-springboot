@@ -7,10 +7,10 @@ import com.fiappostech.fastfood.adapters.outbound.ProductDeleteByIdRepository;
 import com.fiappostech.fastfood.adapters.outbound.ProductFindByCategoryRepository;
 import com.fiappostech.fastfood.adapters.outbound.ProductFindByIdRepository;
 import com.fiappostech.fastfood.adapters.outbound.ProductSaveRepository;
-import com.fiappostech.fastfood.application.core.usecase.ProductDeleteByIdService;
-import com.fiappostech.fastfood.application.core.usecase.ProductFindByCategoryService;
-import com.fiappostech.fastfood.application.core.usecase.ProductFindByIdService;
-import com.fiappostech.fastfood.application.core.usecase.ProductSaveService;
+import com.fiappostech.fastfood.application.core.usecases.ProductDeleteByIdService;
+import com.fiappostech.fastfood.application.core.usecases.ProductFindByCategoryService;
+import com.fiappostech.fastfood.application.core.usecases.ProductFindByIdService;
+import com.fiappostech.fastfood.application.core.usecases.ProductSaveService;
 
 @Configuration
 public class ProductBeanConfig {

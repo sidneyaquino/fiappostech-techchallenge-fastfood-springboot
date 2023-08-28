@@ -3,15 +3,24 @@
 @content-type={{$dotenv CONTENT_TYPE}}
 
 
-### Find by id
-GET {{url}}/59d6bb0a-c543-40c6-86b5-c1fcb15a88bf
+### FIND by id
+GET {{url}}/75ef3fbb-daaa-4a4f-a868-2881b11f9b11
 
    
-### Find by tracking - RECEIVED | PREPARING | READY | FINISHED
+### FIND by tracking - RECEIVED | PREPARING | READY | FINISHED
 GET {{url}}?tracking=RECEIVED
 
 
-### Insert
+### UPDATE tracking - RECEIVED | PREPARING | READY | FINISHED
+PUT {{url}} HTTP/1.1
+content-type: {{content-type}}
+
+{
+    "orderId": "75ef3fbb-daaa-4a4f-a868-2881b11f9b11",
+    "tracking": "FINISHED"
+}
+
+### INSERT
 POST {{url}} HTTP/1.1
 content-type: {{content-type}}
 
@@ -28,14 +37,4 @@ content-type: {{content-type}}
             "quantity": 2
         }
     ]
-}
-
-
-### Update checkout (fake)
-PUT {{url}}/checkout HTTP/1.1
-content-type: {{content-type}}
-
-{
-    "orderId": "59d6bb0a-c543-40c6-86b5-c1fcb15a88bf",
-    "value": 22.97
 }

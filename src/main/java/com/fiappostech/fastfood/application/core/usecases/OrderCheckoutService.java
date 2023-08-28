@@ -1,4 +1,4 @@
-package com.fiappostech.fastfood.application.core.usecase;
+package com.fiappostech.fastfood.application.core.usecases;
 
 import java.time.LocalDateTime;
 
@@ -39,6 +39,7 @@ public class OrderCheckoutService implements OrderCheckoutInputPort {
       if (orderResponse.value().compareTo(orderDomain.getValue()) != 0) {
          throw new ApplicationException("Incorrect Order Value!");
       }
+      orderDomain.setCreated(LocalDateTime.now());
       orderDomain.setTracked(LocalDateTime.now());
       orderDomain.setTracking(Tracking.RECEIVED);
       //

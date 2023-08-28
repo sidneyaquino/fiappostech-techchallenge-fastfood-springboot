@@ -47,12 +47,13 @@ public class OrderDomain {
 
    public OrderDomain(OrderResponse orderResponse) {
       this.orderId = orderResponse.orderId();
-      this.customer = orderResponse.customer() == null ? null : new CustomerDomain(orderResponse.customer());
+      this.customer = orderResponse.customer() == null ? null
+            : new CustomerDomain(orderResponse.customer());
       this.created = orderResponse.created();
       this.tracked = orderResponse.tracked();
       this.tracking = orderResponse.tracking();
       this.trackingTime = orderResponse.tracked() == null ? null
-            : Duration.between(orderResponse.tracked(), LocalDateTime.now()).toMinutes();
+            : Duration.between(orderResponse.created(), LocalDateTime.now()).toMinutes();
       this.value = orderResponse.value();
       this.products = orderResponse.products() == null ? null
             : orderResponse.products().stream().map(OrderProductDomain::new).toList();
@@ -60,7 +61,8 @@ public class OrderDomain {
 
    public OrderDomain(OrderRequest orderRequest) {
       this.orderId = orderRequest.orderId();
-      this.customer = orderRequest.customer() == null ? null : new CustomerDomain(orderRequest.customer());
+      this.customer = orderRequest.customer() == null ? null
+            : new CustomerDomain(orderRequest.customer());
       this.created = orderRequest.created();
       this.tracked = orderRequest.tracked();
       this.tracking = orderRequest.tracking();

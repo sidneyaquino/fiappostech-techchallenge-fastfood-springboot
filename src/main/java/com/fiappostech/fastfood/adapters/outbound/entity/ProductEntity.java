@@ -3,6 +3,7 @@ package com.fiappostech.fastfood.adapters.outbound.entity;
 import java.math.BigDecimal;
 import java.util.UUID;
 
+import org.hibernate.annotations.AnyKeyJavaClass;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -36,6 +37,7 @@ import lombok.Setter;
 public class ProductEntity {
 
    @Id
+   @AnyKeyJavaClass(UUID.class)
    @GeneratedValue(strategy = GenerationType.UUID)
    @Column(name = "id")
    private UUID productId;
