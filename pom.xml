@@ -154,7 +154,8 @@
 						-Dserver.port=8080
 						-Dfile.encoding=UTF-8
 						-Dspring.backgroundpreinitializer.ignore=true
-						<!-- -XX:+UseContainerSupport -Xmx300m -Xss512k -XX:CICompilerCount=2 -->
+						-XX:+UseContainerSupport -Xmx300m -Xss512k -XX:CICompilerCount=2
+						<!-- -verbose:gc -XX:+PrintGCDetails -->
 						-Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
 						<!-- -agentlib:native-image-agent=config-output-dir=target/native-image -->
 						<!-- -Dspring.aot.enabled=true -->

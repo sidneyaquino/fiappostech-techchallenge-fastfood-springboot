@@ -95,7 +95,7 @@ _The APIs should have the following capabilities_:
 - [ ] Order Checkout: which should receive the Products Ordered and return the Order ID;
 - [ ] Check Order Payment Status: Payment has been approved or not;
 - [ ] `Webhook` to receive confirmation: Approved Payment or Declined Payment;
-- [ ] Order List should return Orders with their descriptions, sorted by Tracking with the following priority: 
+- [x] Order List should return Orders with their descriptions, sorted by Tracking with the following priority: 
 >  **undelivered** : `ready`  **>**  `preparation`  **>**  `received`
 >  `finalized` tracking should NOT appear in the list;
 - [x] Update the Order Tracking.
@@ -360,7 +360,7 @@ Made by *Sidney Aquino*, **get in Touch!**  [![LinkedIn][linkedin-shield]][linke
 [openshift-shield]: https://img.shields.io/badge/OpenShift-CC0000?style=for-the-badge&logo=redhat&logoColor=white
 [openshift-url]: https://developers.redhat.com/developer-sandbox
 
-[kubernetes-shield]: https://img.shields.io/badge/K8s-1.27-0f3074?style=for-the-badge&logo=kubernetes&logoColor=white
+[kubernetes-shield]: https://img.shields.io/badge/Kubernetes-0f3074?style=for-the-badge&logo=kubernetes&logoColor=white
 [kubernetes-url]: https://kubernetes.io/
 
 [swagger-shield]: https://img.shields.io/badge/Swagger-2.2-19b6b5?style=for-the-badge&logo=swagger&logoColor=white

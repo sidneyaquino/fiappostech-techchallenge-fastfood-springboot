@@ -6,7 +6,11 @@
 ### FIND by id
 GET {{url}}/75ef3fbb-daaa-4a4f-a868-2881b11f9b11
 
-   
+
+### FIND All undelivered - RECEIVED + PREPARING + READY
+GET {{url}}/undelivered
+
+
 ### FIND by tracking - RECEIVED | PREPARING | READY | FINISHED
 GET {{url}}?tracking=RECEIVED
 

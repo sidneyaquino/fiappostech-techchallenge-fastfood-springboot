@@ -15,6 +15,8 @@ import com.fiappostech.fastfood.application.ports.dto.Tracking;
 public interface OrderRepository extends JpaRepository<OrderEntity, UUID> {
    List<OrderEntity> findAllByTracking(Tracking tracking);
 
+   List<OrderEntity> findAllByTrackingInOrderByTrackingDesc(List<Tracking> listTracking);
+
    @Query(nativeQuery = true, value = """
          SELECT items.order_id AS orderId,
                items.product_id AS productId,

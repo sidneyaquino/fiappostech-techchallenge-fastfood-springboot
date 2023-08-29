@@ -14,6 +14,7 @@ import com.fiappostech.fastfood.adapters.inbound.dto.response.OrderFullResponse;
 import com.fiappostech.fastfood.adapters.inbound.dto.response.OrderTrackingResponse;
 import com.fiappostech.fastfood.application.ports.dto.Tracking;
 import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
+import com.fiappostech.fastfood.application.ports.inbound.OrderFindAllUndeliveredInputPort;
 import com.fiappostech.fastfood.application.ports.inbound.OrderFindByIdInputPort;
 import com.fiappostech.fastfood.application.ports.inbound.OrderFindByTrackingInputPort;
 
@@ -26,6 +27,7 @@ public class OrderGetController {
 
    private final OrderFindByIdInputPort orderFindByIdInputPort;
    private final OrderFindByTrackingInputPort orderFindByTrackingInputPort;
+   private final OrderFindAllUndeliveredInputPort orderFindAllUndeliveredInputPort;
 
    @GetMapping("/{orderId}")
    public ResponseEntity<OrderFullResponse> orderFindById(@PathVariable UUID orderId) {
@@ -37,6 +39,16 @@ public class OrderGetController {
    public ResponseEntity<List<OrderTrackingResponse>> orderFindByTracking(@RequestParam Tracking tracking) {
 
       List<OrderResponse> listOrderResponse = orderFindByTrackingInputPort.execute(tracking);
+      var listOrderTrackingResponse = listOrderResponse
+            .stream().map(item -> new OrderTrackingResponse(item)).toList();
+
+      return ResponseEntity.ok(listOrderTrackingResponse);
+   }
+
+   @GetMapping("/undelivered")
+   public ResponseEntity<List<OrderTrackingResponse>> orderFindAllUndelivered() {
+
+      List<OrderResponse> listOrderResponse = orderFindAllUndeliveredInputPort.execute();
       var listOrderTrackingResponse = listOrderResponse
             .stream().map(item -> new OrderTrackingResponse(item)).toList();
 
