@@ -14,7 +14,7 @@ public record OrderFullResponse(
       LocalDateTime created,
       LocalDateTime tracked,
       Tracking traking,
-      Long trakingTime,
+      Long queueTime,
       BigDecimal value,
       List<OrderProductFullResponse> products) {
    public OrderFullResponse(OrderResponse orderResponse) {
@@ -23,7 +23,7 @@ public record OrderFullResponse(
             orderResponse.created(),
             orderResponse.tracked(),
             orderResponse.tracking(),
-            orderResponse.trackingTime(),
+            orderResponse.queueTime(),
             orderResponse.value(),
             orderResponse.products().stream().map(OrderProductFullResponse::new).toList());
    }
@@ -35,7 +35,7 @@ public record OrderFullResponse(
             this.created(),
             this.tracked(),
             this.traking(),
-            this.trakingTime(),
+            this.queueTime(),
             this.value(),
             this.products().stream().map(item -> item.toOrderProductResponse()).toList());
    }

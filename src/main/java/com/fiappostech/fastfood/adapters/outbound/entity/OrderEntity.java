@@ -52,7 +52,6 @@ public class OrderEntity {
 
    @Column(nullable = false)
    private LocalDateTime created;
-
    private LocalDateTime tracked;
 
    @Enumerated(EnumType.ORDINAL)
@@ -91,6 +90,9 @@ public class OrderEntity {
    public void update(OrderRequest orderRequest) {
       if (orderRequest.customer() != null) {
          this.customer = new CustomerEntity(orderRequest.customer());
+      }
+      if (orderRequest.created() != null) {
+         this.created = orderRequest.created();
       }
       if (orderRequest.tracking() != null) {
          this.tracking = orderRequest.tracking();

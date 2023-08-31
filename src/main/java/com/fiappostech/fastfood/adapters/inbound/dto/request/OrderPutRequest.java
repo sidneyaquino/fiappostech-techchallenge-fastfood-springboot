@@ -14,6 +14,7 @@ public record OrderPutRequest(
       @JsonAlias("id")
       UUID orderId,
 
+      @NotNull(message = "Tracking is mandatory.")
       Tracking tracking) {
 
    public OrderRequest toOrderRequest() {

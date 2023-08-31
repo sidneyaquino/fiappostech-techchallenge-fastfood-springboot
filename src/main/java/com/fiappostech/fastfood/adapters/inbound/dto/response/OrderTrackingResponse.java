@@ -12,13 +12,13 @@ public record OrderTrackingResponse(
       LocalDateTime created,
       LocalDateTime tracked,
       Tracking traking,
-      Long trakingTime) {
+      Long queueTime) {
    public OrderTrackingResponse(OrderResponse orderResponse) {
       this(orderResponse.orderId(),
             orderResponse.customer() == null ? null : new CustomerTrackingResponse(orderResponse.customer()),
             orderResponse.created(),
             orderResponse.tracked(),
             orderResponse.tracking(),
-            orderResponse.trackingTime());
+            orderResponse.queueTime());
    }
 }

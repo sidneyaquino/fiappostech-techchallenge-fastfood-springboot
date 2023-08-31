@@ -18,7 +18,7 @@ public class OrderDomain {
    private LocalDateTime created;
    private LocalDateTime tracked;
    private Tracking tracking;
-   private Long trackingTime;
+   private Long queueTime;
    private BigDecimal value;
    private List<OrderProductDomain> products;
 
@@ -31,7 +31,7 @@ public class OrderDomain {
          LocalDateTime created,
          LocalDateTime tracked,
          Tracking tracking,
-         Long trackingTime,
+         Long queueTime,
          BigDecimal value,
          List<OrderProductDomain> products) {
 
@@ -40,7 +40,7 @@ public class OrderDomain {
       this.created = created;
       this.tracked = tracked;
       this.tracking = tracking;
-      this.trackingTime = trackingTime;
+      this.queueTime = queueTime;
       this.value = value;
       this.products = products;
    }
@@ -52,8 +52,10 @@ public class OrderDomain {
       this.created = orderResponse.created();
       this.tracked = orderResponse.tracked();
       this.tracking = orderResponse.tracking();
-      this.trackingTime = orderResponse.tracked() == null ? null
-            : Duration.between(orderResponse.created(), LocalDateTime.now()).toMinutes();
+      this.queueTime = orderResponse.tracked() == null ? null
+            : orderResponse.tracking() == Tracking.FINISHED
+               ? Duration.between(orderResponse.created(), orderResponse.tracked()).toMinutes()
+               : Duration.between(orderResponse.created(), LocalDateTime.now()).toMinutes();
       this.value = orderResponse.value();
       this.products = orderResponse.products() == null ? null
             : orderResponse.products().stream().map(OrderProductDomain::new).toList();
@@ -116,13 +118,13 @@ public class OrderDomain {
       this.tracking = tracking;
    }
 
-   public Long getTrackingTime() {
-      return trackingTime;
+   public Long getQueueTime() {
+      return queueTime;
    }
 
-   public void setTrackingTime(Long trackingTime) {
-      this.trackingTime = trackingTime;
-   }
+   // public void setQueueTime(Long queueTime) {
+   //    this.queueTime = queueTime;
+   // }
 
    public BigDecimal getValue() {
       return value;
@@ -159,7 +161,7 @@ public class OrderDomain {
             this.getCreated(),
             this.getTracked(),
             this.getTracking(),
-            this.getTrackingTime(),
+            this.getQueueTime(),
             this.getValue(),
             this.getProducts() == null ? null
                   : this.getProducts().stream().map(item -> item.toOrderProductResponse()).toList());
