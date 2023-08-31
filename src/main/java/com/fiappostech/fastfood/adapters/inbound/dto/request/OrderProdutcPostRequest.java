@@ -12,7 +12,7 @@ public record OrderProdutcPostRequest(
 
       @NotBlank(message = "Product ID is mandatory.") 
       @JsonAlias("id") 
-      UUID produtcId,
+      UUID productId,
 
       @Min(value = 1) 
       @NotBlank(message = "Quantity is mandatory.") 
@@ -20,7 +20,7 @@ public record OrderProdutcPostRequest(
 
    public OrderProductRequest toOrderProductRequest() {
       return new OrderProductRequest(
-            this.produtcId(),
+            this.productId(),
             this.quantity(),
             null);
    }

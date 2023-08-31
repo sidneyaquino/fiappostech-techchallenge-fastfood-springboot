@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.UUID;
 
 import com.fiappostech.fastfood.application.ports.dto.Tracking;
-import com.fiappostech.fastfood.application.ports.dto.request.OrderCheckoutRequest;
 import com.fiappostech.fastfood.application.ports.dto.request.OrderRequest;
 import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
 
@@ -71,11 +70,6 @@ public class OrderDomain {
       this.value = orderRequest.value();
       this.products = orderRequest.products() == null ? null
             : orderRequest.products().stream().map(OrderProductDomain::new).toList();
-   }
-
-   public OrderDomain(OrderCheckoutRequest orderCheckoutRequest) {
-      this.orderId = orderCheckoutRequest.orderId();
-      this.value = orderCheckoutRequest.value();
    }
 
    public UUID getOrderId() {

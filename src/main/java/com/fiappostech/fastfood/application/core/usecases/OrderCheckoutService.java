@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import com.fiappostech.fastfood.application.core.domain.OrderDomain;
 import com.fiappostech.fastfood.application.ports.dto.Tracking;
-import com.fiappostech.fastfood.application.ports.dto.request.OrderCheckoutRequest;
+import com.fiappostech.fastfood.application.ports.dto.request.OrderRequest;
 import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
 import com.fiappostech.fastfood.application.ports.exception.ApplicationException;
 import com.fiappostech.fastfood.application.ports.inbound.OrderCheckoutInputPort;
@@ -25,20 +25,26 @@ public class OrderCheckoutService implements OrderCheckoutInputPort {
    }
 
    @Override
-   public OrderResponse execute(OrderCheckoutRequest orderCheckoutRequest) {
-      var orderDomain = new OrderDomain(orderCheckoutRequest);
+   public OrderResponse execute(OrderRequest orderRequest) {
+      var orderDomain = new OrderDomain(orderRequest);
 
       //
       // Business Rules before Request (validation).
       //
       var orderResponse = this.orderFindByIdOutputPort.execute(orderDomain.getOrderId());
-
       if (orderResponse.tracking() != null) {
          throw new ApplicationException("Order checkout already done");
       }
-      if (orderResponse.value().compareTo(orderDomain.getValue()) != 0) {
-         throw new ApplicationException("Incorrect Order Value!");
+      if (orderResponse.products().size() != orderDomain.getProducts().size()) {
+         throw new ApplicationException("Order Items are different");
       }
+      for (var product : orderResponse.products()) {
+         orderDomain.getProducts().stream()         
+            .filter(item -> item.getProductId().equals(product.productId()))
+            .filter(item -> item.getQuantity().equals(product.quantity()))
+            .findFirst().orElseThrow(() -> new ApplicationException("Order Items are different"));
+      }
+
       orderDomain.setCreated(LocalDateTime.now());
       orderDomain.setTracked(LocalDateTime.now());
       orderDomain.setTracking(Tracking.RECEIVED);

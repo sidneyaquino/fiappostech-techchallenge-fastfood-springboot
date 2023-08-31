@@ -92,7 +92,7 @@ __(1)__ A backend application (`monolithic`):
 - [ ] Update the application developed in __phase1__ by refactoring the code to follow `Clean Code` and `Clean Architecture` standards.
 
 _The APIs should have the following capabilities_:
-- [ ] Order Checkout: which should receive the Products Ordered and return the Order ID;
+- [x] Order Checkout: which should receive the Products Ordered and return the Order ID;
 - [ ] Check Order Payment Status: Payment has been approved or not;
 - [ ] `Webhook` to receive confirmation: Approved Payment or Declined Payment;
 - [x] Order List should return Orders with their descriptions, sorted by Tracking with the following priority: 
