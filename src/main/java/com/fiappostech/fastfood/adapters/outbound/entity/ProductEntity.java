@@ -7,7 +7,7 @@ import org.hibernate.annotations.AnyKeyJavaClass;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import com.fiappostech.fastfood.application.ports.dto.Category;
+import com.fiappostech.fastfood.application.ports.dto.ProductCategory;
 import com.fiappostech.fastfood.application.ports.dto.request.ProductRequest;
 import com.fiappostech.fastfood.application.ports.dto.response.ProductResponse;
 
@@ -50,11 +50,12 @@ public class ProductEntity {
 
    @Enumerated(EnumType.ORDINAL)
    @Column(nullable = false)
-   private Category category;
+   private ProductCategory category;
 
    @Column(nullable = false)
    private BigDecimal value;
 
+   @Column(nullable = false)
    private boolean deleted = false;
 
    public ProductEntity(ProductRequest productRequest) {

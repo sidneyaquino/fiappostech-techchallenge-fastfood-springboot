@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fiappostech.fastfood.adapters.inbound.dto.response.OrderFullResponse;
 import com.fiappostech.fastfood.adapters.inbound.dto.response.OrderTrackingResponse;
-import com.fiappostech.fastfood.application.ports.dto.Tracking;
+import com.fiappostech.fastfood.application.ports.dto.OrderTracking;
 import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
 import com.fiappostech.fastfood.application.ports.inbound.OrderFindAllUndeliveredInputPort;
 import com.fiappostech.fastfood.application.ports.inbound.OrderFindByIdInputPort;
@@ -36,7 +36,7 @@ public class OrderGetController {
    }
 
    @GetMapping
-   public ResponseEntity<List<OrderTrackingResponse>> orderFindByTracking(@RequestParam Tracking tracking) {
+   public ResponseEntity<List<OrderTrackingResponse>> orderFindByTracking(@RequestParam OrderTracking tracking) {
 
       List<OrderResponse> listOrderResponse = orderFindByTrackingInputPort.execute(tracking);
       var listOrderTrackingResponse = listOrderResponse

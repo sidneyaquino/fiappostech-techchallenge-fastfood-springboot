@@ -7,11 +7,11 @@
 GET {{url}}/dff5d4dd-35b1-414f-89ca-1b4692f5e2c0
 
 
-### FIND All undelivered - RECEIVED + PREPARING + READY
+### FIND All UNDELIVERED : RECEIVED + PREPARING + READY
 GET {{url}}/undelivered
 
 
-### FIND by tracking - RECEIVED | PREPARING | READY | FINISHED
+### FIND by order tracking : RECEIVED - PREPARING - READY - FINISHED
 GET {{url}}?tracking=RECEIVED
 
 
@@ -35,7 +35,7 @@ content-type: {{content-type}}
 }
 
 
-### UPDATE tracking - RECEIVED | PREPARING | READY | FINISHED
+### UPDATE order tracking - RECEIVED | PREPARING | READY | FINISHED
 PUT {{url}} HTTP/1.1
 content-type: {{content-type}}
 

@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fiappostech.fastfood.adapters.outbound.entity.OrderEntity;
 import com.fiappostech.fastfood.adapters.outbound.repository.OrderRepository;
-import com.fiappostech.fastfood.application.ports.dto.Tracking;
+import com.fiappostech.fastfood.application.ports.dto.OrderTracking;
 import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
 import com.fiappostech.fastfood.application.ports.outbound.OrderFindByTrackingOutputPort;
 
@@ -23,7 +23,7 @@ public class OrderFindByTrackingRepository implements OrderFindByTrackingOutputP
 
    @Transactional(readOnly = true)
    @Override
-   public List<OrderResponse> execute(Tracking tracking) {
+   public List<OrderResponse> execute(OrderTracking tracking) {
       List<OrderEntity> listOrderEntity = orderRepository.findAllByTracking(tracking);
       return listOrderEntity.stream().map(orderEntity -> orderEntity.toOrderResponse()).toList();
    }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fiappostech.fastfood.adapters.inbound.dto.response.ProductFullResponse;
-import com.fiappostech.fastfood.application.ports.dto.Category;
+import com.fiappostech.fastfood.application.ports.dto.ProductCategory;
 import com.fiappostech.fastfood.application.ports.dto.response.ProductResponse;
 import com.fiappostech.fastfood.application.ports.inbound.ProductFindByCategoryInputPort;
 import com.fiappostech.fastfood.application.ports.inbound.ProductFindByIdInputPort;
@@ -33,7 +33,7 @@ public class ProductGetController {
    }
 
    @GetMapping
-   public ResponseEntity<List<ProductFullResponse>> productFindByCatetory(@RequestParam Category category) {
+   public ResponseEntity<List<ProductFullResponse>> productFindByCatetory(@RequestParam ProductCategory category) {
 
       List<ProductResponse> listProductResponse = productFindByCategoryInputPort.execute(category);
       var listProductFullResponse = listProductResponse

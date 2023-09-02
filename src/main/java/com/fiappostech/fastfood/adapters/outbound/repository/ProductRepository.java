@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.fiappostech.fastfood.adapters.outbound.entity.ProductEntity;
-import com.fiappostech.fastfood.application.ports.dto.Category;
+import com.fiappostech.fastfood.application.ports.dto.ProductCategory;
 
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity, UUID> {
-   List<ProductEntity> findAllByCategory(Category category);
+   List<ProductEntity> findAllByCategory(ProductCategory category);
 }

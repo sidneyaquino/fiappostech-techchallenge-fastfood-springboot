@@ -9,13 +9,13 @@ import org.springframework.stereotype.Repository;
 
 import com.fiappostech.fastfood.adapters.outbound.entity.OrderEntity;
 import com.fiappostech.fastfood.adapters.outbound.projection.OrderProductProjection;
-import com.fiappostech.fastfood.application.ports.dto.Tracking;
+import com.fiappostech.fastfood.application.ports.dto.OrderTracking;
 
 @Repository
 public interface OrderRepository extends JpaRepository<OrderEntity, UUID> {
-   List<OrderEntity> findAllByTracking(Tracking tracking);
+   List<OrderEntity> findAllByTracking(OrderTracking tracking);
 
-   List<OrderEntity> findAllByTrackingInOrderByTrackingDesc(List<Tracking> listTracking);
+   List<OrderEntity> findAllByTrackingInOrderByTrackingDesc(List<OrderTracking> listTracking);
 
    @Query(nativeQuery = true, value = """
          SELECT items.order_id AS orderId,

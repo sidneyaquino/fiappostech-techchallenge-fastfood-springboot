@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fiappostech.fastfood.application.core.domain.OrderDomain;
-import com.fiappostech.fastfood.application.ports.dto.Tracking;
+import com.fiappostech.fastfood.application.ports.dto.OrderTracking;
 import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
 import com.fiappostech.fastfood.application.ports.inbound.OrderFindAllUndeliveredInputPort;
 import com.fiappostech.fastfood.application.ports.outbound.OrderFindAllUndeliveredOutputPort;
@@ -23,10 +23,10 @@ public class OrderFindAllUndeliveredService implements OrderFindAllUndeliveredIn
       //
       // Business Rules before Request.
       //
-      var listTracking = new ArrayList<Tracking>();
-      listTracking.add(Tracking.RECEIVED);
-      listTracking.add(Tracking.PREPARING);
-      listTracking.add(Tracking.READY);
+      var listTracking = new ArrayList<OrderTracking>();
+      listTracking.add(OrderTracking.RECEIVED);
+      listTracking.add(OrderTracking.PREPARING);
+      listTracking.add(OrderTracking.READY);
       var listOrderResponse = this.orderFindAllUndeliveredOutputPort.execute(listTracking);
       var listOrderDomain = listOrderResponse.stream().map(OrderDomain::new).toList();
       //

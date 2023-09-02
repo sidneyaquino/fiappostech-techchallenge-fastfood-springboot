@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fiappostech.fastfood.adapters.outbound.entity.OrderEntity;
 import com.fiappostech.fastfood.adapters.outbound.repository.OrderRepository;
-import com.fiappostech.fastfood.application.ports.dto.Tracking;
+import com.fiappostech.fastfood.application.ports.dto.OrderTracking;
 import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
 import com.fiappostech.fastfood.application.ports.outbound.OrderFindAllUndeliveredOutputPort;
 
@@ -23,7 +23,7 @@ public class OrderFindAllUndeliveredRepository implements OrderFindAllUndelivere
 
    @Transactional(readOnly = true)
    @Override
-   public List<OrderResponse> execute(List<Tracking> listTracking) {
+   public List<OrderResponse> execute(List<OrderTracking> listTracking) {
       List<OrderEntity> listOrderEntity = orderRepository.findAllByTrackingInOrderByTrackingDesc(listTracking);
       return listOrderEntity.stream().map(orderEntity -> orderEntity.toOrderResponse()).toList();
    }

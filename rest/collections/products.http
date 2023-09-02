@@ -7,7 +7,7 @@
 GET {{url}}/5bc5e89a-4093-4be1-875d-d337c6e273f4
 
 
-### FIND by category - BURGER | DRINK | SIDE | DESSERT
+### FIND by product category : BURGER - DRINK - SIDE - DESSERT
 GET {{url}}?category=DRINK
 
 

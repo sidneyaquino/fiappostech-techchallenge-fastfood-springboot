@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fiappostech.fastfood.application.ports.dto.Category;
+import com.fiappostech.fastfood.application.ports.dto.ProductCategory;
 import com.fiappostech.fastfood.application.ports.dto.request.ProductRequest;
 
 import jakarta.validation.constraints.NotNull;
@@ -17,7 +17,7 @@ public record ProductPutRequest(
       
       String name,
       String description,
-      Category category,
+      ProductCategory category,
       BigDecimal value) {
 
    public ProductRequest toProductRequest() {

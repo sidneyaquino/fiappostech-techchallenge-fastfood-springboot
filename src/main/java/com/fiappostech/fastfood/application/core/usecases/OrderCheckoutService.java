@@ -3,7 +3,7 @@ package com.fiappostech.fastfood.application.core.usecases;
 import java.time.LocalDateTime;
 
 import com.fiappostech.fastfood.application.core.domain.OrderDomain;
-import com.fiappostech.fastfood.application.ports.dto.Tracking;
+import com.fiappostech.fastfood.application.ports.dto.OrderTracking;
 import com.fiappostech.fastfood.application.ports.dto.request.OrderRequest;
 import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
 import com.fiappostech.fastfood.application.ports.exception.ApplicationException;
@@ -47,7 +47,7 @@ public class OrderCheckoutService implements OrderCheckoutInputPort {
 
       orderDomain.setCreated(LocalDateTime.now());
       orderDomain.setTracked(LocalDateTime.now());
-      orderDomain.setTracking(Tracking.RECEIVED);
+      orderDomain.setTracking(OrderTracking.RECEIVED);
       //
       // Request.
       //

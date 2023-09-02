@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-import com.fiappostech.fastfood.application.ports.dto.Tracking;
+import com.fiappostech.fastfood.application.ports.dto.OrderTracking;
 import com.fiappostech.fastfood.application.ports.dto.request.OrderRequest;
 import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
 
@@ -16,7 +16,7 @@ public class OrderDomain {
    private CustomerDomain customer;
    private LocalDateTime created;
    private LocalDateTime tracked;
-   private Tracking tracking;
+   private OrderTracking tracking;
    private Long queueTime;
    private BigDecimal value;
    private List<OrderProductDomain> products;
@@ -29,7 +29,7 @@ public class OrderDomain {
          CustomerDomain customer,
          LocalDateTime created,
          LocalDateTime tracked,
-         Tracking tracking,
+         OrderTracking tracking,
          Long queueTime,
          BigDecimal value,
          List<OrderProductDomain> products) {
@@ -52,7 +52,7 @@ public class OrderDomain {
       this.tracked = orderResponse.tracked();
       this.tracking = orderResponse.tracking();
       this.queueTime = orderResponse.tracked() == null ? null
-            : orderResponse.tracking() == Tracking.FINISHED
+            : orderResponse.tracking() == OrderTracking.FINISHED
                ? Duration.between(orderResponse.created(), orderResponse.tracked()).toMinutes()
                : Duration.between(orderResponse.created(), LocalDateTime.now()).toMinutes();
       this.value = orderResponse.value();
@@ -104,11 +104,11 @@ public class OrderDomain {
       this.tracked = tracked;
    }
 
-   public Tracking getTracking() {
+   public OrderTracking getTracking() {
       return tracking;
    }
 
-   public void setTracking(Tracking tracking) {
+   public void setTracking(OrderTracking tracking) {
       this.tracking = tracking;
    }
 

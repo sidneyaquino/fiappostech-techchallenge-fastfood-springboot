@@ -1,6 +1,6 @@
 package com.fiappostech.fastfood.application.ports.dto;
 
-public enum Tracking {
+public enum OrderTracking {
    RECEIVED,
    PREPARING,
    READY,

@@ -2,7 +2,7 @@ package com.fiappostech.fastfood.adapters.inbound.dto.request;
 
 import java.math.BigDecimal;
 
-import com.fiappostech.fastfood.application.ports.dto.Category;
+import com.fiappostech.fastfood.application.ports.dto.ProductCategory;
 import com.fiappostech.fastfood.application.ports.dto.request.ProductRequest;
 
 import jakarta.validation.constraints.DecimalMin;
@@ -18,7 +18,7 @@ public record ProductPostRequest(
       String description,
 
       @NotNull(message = "Category is mandatory")
-      Category category,
+      ProductCategory category,
 
       @DecimalMin(value = "0.01")
       @NotNull(message = "Value is mandatory.")

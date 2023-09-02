@@ -3,7 +3,7 @@ package com.fiappostech.fastfood.application.core.domain;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import com.fiappostech.fastfood.application.ports.dto.Category;
+import com.fiappostech.fastfood.application.ports.dto.ProductCategory;
 import com.fiappostech.fastfood.application.ports.dto.request.ProductRequest;
 import com.fiappostech.fastfood.application.ports.dto.response.ProductResponse;
 
@@ -12,7 +12,7 @@ public class ProductDomain {
    private UUID productId;
    private String name;
    private String description;
-   private Category category;
+   private ProductCategory category;
    private BigDecimal value;
 
    public ProductDomain() {
@@ -22,7 +22,7 @@ public class ProductDomain {
          UUID productId,
          String name,
          String description,
-         Category category,
+         ProductCategory category,
          BigDecimal value) {
 
       this.productId = productId;
@@ -72,11 +72,11 @@ public class ProductDomain {
       this.description = description;
    }
 
-   public Category getCategory() {
+   public ProductCategory getCategory() {
       return category;
    }
 
-   public void setCategory(Category category) {
+   public void setCategory(ProductCategory category) {
       this.category = category;
    }
 
