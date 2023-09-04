@@ -45,12 +45,10 @@ public class OrderEntity {
    @Column(name = "id")
    private UUID orderId;
 
-   // @OnDelete(action = OnDeleteAction.CASCADE)
    @ManyToOne(fetch = FetchType.LAZY, optional = true)
-   @JoinColumn(name = "customer_id") //, nullable = true)
+   @JoinColumn(name = "customer_id")
    private CustomerEntity customer;
 
-   @Column(nullable = false)
    private LocalDateTime created;
    private LocalDateTime tracked;
 
@@ -94,12 +92,12 @@ public class OrderEntity {
       if (orderRequest.created() != null) {
          this.created = orderRequest.created();
       }
-      if (orderRequest.tracking() != null) {
+      // if (orderRequest.tracking() != null) {
          this.tracking = orderRequest.tracking();
-      }
-      if (orderRequest.tracked() != null) {
+      // }
+      // if (orderRequest.tracked() != null) {
          this.tracked = orderRequest.tracked();
-      }
+      // }
       if (orderRequest.value() != null) {
          this.value = orderRequest.value();
       }

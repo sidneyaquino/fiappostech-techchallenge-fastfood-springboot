@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.fiappostech.fastfood.application.ports.dto.OrderTracking;
+import com.fiappostech.fastfood.application.ports.dto.response.OrderResponse;
 
 public record OrderRequest(
       UUID orderId,
@@ -15,4 +16,13 @@ public record OrderRequest(
       OrderTracking tracking,
       BigDecimal value,
       List<OrderProductRequest> products) {
+   public OrderRequest(OrderResponse orderResponse){
+      this(orderResponse.orderId(),
+            orderResponse.customer() != null ? new CustomerRequest(orderResponse.customer()) : null,
+            orderResponse.created(),
+            orderResponse.tracked(),
+            orderResponse.tracking(),
+            orderResponse.value(),
+            null);
+   }
 }

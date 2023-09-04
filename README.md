@@ -93,8 +93,8 @@ __(1)__ A backend application (`monolithic`):
 
 _The APIs should have the following capabilities_:
 - [x] Order Checkout: which should receive the Products Ordered and return the Order ID;
-- [ ] Check Order Payment Status: Payment has been approved or not;
-- [ ] `Webhook` to receive confirmation: Approved Payment or Declined Payment;
+- [x] Check Order Payment Status: Payment has been approved or not;
+- [x] `Webhook` to receive confirmation: Approved Payment or Declined Payment;
 - [x] Order List should return Orders with their descriptions, sorted by Tracking with the following priority: 
 >  **undelivered** : `ready`  **>**  `preparation`  **>**  `received`
 >  `finalized` tracking should NOT appear in the list;
@@ -297,7 +297,7 @@ You can fork the "_Public Postman Workspace_" here: [![Fastfood WorkSpace][fastf
 
 It is also possible to import a copy or fork each collection individually:
 
-[![Customers Collection][customers-collection-shield]][customers-collection-url] [![OrdersCheckout Collection][order_checkout-collection-shield]][order_checkout-collection-url] [![Orders Collection][orders-collection-shield]][orders-collection-url] [![Products Collection][products-collection-shield]][products-collection-url]
+[![Customers Collection][customers-collection-shield]][customers-collection-url] [![Orders Collection][orders-collection-shield]][orders-collection-url] [![Payment Collection][payment-collection-shield]][payment-collection-url] [![Products Collection][products-collection-shield]][products-collection-url]
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -392,8 +392,8 @@ Made by *Sidney Aquino*, **get in Touch!**  [![LinkedIn][linkedin-shield]][linke
 [orders-collection-shield]: https://img.shields.io/badge/Orders-262626?style=for-the-badge&logo=postman&logoColor=white
 [orders-collection-url]: https://god.gw.postman.com/run-collection/1122292-5be35a0c-e38c-4bb0-9436-c3046e750359?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D1122292-5be35a0c-e38c-4bb0-9436-c3046e750359%26entityType%3Dcollection%26workspaceId%3D2ada5531-a649-402c-ad26-977b88d19424#?env%5BDev%20-%20Local%5D=W3sia2V5IjoidXJsIiwidmFsdWUiOiJsb2NhbGhvc3Q6ODA4MCIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoibG9jYWxob3N0OjgwODAiLCJzZXNzaW9uSW5kZXgiOjB9LHsia2V5IjoicG9ydCIsInZhbHVlIjoiODA4MCIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiODA4MCIsInNlc3Npb25JbmRleCI6MX1d
 
-[order_checkout-collection-shield]: https://img.shields.io/badge/OrderCheckout-262626?style=for-the-badge&logo=postman&logoColor=white
-[order_checkout-collection-url]: https://app.getpostman.com/run-collection/1122292-7fed3f78-4c88-41a8-a76a-6abb1ec857a1?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D1122292-7fed3f78-4c88-41a8-a76a-6abb1ec857a1%26entityType%3Dcollection%26workspaceId%3D2ada5531-a649-402c-ad26-977b88d19424#?env%5BDev%20-%20Local%5D=W3sia2V5IjoidXJsIiwidmFsdWUiOiJsb2NhbGhvc3Q6ODA4MCIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoibG9jYWxob3N0OjgwODAiLCJzZXNzaW9uSW5kZXgiOjB9XQ==
+[payment-collection-shield]: https://img.shields.io/badge/Payment-262626?style=for-the-badge&logo=postman&logoColor=white
+[payment-collection-url]: https://app.getpostman.com/run-collection/1122292-704611bf-7a1e-4328-865f-f9430f594a24?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D1122292-704611bf-7a1e-4328-865f-f9430f594a24%26entityType%3Dcollection%26workspaceId%3D2ada5531-a649-402c-ad26-977b88d19424#?env%5BDev%20-%20Local%5D=W3sia2V5IjoidXJsIiwidmFsdWUiOiJsb2NhbGhvc3Q6ODA4MCIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoibG9jYWxob3N0OjgwODAiLCJzZXNzaW9uSW5kZXgiOjB9XQ==
 
 [products-collection-shield]: https://img.shields.io/badge/Products-262626?style=for-the-badge&logo=postman&logoColor=white
 [products-collection-url]: https://god.gw.postman.com/run-collection/1122292-bd981efd-7ffd-4d70-b1b5-92b721dd49ae?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D1122292-bd981efd-7ffd-4d70-b1b5-92b721dd49ae%26entityType%3Dcollection%26workspaceId%3D2ada5531-a649-402c-ad26-977b88d19424#?env%5BDev%20-%20Local%5D=W3sia2V5IjoidXJsIiwidmFsdWUiOiJsb2NhbGhvc3Q6ODA4MCIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoibG9jYWxob3N0OjgwODAiLCJzZXNzaW9uSW5kZXgiOjB9LHsia2V5IjoicG9ydCIsInZhbHVlIjoiODA4MCIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiODA4MCIsInNlc3Npb25JbmRleCI6MX1d

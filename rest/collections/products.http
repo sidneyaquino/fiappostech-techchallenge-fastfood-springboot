@@ -4,12 +4,11 @@
 
 
 ### FIND by id
-GET {{url}}/5bc5e89a-4093-4be1-875d-d337c6e273f4
+GET {{url}}/4c987ae3-bdb8-4355-86de-2eb3ad2e0fe2
 
 
 ### FIND by product category : BURGER - DRINK - SIDE - DESSERT
 GET {{url}}?category=DRINK
-
 
 ### UPDATE
 PUT {{url}} HTTP/1.1

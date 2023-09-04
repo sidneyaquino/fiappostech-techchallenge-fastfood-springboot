@@ -1,0 +1,22 @@
+@resource=payments
+@url={{$dotenv HOST_NAME}}/{{resource}}
+@content-type={{$dotenv CONTENT_TYPE}}
+
+
+### FIND last by orderId
+GET {{url}}?orderId=b5da45e5-3a06-40ac-9323-d7c1a9ce0353
+
+
+### INSERT
+POST {{url}} HTTP/1.1
+content-type: {{content-type}}
+
+{
+    // Order ID
+    "external_reference": "b5da45e5-3a06-40ac-9323-d7c1a9ce0353",
+    // PENDING - APPROVED - AUTHORIZED - IN_PROCESS - IN_MEDIATION - REJECTED|CANCELLED - REFUNDED - CHARGED_BACK
+    "status": "APPROVED",
+    // Any Description: Accredited - pending_contingency - pending_review_manual - cc_rejected_insufficient_amount - cc_rejected_other_reason ...
+    "status_detail": "Accredited",
+    "transaction_amount": 22.97
+}

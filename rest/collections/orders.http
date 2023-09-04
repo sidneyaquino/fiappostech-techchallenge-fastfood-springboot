@@ -7,12 +7,22 @@
 GET {{url}}/dff5d4dd-35b1-414f-89ca-1b4692f5e2c0
 
 
+### FIND by order tracking : RECEIVED - PREPARING - READY - FINISHED
+GET {{url}}?tracking=FINISHED
+
+
 ### FIND All UNDELIVERED : RECEIVED + PREPARING + READY
 GET {{url}}/undelivered
 
 
-### FIND by order tracking : RECEIVED - PREPARING - READY - FINISHED
-GET {{url}}?tracking=RECEIVED
+### UPDATE order tracking - RECEIVED | PREPARING | READY | FINISHED
+PUT {{url}} HTTP/1.1
+content-type: {{content-type}}
+
+{
+    "orderId": "b5da45e5-3a06-40ac-9323-d7c1a9ce0353",
+    "tracking": "FINISHED"
+}
 
 
 ### UPDATE checkout
@@ -24,24 +34,14 @@ content-type: {{content-type}}
     "products": 
     [
         {
-            "produtcId": "4c987ae3-bdb8-4355-86de-2eb3ad2e0fe2",
+            "productId": "4c987ae3-bdb8-4355-86de-2eb3ad2e0fe2",
             "quantity": 1
         },
         {
-            "produtcId": "61c100ee-0e8b-41a9-915c-70892d5fac50",
+            "productId": "61c100ee-0e8b-41a9-915c-70892d5fac50",
             "quantity": 2
         }
     ]
-}
-
-
-### UPDATE order tracking - RECEIVED | PREPARING | READY | FINISHED
-PUT {{url}} HTTP/1.1
-content-type: {{content-type}}
-
-{
-    "orderId": "75ef3fbb-daaa-4a4f-a868-2881b11f9b11",
-    "tracking": "FINISHED"
 }
 
 

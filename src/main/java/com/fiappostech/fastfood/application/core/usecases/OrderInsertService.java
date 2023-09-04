@@ -1,7 +1,6 @@
 package com.fiappostech.fastfood.application.core.usecases;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 import com.fiappostech.fastfood.application.core.domain.OrderDomain;
 import com.fiappostech.fastfood.application.core.domain.OrderProductDomain;
@@ -63,8 +62,6 @@ public class OrderInsertService implements OrderInsertInputPort {
          value = value.add(productrResponse.value().multiply(new BigDecimal(orderProductDomain.getQuantity())));
       }
       orderDomain.setValue(value);
-
-      orderDomain.setCreated(LocalDateTime.now());
       //
       // Request.
       //

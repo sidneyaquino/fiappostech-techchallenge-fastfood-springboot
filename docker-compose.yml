@@ -7,7 +7,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: docker.io/sidneyaquino/fiappostech-fastfood:1.2.0-SNAPSHOT
+    image: docker.io/sidneyaquino/fiappostech-fastfood:0.4.0-SNAPSHOT
     container_name: fastfood
     ports:
       - 8080:8080

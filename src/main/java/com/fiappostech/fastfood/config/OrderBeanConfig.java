@@ -16,6 +16,7 @@ import com.fiappostech.fastfood.application.core.usecases.OrderFindByIdService;
 import com.fiappostech.fastfood.application.core.usecases.OrderFindByTrackingService;
 import com.fiappostech.fastfood.application.core.usecases.OrderInsertService;
 import com.fiappostech.fastfood.application.core.usecases.OrderUpdateService;
+import com.fiappostech.fastfood.application.ports.outbound.PaymentInsertOutputPort;
 
 @Configuration
 public class OrderBeanConfig {
@@ -26,15 +27,18 @@ public class OrderBeanConfig {
          ProductFindByIdRepository productFindByIRepository,
          CustomerFindByPersonalIdRepository customerFindByPersonalIdRepository) {
 
-      return new OrderInsertService(orderInsertRepository, productFindByIRepository, customerFindByPersonalIdRepository);
+      return new OrderInsertService(
+            orderInsertRepository, productFindByIRepository, customerFindByPersonalIdRepository);
    }
 
    @Bean
    public OrderCheckoutService orderCheckoutService(
          OrderUpdateRepository orderUpdateRepository,
-         OrderFindByIdRepository orderFindByIdRepository) {
+         OrderFindByIdRepository orderFindByIdRepository,
+         PaymentInsertOutputPort paymentInsertOutputPort) {
 
-      return new OrderCheckoutService(orderUpdateRepository, orderFindByIdRepository);
+      return new OrderCheckoutService(
+            orderUpdateRepository, orderFindByIdRepository, paymentInsertOutputPort);
    }
 
    @Bean

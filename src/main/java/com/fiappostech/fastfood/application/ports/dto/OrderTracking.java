@@ -5,8 +5,4 @@ public enum OrderTracking {
    PREPARING,
    READY,
    FINISHED;
-
-   public int getValue() {
-      return ordinal() + 1;
-   }
 }

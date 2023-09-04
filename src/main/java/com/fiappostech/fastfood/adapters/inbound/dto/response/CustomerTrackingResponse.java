@@ -11,4 +11,10 @@ public record CustomerTrackingResponse(
       this(customerResponse.customerId(),
             customerResponse.name());
    }
+
+   public CustomerTrackingResponse toCustomerTrackingResponse() {
+      return new CustomerTrackingResponse(
+            this.customerId(),
+            this.name());
+   }
 }

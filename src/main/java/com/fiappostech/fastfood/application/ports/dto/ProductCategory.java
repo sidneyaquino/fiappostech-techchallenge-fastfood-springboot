@@ -5,8 +5,4 @@ public enum ProductCategory {
    SIDE,
    DRINK,
    DESERT;
-
-   public int getValue() {
-      return ordinal() + 1;
-   }
 }

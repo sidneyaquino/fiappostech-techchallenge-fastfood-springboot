@@ -36,13 +36,13 @@ INSERT INTO "public"."products" ("id", "category", "description", "name", "value
 CREATE TABLE "public"."orders" ( 
   "id" UUID NOT NULL,
   "customer_id" UUID NULL,
-  "created" TIMESTAMP(6) NOT NULL,
+  "created" TIMESTAMP(6) NULL,
   "tracked" TIMESTAMP(6) NULL,
   "tracking" SMALLINT NULL CHECK (tracking BETWEEN 0 AND 3),
   "value" NUMERIC(38,2) NOT NULL,
   CONSTRAINT "orders_pk" PRIMARY KEY ("id")
 );
-ALTER TABLE orders 
+ALTER TABLE orders
   ADD CONSTRAINT orders_fk_customer_id FOREIGN KEY ("customer_id") REFERENCES customers;
 
 -- ORDER_PRODUCTS
@@ -53,10 +53,10 @@ CREATE TABLE "public"."order_products" (
   "value" NUMERIC(38,2) NOT NULL,
   CONSTRAINT "order_products_pk" PRIMARY KEY ("order_id", "product_id")
 );
-ALTER TABLE order_products 
-  ADD CONSTRAINT order_products_fk_product_id FOREIGN KEY (product_id) REFERENCES products;
-ALTER TABLE order_products 
-  ADD CONSTRAINT order_products_fk_order_id FOREIGN KEY (order_id) REFERENCES orders;
+ALTER TABLE order_products
+  ADD CONSTRAINT order_products_fk_product_id FOREIGN KEY ("product_id") REFERENCES products;
+ALTER TABLE order_products
+  ADD CONSTRAINT order_products_fk_order_id FOREIGN KEY ("order_id") REFERENCES orders;
 
 -- -- FLYWAY
 -- CREATE TABLE "public"."flyway_schema_history" ( 
@@ -76,4 +76,4 @@ ALTER TABLE order_products
 -- ON "public"."flyway_schema_history" (
 --   "success" ASC
 -- );
--- INSERT INTO "public"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "installed_on", "execution_time", "success") VALUES (1, '1.0.0', 'phase1', 'SQL', 'V1_0_0__phase1.sql', 554950033, 'postgres', '2023-08-25 10:55:29.702102', 104, true);
+-- INSERT INTO "public"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "installed_on", "execution_time", "success") VALUES (1, '0.2.0', 'phase1', 'SQL', 'V0_2_0__phase1.sql', 424973401, 'postgres', '2023-09-03 08:49:51.315086', 59, true);

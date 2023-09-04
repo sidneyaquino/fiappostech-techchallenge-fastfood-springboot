@@ -32,10 +32,14 @@ public class OrderUpdateService implements OrderUpdateInputPort {
       //
       var orderResponse = this.orderFindByIdOutputPort.execute(orderDomain.getOrderId());
 
-      if (orderResponse.tracking() == null) {
-         throw new ApplicationException("Order awaiting checkout process...");
+      if (orderResponse.created() == null) {
+         throw new ApplicationException("Order without checkout process...");
       }
-      if (orderResponse.tracking().ordinal() != orderDomain.getTracking().ordinal()) {
+      if (orderResponse.tracking() == null) {
+         throw new ApplicationException("Order pending payment process...");
+      }
+      
+      if (!orderResponse.tracking().equals(orderDomain.getTracking())) {
          orderDomain.setTracked(LocalDateTime.now());
          orderDomain.setTracking(orderRequest.tracking());
          //
