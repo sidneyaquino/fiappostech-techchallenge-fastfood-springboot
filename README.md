@@ -89,7 +89,7 @@ __(2)__ The application must be delivered with `Dockerfile` and `docker-compose`
 ---
 ### __SECOND SPRINT__ / phase2 branch
 __(1)__ A backend application (`monolithic`):
-- [ ] Update the application developed in __phase1__ by refactoring the code to follow `Clean Code` and `Clean Architecture` standards.
+- [x] Update the application developed in __phase1__ by refactoring the code to follow `Clean Code` and `Clean Architecture` standards.
 
 _The APIs should have the following capabilities_:
 - [x] Order Checkout: which should receive the Products Ordered and return the Order ID;
@@ -139,59 +139,115 @@ For this project you should to have basic konwledgement about:
 <a name="features"></a>
 ## 💻 Features
 
+Project summary diagram
+```
++-----------------+
+| Adapter         |
+| Layer           | Contains communication components
+|                 |
+| - Presenter     | The Presenter handles HTTP requests and returns HTTP responses
+|   (Controller)  | 
++-----------------+
+        | 
++-----------------+
+| Application     | 
+| Layer           | Responsible for implementing the application's business logic
+|                 |
+| - Interactor /  | Interactor is the component that implements a UseCase
+|   UseCase       | 
+| - Interface     | Used to abstract the infrastructure layer 
+|   - Repository  | when communicating with the database
+| - Exception     |
++-----------------+
+        | 
++-----------------+
+| Domain          | It contains components such as the database,
+| Layer           | web framework and external APIs
+|                 |
+| - Entity        | 
+| - Value Object  | 
+| - Interface     | Contains the business logic that coordinates the flow of data
+|   - UseCase     | 
++-----------------+
+        | 
++-----------------+
+| Infrastructure  | It is responsible for communicating with external systems 
+| Layer           | that provide concrete implementations of the interfaces
+|                 |
+| - Web Framework | 
+| - Database      |
+|   - Repository  | 
++-----------------+
+```
+
 The project's structure is as follows:: 
 ```
-.
+:
 ├── src
 │   ├── main
 │   │   ├── java
 │   │   │   └── com
 │   │   │       └── fiappostech
 │   │   │           └── fastfood
-│   │   │               ├── adapters
-│   │   │               │   ├── inbound
-│   │   │               │   │   └── dto
-│   │   │               │   │       ├── request
-│   │   │               │   │       └── response
-│   │   │               │   └── outbound
-│   │   │               │       ├── entity
-│   │   │               │       ├── projection
-│   │   │               │       └── repository
+│   │   │               ├── adapter
+│   │   │               │   └── presenter
+│   │   │               │       ├── .. 
+│   │   │               │       :   
 │   │   │               ├── application
-│   │   │               │   ├── core
-│   │   │               │   │   ├── domain
-│   │   │               │   │   ├── usecase
-│   │   │               │   │   └── valueobject
-│   │   │               │   └── ports
-│   │   │               │       ├── dto
-│   │   │               │       │   ├── request
-│   │   │               │       │   └── response
-│   │   │               │       ├── exception
-│   │   │               │       ├── inbound
-│   │   │               │       └── outbound
-│   │   │               └── config
+│   │   │               │   ├── exception
+│   │   │               │   ├── port
+│   │   │               │   │   ├── ..
+│   │   │               │   │   :   
+│   │   │               │   └── usecase
+│   │   │               │       ├── ..
+│   │   │               │       :
+│   │   │               ├── domain
+│   │   │               │   ├── entity
+│   │   │               │   ├── port
+│   │   │               │   │   ├── ..
+│   │   │               │   │   :
+│   │   │               │   └── valueobject
+│   │   │               └── infrastructure
+│   │   │                   ├── api
+│   │   │                   │   ├── ..
+│   │   │                   │   :
+│   │   │                   ├── config
+│   │   │                   │   └── springdoc
 │   │   │                   ├── exception
-│   │   │                   └── swagger
+│   │   │                   └── persistence
+│   │   │                       ├── ..
+│   │   │                       :
 │   │   └── resources
-.   .
+│   │       └── db
+│   │           └── migration
+:   :
 ```
-#### Adapters 
-They are the implementation of your external dependencies (user interface/inbound and infrastructure/outbound)
-- `inbound`: this is where all our controllers are.
-- `outbound`: this is where all our external integrations are (repository, API integration and etc).---
+
+First we have all our classes that don't have any dependency, including framework dependencies.
+
+#### Adapter
+They are the **abstration** of your external dependency (user interface)
+- `presenter`: this is where all our controllers are.
 
 #### Application
-Here we have all our classes that don't have any dependency, including framework dependencies.
-- `core/domain`: this is where all __domains__ are.
-- `core/usecase`: this is where the implementation of the internal services (__usecases__) are.
-- `core/valueobjects`: this is where all __value objects__ are.
-- `ports/inbound`: this is where our `input interfaces`, that represents our internal services (usecases) are.
-- `ports/outbound`: this is where our `output interfces`, that represents external services are. Note that here we do not have any naming connected to the technologies.
+- `usecase`: this is where the implementation of the interactors (__usecases__) are.
+- `port`: this is where our `abstraction`, that represents repository intefaces are. Note that here we do not have any naming connected to the technologies.
+#### Domain
+- `entity`: this is where all __domains__ are.
+- `valueobjects`: this is where all __value objects__ are.
+---
+
+#### Infrastructure
+They are the **implementation** of your external dependencies (user interface and infrastructure)
+- `api`: this is where all our controllers are.
+- `persistense`: this is where all our external integrations are.
+
+---
 
 #### Disclaimer
-This is only an way of how to implement the structure of the ports and adapters architecture (hexagonal architecture).
+This is only an way of how to implement the structure of the Clean Architecture.
 
-Your biggest concern should be to make good use of the concepts of ports and adapters, which is fully connected with the inversion of dependencies. Furthermore, it is important to respect the fact that your internal services (usecases), interfaces (ports) and domains must not have any external dependencies (including with the framework).
+Your biggest concern should be to make good use of the concepts of separation of concerns, independence of frameworks and libraries, testability, dependency inversion and domain-centric design. Furthermore, it is important to respect the fact that your domain, application and adapter layers must not have any external dependencies (including with the framework).
 
 The idea is that your business rule is fully protected from these external factors.
 
@@ -217,7 +273,7 @@ This project was developed with the following technology:
 -   **[Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/)**
 -   **[Spring Boot Devtools](https://docs.spring.io/spring-boot/docs/1.5.16.RELEASE/reference/html/using-boot-devtools.html)**
 -   **[Spring Data JPA](https://spring.io/projects/spring-data-jpa)**
--   **[Spring Web](https://spring.io/projects/spring-framework)**
+-   **[Spring Web MVC](https://docs.spring.io/spring-framework/reference/web/webmvc.html)**
 
 > See the file:  [pom.xml](https://github.com/sidneyaquino/fiappostech-techchallenge-fastfood-springboot/blob/main/pom.xml)
 
