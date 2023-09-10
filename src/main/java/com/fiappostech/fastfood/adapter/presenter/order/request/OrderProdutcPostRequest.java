@@ -3,7 +3,7 @@ package com.fiappostech.fastfood.adapter.presenter.order.request;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fiappostech.fastfood.domain.port.order.dto.OrderProductRequest;
+import com.fiappostech.fastfood.domain.dto.order.OrderProductRequest;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;

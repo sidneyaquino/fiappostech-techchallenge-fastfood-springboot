@@ -11,10 +11,12 @@ import com.fiappostech.fastfood.adapter.presenter.product.ProductInsertPresenter
 import com.fiappostech.fastfood.adapter.presenter.product.request.ProductPostRequest;
 import com.fiappostech.fastfood.adapter.presenter.product.response.ProductResponseFull;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
+@Tag(name = "Products") // , description = "the Product Api")
 @RestController
 @RequestMapping("/products")
 public class ProductPostController {
@@ -27,7 +29,8 @@ public class ProductPostController {
          UriComponentsBuilder uriComponentsBuilder) {
 
       var productResponseFull = productInsertPresenter.execute(productPostRequest);
-      var uri = uriComponentsBuilder.path("/products/{productId}").buildAndExpand(productResponseFull.productId()).toUri();
+      var uri = uriComponentsBuilder.path("/products/{productId}").buildAndExpand(productResponseFull.productId())
+            .toUri();
 
       return ResponseEntity.created(uri).body(productResponseFull);
    }

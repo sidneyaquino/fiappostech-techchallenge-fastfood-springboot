@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import com.fiappostech.fastfood.domain.port.payment.dto.PaymentRequest;
-import com.fiappostech.fastfood.domain.port.payment.dto.PaymentResponse;
+import com.fiappostech.fastfood.domain.dto.payment.PaymentRequest;
+import com.fiappostech.fastfood.domain.dto.payment.PaymentResponse;
 
 public class PaymentDomain {
 

@@ -2,10 +2,9 @@ package com.fiappostech.fastfood.application.usecase.customer;
 
 import java.util.UUID;
 
-import com.fiappostech.fastfood.application.port.customer.CustomerFindByIdGateway;
+import com.fiappostech.fastfood.adapter.gateway.customer.CustomerFindByIdGateway;
+import com.fiappostech.fastfood.domain.dto.customer.CustomerResponse;
 import com.fiappostech.fastfood.domain.entity.CustomerDomain;
-import com.fiappostech.fastfood.domain.port.customer.CustomerFindByIdUseCase;
-import com.fiappostech.fastfood.domain.port.customer.dto.CustomerResponse;
 
 public class CustomerFindByIdInteractor implements CustomerFindByIdUseCase {
 

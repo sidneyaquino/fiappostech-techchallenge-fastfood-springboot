@@ -2,13 +2,12 @@ package com.fiappostech.fastfood.application.usecase.order;
 
 import java.time.LocalDateTime;
 
-import com.fiappostech.fastfood.application.exception.BusinessException;
-import com.fiappostech.fastfood.application.port.order.OrderFindByIdGateway;
-import com.fiappostech.fastfood.application.port.order.OrderUpdateGateway;
+import com.fiappostech.fastfood.adapter.gateway.order.OrderUpdateGateway;
+import com.fiappostech.fastfood.adapter.gateway.order.OrderFindByIdGateway;
+import com.fiappostech.fastfood.application.exception.ApplicationException;
+import com.fiappostech.fastfood.domain.dto.order.OrderRequest;
+import com.fiappostech.fastfood.domain.dto.order.OrderResponse;
 import com.fiappostech.fastfood.domain.entity.OrderDomain;
-import com.fiappostech.fastfood.domain.port.order.OrderUpdateUseCase;
-import com.fiappostech.fastfood.domain.port.order.dto.OrderRequest;
-import com.fiappostech.fastfood.domain.port.order.dto.OrderResponse;
 
 public class OrderUpdateInteractor implements OrderUpdateUseCase {
 
@@ -33,10 +32,10 @@ public class OrderUpdateInteractor implements OrderUpdateUseCase {
       var orderResponse = this.orderFindByIdGateway.execute(orderDomain.getOrderId());
 
       if (orderResponse.created() == null) {
-         throw new BusinessException("Order without checkout process...");
+         throw new ApplicationException("Order without checkout process...");
       }
       if (orderResponse.tracking() == null) {
-         throw new BusinessException("Order pending payment process...");
+         throw new ApplicationException("Order pending payment process...");
       }
       
       if (!orderResponse.tracking().equals(orderDomain.getTracking())) {

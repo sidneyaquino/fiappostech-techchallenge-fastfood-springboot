@@ -2,7 +2,7 @@ package com.fiappostech.fastfood.adapter.presenter.customer.response;
 
 import java.util.UUID;
 
-import com.fiappostech.fastfood.domain.port.customer.dto.CustomerResponse;
+import com.fiappostech.fastfood.domain.dto.customer.CustomerResponse;
 
 public record CustomerResponseFull(
       UUID customerId,

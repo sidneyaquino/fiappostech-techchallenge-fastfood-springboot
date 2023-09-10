@@ -3,9 +3,9 @@ package com.fiappostech.fastfood.adapter.presenter.payment.request;
 import java.math.BigDecimal;
 import java.util.UUID;
 
+import com.fiappostech.fastfood.domain.dto.order.OrderRequest;
+import com.fiappostech.fastfood.domain.dto.payment.PaymentRequest;
 import com.fiappostech.fastfood.domain.entity.PaymentStatus;
-import com.fiappostech.fastfood.domain.port.order.dto.OrderRequest;
-import com.fiappostech.fastfood.domain.port.payment.dto.PaymentRequest;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;

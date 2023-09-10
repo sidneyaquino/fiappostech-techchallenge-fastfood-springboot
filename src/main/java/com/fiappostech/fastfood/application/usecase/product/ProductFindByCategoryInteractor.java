@@ -2,11 +2,10 @@ package com.fiappostech.fastfood.application.usecase.product;
 
 import java.util.List;
 
-import com.fiappostech.fastfood.application.port.product.ProductFindByCategoryGateway;
+import com.fiappostech.fastfood.adapter.gateway.product.ProductFindByCategoryGateway;
+import com.fiappostech.fastfood.domain.dto.product.ProductResponse;
 import com.fiappostech.fastfood.domain.entity.ProductCategory;
 import com.fiappostech.fastfood.domain.entity.ProductDomain;
-import com.fiappostech.fastfood.domain.port.product.ProductFindByCategoryUseCase;
-import com.fiappostech.fastfood.domain.port.product.dto.ProductResponse;
 
 public class ProductFindByCategoryInteractor implements ProductFindByCategoryUseCase {
    

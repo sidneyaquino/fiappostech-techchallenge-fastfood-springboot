@@ -1,9 +1,8 @@
 package com.fiappostech.fastfood.application.usecase.customer;
 
-import com.fiappostech.fastfood.application.port.customer.CustomerIdentifyGateway;
+import com.fiappostech.fastfood.adapter.gateway.customer.CustomerIdentifyGateway;
+import com.fiappostech.fastfood.domain.dto.customer.CustomerResponse;
 import com.fiappostech.fastfood.domain.entity.CustomerDomain;
-import com.fiappostech.fastfood.domain.port.customer.CustomerIdentifyUseCase;
-import com.fiappostech.fastfood.domain.port.customer.dto.CustomerResponse;
 import com.fiappostech.fastfood.domain.valueobject.PersonalIdDomain;
 
 public class CustomerIdentifyInteractor implements CustomerIdentifyUseCase {
@@ -22,7 +21,7 @@ public class CustomerIdentifyInteractor implements CustomerIdentifyUseCase {
       // Business Rules before Request.
       //
       var customerResponse = this.customerIdentifyGateway.execute(personalIdDomain.personalId());
-      var customerDomain = new CustomerDomain(customerResponse);      
+      var customerDomain = new CustomerDomain(customerResponse);
       //
       // Business Rules before Response.
       //

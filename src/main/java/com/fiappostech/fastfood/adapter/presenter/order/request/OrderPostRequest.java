@@ -2,8 +2,8 @@ package com.fiappostech.fastfood.adapter.presenter.order.request;
 
 import java.util.List;
 
-import com.fiappostech.fastfood.domain.port.customer.dto.CustomerRequest;
-import com.fiappostech.fastfood.domain.port.order.dto.OrderRequest;
+import com.fiappostech.fastfood.domain.dto.customer.CustomerRequest;
+import com.fiappostech.fastfood.domain.dto.order.OrderRequest;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;

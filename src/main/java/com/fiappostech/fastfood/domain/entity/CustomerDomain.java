@@ -2,8 +2,8 @@ package com.fiappostech.fastfood.domain.entity;
 
 import java.util.UUID;
 
-import com.fiappostech.fastfood.domain.port.customer.dto.CustomerRequest;
-import com.fiappostech.fastfood.domain.port.customer.dto.CustomerResponse;
+import com.fiappostech.fastfood.domain.dto.customer.CustomerRequest;
+import com.fiappostech.fastfood.domain.dto.customer.CustomerResponse;
 import com.fiappostech.fastfood.domain.valueobject.EmailAdressDomain;
 import com.fiappostech.fastfood.domain.valueobject.PersonalIdDomain;
 

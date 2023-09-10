@@ -15,9 +15,11 @@ import com.fiappostech.fastfood.adapter.presenter.customer.CustomerFindByIdPrese
 import com.fiappostech.fastfood.adapter.presenter.customer.CustomerIdentifyPresenter;
 import com.fiappostech.fastfood.adapter.presenter.customer.response.CustomerResponseFull;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
+@Tag(name = "Customers") //, description = "the Customer Api")
 @RestController
 @RequestMapping("/customers")
 public class CustomerGetController {
@@ -35,5 +37,5 @@ public class CustomerGetController {
    public ResponseEntity<CustomerResponseFull> customerFindByPersonalId(@RequestParam String personalId) throws UnknownHostException {
       System.out.println("Request: " + ++request + " - " + InetAddress.getLocalHost().getHostName() + "\n"); ;      
       return ResponseEntity.ok(customerIdentifyPresenter.execute(personalId));
-   }
+   }  
 }

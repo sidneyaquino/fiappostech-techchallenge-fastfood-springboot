@@ -2,16 +2,15 @@ package com.fiappostech.fastfood.application.usecase.order;
 
 import java.math.BigDecimal;
 
-import com.fiappostech.fastfood.application.exception.BusinessException;
-import com.fiappostech.fastfood.application.port.customer.CustomerIdentifyGateway;
-import com.fiappostech.fastfood.application.port.order.OrderInsertGateway;
-import com.fiappostech.fastfood.application.port.product.ProductFindByIdGateway;
+import com.fiappostech.fastfood.adapter.gateway.customer.CustomerIdentifyGateway;
+import com.fiappostech.fastfood.adapter.gateway.order.OrderInsertGateway;
+import com.fiappostech.fastfood.adapter.gateway.product.ProductFindByIdGateway;
+import com.fiappostech.fastfood.application.exception.ApplicationException;
+import com.fiappostech.fastfood.domain.dto.customer.CustomerRequest;
+import com.fiappostech.fastfood.domain.dto.order.OrderRequest;
+import com.fiappostech.fastfood.domain.dto.order.OrderResponse;
 import com.fiappostech.fastfood.domain.entity.OrderDomain;
 import com.fiappostech.fastfood.domain.entity.OrderProductDomain;
-import com.fiappostech.fastfood.domain.port.customer.dto.CustomerRequest;
-import com.fiappostech.fastfood.domain.port.order.OrderInsertUseCase;
-import com.fiappostech.fastfood.domain.port.order.dto.OrderRequest;
-import com.fiappostech.fastfood.domain.port.order.dto.OrderResponse;
 
 public class OrderInsertInteractor implements OrderInsertUseCase {
 
@@ -51,12 +50,12 @@ public class OrderInsertInteractor implements OrderInsertUseCase {
       // Business Rules before Request (validation).
       //
       if (orderDomain.getProducts() == null) {
-         throw new BusinessException("Input products list cannot be empty");
+         throw new ApplicationException("Input products list cannot be empty");
       }
       var value = new BigDecimal(0);
       for (OrderProductDomain orderProductDomain : orderDomain.getProducts()) {
          if (orderProductDomain.getQuantity() < 1) {
-            throw new BusinessException("The minimum quantity value is one (1)");
+            throw new ApplicationException("The minimum quantity value is one (1)");
          }
          var productrResponse = this.productFindByIdGateway.execute(orderProductDomain.getProductId());
          value = value.add(productrResponse.value().multiply(new BigDecimal(orderProductDomain.getQuantity())));

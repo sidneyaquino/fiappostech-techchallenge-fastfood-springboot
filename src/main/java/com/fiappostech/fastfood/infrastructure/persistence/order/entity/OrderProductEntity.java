@@ -2,7 +2,7 @@ package com.fiappostech.fastfood.infrastructure.persistence.order.entity;
 
 import java.math.BigDecimal;
 
-import com.fiappostech.fastfood.domain.port.order.dto.OrderProductResponse;
+import com.fiappostech.fastfood.domain.dto.order.OrderProductResponse;
 import com.fiappostech.fastfood.infrastructure.persistence.product.entity.ProductEntity;
 
 import jakarta.persistence.Column;

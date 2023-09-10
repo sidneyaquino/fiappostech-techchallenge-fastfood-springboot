@@ -2,8 +2,7 @@ package com.fiappostech.fastfood.application.usecase.product;
 
 import java.util.UUID;
 
-import com.fiappostech.fastfood.application.port.product.ProductDeleteByIdGateway;
-import com.fiappostech.fastfood.domain.port.product.ProductDeleteByIdUseCase;
+import com.fiappostech.fastfood.adapter.gateway.product.ProductDeleteByIdGateway;
 
 public class ProductDeleteByIdInteractor implements ProductDeleteByIdUseCase {
 

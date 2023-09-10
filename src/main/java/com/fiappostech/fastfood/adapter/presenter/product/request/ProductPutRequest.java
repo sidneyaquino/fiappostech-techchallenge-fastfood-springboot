@@ -3,8 +3,8 @@ package com.fiappostech.fastfood.adapter.presenter.product.request;
 import java.math.BigDecimal;
 import java.util.UUID;
 
+import com.fiappostech.fastfood.domain.dto.product.ProductRequest;
 import com.fiappostech.fastfood.domain.entity.ProductCategory;
-import com.fiappostech.fastfood.domain.port.product.dto.ProductRequest;
 
 import jakarta.validation.constraints.NotNull;
 

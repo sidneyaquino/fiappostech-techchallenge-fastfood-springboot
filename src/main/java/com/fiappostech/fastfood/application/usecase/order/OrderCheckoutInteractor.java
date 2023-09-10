@@ -2,16 +2,15 @@ package com.fiappostech.fastfood.application.usecase.order;
 
 import java.time.LocalDateTime;
 
-import com.fiappostech.fastfood.application.exception.BusinessException;
-import com.fiappostech.fastfood.application.port.order.OrderFindByIdGateway;
-import com.fiappostech.fastfood.application.port.order.OrderUpdateGateway;
-import com.fiappostech.fastfood.application.port.payment.PaymentInsertGateway;
+import com.fiappostech.fastfood.adapter.gateway.order.OrderFindByIdGateway;
+import com.fiappostech.fastfood.adapter.gateway.order.OrderUpdateGateway;
+import com.fiappostech.fastfood.adapter.gateway.payment.PaymentInsertGateway;
+import com.fiappostech.fastfood.application.exception.ApplicationException;
+import com.fiappostech.fastfood.domain.dto.order.OrderRequest;
+import com.fiappostech.fastfood.domain.dto.order.OrderResponse;
+import com.fiappostech.fastfood.domain.dto.payment.PaymentRequest;
 import com.fiappostech.fastfood.domain.entity.OrderDomain;
 import com.fiappostech.fastfood.domain.entity.PaymentStatus;
-import com.fiappostech.fastfood.domain.port.order.OrderCheckoutUseCase;
-import com.fiappostech.fastfood.domain.port.order.dto.OrderRequest;
-import com.fiappostech.fastfood.domain.port.order.dto.OrderResponse;
-import com.fiappostech.fastfood.domain.port.payment.dto.PaymentRequest;
 
 public class OrderCheckoutInteractor implements OrderCheckoutUseCase {
 
@@ -38,16 +37,16 @@ public class OrderCheckoutInteractor implements OrderCheckoutUseCase {
       //
       var orderResponse = this.orderFindByIdGateway.execute(orderDomain.getOrderId());
       if (orderResponse.created() != null) {
-         throw new BusinessException("Order checkout already done");
+         throw new ApplicationException("Order checkout already done");
       }
       if (orderResponse.products().size() != orderDomain.getProducts().size()) {
-         throw new BusinessException("Order Items are different");
+         throw new ApplicationException("Order Items are different");
       }
       for (var product : orderResponse.products()) {
          orderDomain.getProducts().stream()         
             .filter(item -> item.getProductId().equals(product.productId()))
             .filter(item -> item.getQuantity().equals(product.quantity()))
-            .findFirst().orElseThrow(() -> new BusinessException("Order Items are different"));
+            .findFirst().orElseThrow(() -> new ApplicationException("Order Items are different"));
       }
       orderDomain.setCreated(LocalDateTime.now());
       //

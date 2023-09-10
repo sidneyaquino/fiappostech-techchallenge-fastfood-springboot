@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fiappostech.fastfood.adapter.presenter.payment.PaymentFindByOrderIdPresenter;
 import com.fiappostech.fastfood.adapter.presenter.payment.response.PaymentResponseFull;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
+@Tag(name = "Payments") //, description = "the Payment Api")
 @RestController
 @RequestMapping("/payments")
 public class PaymentGetController {

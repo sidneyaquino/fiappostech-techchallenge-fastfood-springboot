@@ -1,6 +1,6 @@
 package com.fiappostech.fastfood.adapter.presenter.customer.request;
 
-import com.fiappostech.fastfood.domain.port.customer.dto.CustomerRequest;
+import com.fiappostech.fastfood.domain.dto.customer.CustomerRequest;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

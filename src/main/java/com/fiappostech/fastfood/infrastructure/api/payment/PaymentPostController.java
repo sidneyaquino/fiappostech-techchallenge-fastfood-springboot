@@ -11,10 +11,12 @@ import com.fiappostech.fastfood.adapter.presenter.payment.PaymentInsertPresenter
 import com.fiappostech.fastfood.adapter.presenter.payment.request.PaymentPostRequest;
 import com.fiappostech.fastfood.adapter.presenter.payment.response.PaymentResponseFull;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
+@Tag(name = "Payments") //, description = "the Payment Api")
 @RestController
 @RequestMapping("/payments")
 public class PaymentPostController {

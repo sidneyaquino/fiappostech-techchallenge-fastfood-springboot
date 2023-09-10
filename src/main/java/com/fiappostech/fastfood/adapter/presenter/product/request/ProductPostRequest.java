@@ -2,8 +2,8 @@ package com.fiappostech.fastfood.adapter.presenter.product.request;
 
 import java.math.BigDecimal;
 
+import com.fiappostech.fastfood.domain.dto.product.ProductRequest;
 import com.fiappostech.fastfood.domain.entity.ProductCategory;
-import com.fiappostech.fastfood.domain.port.product.dto.ProductRequest;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;

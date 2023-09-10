@@ -6,21 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fiappostech.fastfood.application.port.payment.PaymentFindByOrderIdGateway;
-import com.fiappostech.fastfood.domain.port.payment.dto.PaymentResponse;
+import com.fiappostech.fastfood.domain.dto.payment.PaymentResponse;
 import com.fiappostech.fastfood.infrastructure.exception.RecordNotFoundException;
 
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Component
-public class PaymentFindByOrderIdRepository implements PaymentFindByOrderIdGateway {
+public class PaymentFindByOrderIdRepository {
 
    @Autowired
    private final PaymentRepository paymentRepository;
 
    @Transactional(readOnly = true)
-   @Override
    public PaymentResponse execute(UUID orderId) {
       var paymentProjection = paymentRepository.findByOrderId(orderId);
       if(paymentProjection == null) {

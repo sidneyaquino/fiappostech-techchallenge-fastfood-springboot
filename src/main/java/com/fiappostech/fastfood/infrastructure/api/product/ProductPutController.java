@@ -10,10 +10,12 @@ import com.fiappostech.fastfood.adapter.presenter.product.ProductUpdatePresenter
 import com.fiappostech.fastfood.adapter.presenter.product.request.ProductPutRequest;
 import com.fiappostech.fastfood.adapter.presenter.product.response.ProductResponseFull;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
+@Tag(name = "Products") // , description = "the Product Api")
 @RestController
 @RequestMapping("/products")
 public class ProductPutController {

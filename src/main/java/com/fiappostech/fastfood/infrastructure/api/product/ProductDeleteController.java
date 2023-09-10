@@ -10,17 +10,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fiappostech.fastfood.adapter.presenter.product.ProductDeleteByIdPresenter;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
+@Tag(name = "Products") // , description = "the Product Api")
 @RestController
 @RequestMapping("/products")
 public class ProductDeleteController {
-   
+
    private final ProductDeleteByIdPresenter productDeleteByIdPresenter;
 
    @DeleteMapping("/{productID}")
-   public ResponseEntity<Object> productDeleteById(@PathVariable UUID productID){
+   public ResponseEntity<Object> productDeleteById(@PathVariable UUID productID) {
       productDeleteByIdPresenter.execute(productID);
       return ResponseEntity.noContent().build();
    }

@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import com.fiappostech.fastfood.adapter.presenter.customer.response.CustomerResponseTracking;
+import com.fiappostech.fastfood.domain.dto.order.OrderResponse;
 import com.fiappostech.fastfood.domain.entity.OrderTracking;
-import com.fiappostech.fastfood.domain.port.order.dto.OrderResponse;
 
 public record OrderResponseTracking(
       UUID orderId,

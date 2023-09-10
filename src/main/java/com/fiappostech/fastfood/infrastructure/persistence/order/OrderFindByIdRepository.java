@@ -8,22 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fiappostech.fastfood.application.port.order.OrderFindByIdGateway;
-import com.fiappostech.fastfood.domain.port.order.dto.OrderProductResponse;
-import com.fiappostech.fastfood.domain.port.order.dto.OrderResponse;
+import com.fiappostech.fastfood.domain.dto.order.OrderProductResponse;
+import com.fiappostech.fastfood.domain.dto.order.OrderResponse;
 import com.fiappostech.fastfood.infrastructure.persistence.order.projection.OrderProductProjection;
 
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Component
-public class OrderFindByIdRepository implements OrderFindByIdGateway {
+public class OrderFindByIdRepository {
 
    @Autowired
    private final OrderRepository orderRepository;
 
    @Transactional(readOnly = true)
-   @Override
    public OrderResponse execute(UUID orderId) {
       List<OrderProductProjection> listOrderProductProjection = orderRepository.findAllOrderProductById(orderId);
       List<OrderProductResponse> listOrderProductResponse = new ArrayList<>();

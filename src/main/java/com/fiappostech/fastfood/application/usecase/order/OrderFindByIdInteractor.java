@@ -2,10 +2,9 @@ package com.fiappostech.fastfood.application.usecase.order;
 
 import java.util.UUID;
 
-import com.fiappostech.fastfood.application.port.order.OrderFindByIdGateway;
+import com.fiappostech.fastfood.adapter.gateway.order.OrderFindByIdGateway;
+import com.fiappostech.fastfood.domain.dto.order.OrderResponse;
 import com.fiappostech.fastfood.domain.entity.OrderDomain;
-import com.fiappostech.fastfood.domain.port.order.OrderFindByIdUseCase;
-import com.fiappostech.fastfood.domain.port.order.dto.OrderResponse;
 
 public class OrderFindByIdInteractor implements OrderFindByIdUseCase {
    

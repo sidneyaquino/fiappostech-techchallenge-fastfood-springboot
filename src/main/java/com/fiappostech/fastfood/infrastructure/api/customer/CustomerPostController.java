@@ -11,10 +11,12 @@ import com.fiappostech.fastfood.adapter.presenter.customer.CustomerRegistryPrese
 import com.fiappostech.fastfood.adapter.presenter.customer.request.CustomerPostRequest;
 import com.fiappostech.fastfood.adapter.presenter.customer.response.CustomerResponseFull;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
+@Tag(name = "Customers") //, description = "the Customer Api")
 @RestController
 @RequestMapping("/customers")
 public class CustomerPostController {

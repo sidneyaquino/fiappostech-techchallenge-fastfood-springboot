@@ -7,9 +7,9 @@ import org.hibernate.annotations.AnyKeyJavaClass;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import com.fiappostech.fastfood.domain.dto.product.ProductRequest;
+import com.fiappostech.fastfood.domain.dto.product.ProductResponse;
 import com.fiappostech.fastfood.domain.entity.ProductCategory;
-import com.fiappostech.fastfood.domain.port.product.dto.ProductRequest;
-import com.fiappostech.fastfood.domain.port.product.dto.ProductResponse;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

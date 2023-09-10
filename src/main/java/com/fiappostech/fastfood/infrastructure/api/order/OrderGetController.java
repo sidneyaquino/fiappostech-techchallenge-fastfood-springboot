@@ -12,21 +12,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fiappostech.fastfood.adapter.presenter.order.OrderFindAllUndeliveredPresenter;
 import com.fiappostech.fastfood.adapter.presenter.order.OrderFindByIdPresenter;
+import com.fiappostech.fastfood.adapter.presenter.order.OrderFindByTrackingPresenter;
 import com.fiappostech.fastfood.adapter.presenter.order.response.OrderResponseFull;
 import com.fiappostech.fastfood.adapter.presenter.order.response.OrderResponseTracking;
 import com.fiappostech.fastfood.domain.entity.OrderTracking;
-import com.fiappostech.fastfood.domain.port.order.OrderFindByTrackingUseCase;
-import com.fiappostech.fastfood.domain.port.order.dto.OrderResponse;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
+@Tag(name = "Orders") // , description = "the Order Api")
 @RestController
 @RequestMapping("/orders")
 public class OrderGetController {
 
    private final OrderFindByIdPresenter orderFindByIdPresenter;
-   private final OrderFindByTrackingUseCase orderFindByTrackingUseCase;
+   private final OrderFindByTrackingPresenter orderFindByTrackingPresenter;
    private final OrderFindAllUndeliveredPresenter orderFindAllUndeliveredPresenter;
 
    @GetMapping("/{orderId}")
@@ -36,12 +37,7 @@ public class OrderGetController {
 
    @GetMapping
    public ResponseEntity<List<OrderResponseTracking>> orderFindByTracking(@RequestParam OrderTracking tracking) {
-
-      List<OrderResponse> listOrderResponse = orderFindByTrackingUseCase.execute(tracking);
-      var listOrderResponseTracking = listOrderResponse
-            .stream().map(item -> new OrderResponseTracking(item)).toList();
-
-      return ResponseEntity.ok(listOrderResponseTracking);
+      return ResponseEntity.ok(orderFindByTrackingPresenter.execute(tracking));
    }
 
    @GetMapping("/undelivered")

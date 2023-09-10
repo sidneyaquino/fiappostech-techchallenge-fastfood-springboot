@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import com.fiappostech.fastfood.adapter.presenter.order.response.OrderResponseTracking;
+import com.fiappostech.fastfood.domain.dto.payment.PaymentResponse;
 import com.fiappostech.fastfood.domain.entity.PaymentStatus;
-import com.fiappostech.fastfood.domain.port.payment.dto.PaymentResponse;
 
 public record PaymentResponseFull(
       UUID paymentId,

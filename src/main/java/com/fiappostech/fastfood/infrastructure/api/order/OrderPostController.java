@@ -11,10 +11,12 @@ import com.fiappostech.fastfood.adapter.presenter.order.OrderInsertPresenter;
 import com.fiappostech.fastfood.adapter.presenter.order.request.OrderPostRequest;
 import com.fiappostech.fastfood.adapter.presenter.order.response.OrderResponseFull;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
+@Tag(name = "Orders") //, description = "the Order Api")
 @RestController
 @RequestMapping("/orders")
 public class OrderPostController {

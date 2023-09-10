@@ -2,12 +2,11 @@ package com.fiappostech.fastfood.application.usecase.customer;
 
 import org.springframework.dao.DataIntegrityViolationException;
 
-import com.fiappostech.fastfood.application.exception.BusinessException;
-import com.fiappostech.fastfood.application.port.customer.CustomerRegistryGateway;
+import com.fiappostech.fastfood.adapter.gateway.customer.CustomerRegistryGateway;
+import com.fiappostech.fastfood.application.exception.ApplicationException;
+import com.fiappostech.fastfood.domain.dto.customer.CustomerRequest;
+import com.fiappostech.fastfood.domain.dto.customer.CustomerResponse;
 import com.fiappostech.fastfood.domain.entity.CustomerDomain;
-import com.fiappostech.fastfood.domain.port.customer.CustomerRegistryUseCase;
-import com.fiappostech.fastfood.domain.port.customer.dto.CustomerRequest;
-import com.fiappostech.fastfood.domain.port.customer.dto.CustomerResponse;
 
 public class CustomerRegistryInteractor implements CustomerRegistryUseCase {
 
@@ -28,7 +27,7 @@ public class CustomerRegistryInteractor implements CustomerRegistryUseCase {
          var customerResponse = this.customerRegistryGateway.execute(customerDomain.toCustomerRequest());
          customerDomain = new CustomerDomain(customerResponse);         
       } catch (DataIntegrityViolationException e) {
-         throw new BusinessException("Personal ID already exists");
+         throw new ApplicationException("Personal ID already exists");
       }
       //
       // Business Rules before Response.

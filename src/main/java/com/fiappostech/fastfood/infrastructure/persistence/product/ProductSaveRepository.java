@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fiappostech.fastfood.application.port.product.ProductSaveGateway;
-import com.fiappostech.fastfood.domain.port.product.dto.ProductRequest;
-import com.fiappostech.fastfood.domain.port.product.dto.ProductResponse;
+import com.fiappostech.fastfood.adapter.gateway.product.ProductSaveGateway;
+import com.fiappostech.fastfood.domain.dto.product.ProductRequest;
+import com.fiappostech.fastfood.domain.dto.product.ProductResponse;
 import com.fiappostech.fastfood.infrastructure.exception.RecordNotFoundException;
 import com.fiappostech.fastfood.infrastructure.persistence.product.entity.ProductEntity;
 

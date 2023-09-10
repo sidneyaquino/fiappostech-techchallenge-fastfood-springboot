@@ -2,10 +2,9 @@ package com.fiappostech.fastfood.application.usecase.product;
 
 import java.util.UUID;
 
-import com.fiappostech.fastfood.application.port.product.ProductFindByIdGateway;
+import com.fiappostech.fastfood.adapter.gateway.product.ProductFindByIdGateway;
+import com.fiappostech.fastfood.domain.dto.product.ProductResponse;
 import com.fiappostech.fastfood.domain.entity.ProductDomain;
-import com.fiappostech.fastfood.domain.port.product.ProductFindByIdUseCase;
-import com.fiappostech.fastfood.domain.port.product.dto.ProductResponse;
 
 public class ProductFindByIdInteractor implements ProductFindByIdUseCase {
    

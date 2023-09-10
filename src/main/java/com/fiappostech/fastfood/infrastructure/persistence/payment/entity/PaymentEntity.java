@@ -6,9 +6,9 @@ import java.util.UUID;
 
 import org.hibernate.annotations.AnyKeyJavaClass;
 
+import com.fiappostech.fastfood.domain.dto.payment.PaymentRequest;
+import com.fiappostech.fastfood.domain.dto.payment.PaymentResponse;
 import com.fiappostech.fastfood.domain.entity.PaymentStatus;
-import com.fiappostech.fastfood.domain.port.payment.dto.PaymentRequest;
-import com.fiappostech.fastfood.domain.port.payment.dto.PaymentResponse;
 import com.fiappostech.fastfood.infrastructure.persistence.order.entity.OrderEntity;
 
 import jakarta.persistence.Column;

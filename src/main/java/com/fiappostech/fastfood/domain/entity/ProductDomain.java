@@ -3,8 +3,8 @@ package com.fiappostech.fastfood.domain.entity;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import com.fiappostech.fastfood.domain.port.product.dto.ProductRequest;
-import com.fiappostech.fastfood.domain.port.product.dto.ProductResponse;
+import com.fiappostech.fastfood.domain.dto.product.ProductRequest;
+import com.fiappostech.fastfood.domain.dto.product.ProductResponse;
 
 public class ProductDomain {
 

@@ -8,10 +8,10 @@ import java.util.UUID;
 
 import org.hibernate.annotations.AnyKeyJavaClass;
 
+import com.fiappostech.fastfood.domain.dto.order.OrderProductResponse;
+import com.fiappostech.fastfood.domain.dto.order.OrderRequest;
+import com.fiappostech.fastfood.domain.dto.order.OrderResponse;
 import com.fiappostech.fastfood.domain.entity.OrderTracking;
-import com.fiappostech.fastfood.domain.port.order.dto.OrderProductResponse;
-import com.fiappostech.fastfood.domain.port.order.dto.OrderRequest;
-import com.fiappostech.fastfood.domain.port.order.dto.OrderResponse;
 import com.fiappostech.fastfood.infrastructure.persistence.customer.entity.CustomerEntity;
 
 import jakarta.persistence.Column;

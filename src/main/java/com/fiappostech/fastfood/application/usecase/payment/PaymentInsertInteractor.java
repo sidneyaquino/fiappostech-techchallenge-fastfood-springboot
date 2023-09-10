@@ -2,18 +2,17 @@ package com.fiappostech.fastfood.application.usecase.payment;
 
 import java.time.LocalDateTime;
 
-import com.fiappostech.fastfood.application.exception.BusinessException;
-import com.fiappostech.fastfood.application.port.order.OrderFindByIdGateway;
-import com.fiappostech.fastfood.application.port.order.OrderUpdateGateway;
-import com.fiappostech.fastfood.application.port.payment.PaymentInsertGateway;
+import com.fiappostech.fastfood.adapter.gateway.order.OrderFindByIdGateway;
+import com.fiappostech.fastfood.adapter.gateway.order.OrderUpdateGateway;
+import com.fiappostech.fastfood.adapter.gateway.payment.PaymentInsertGateway;
+import com.fiappostech.fastfood.application.exception.ApplicationException;
+import com.fiappostech.fastfood.domain.dto.order.OrderRequest;
+import com.fiappostech.fastfood.domain.dto.payment.PaymentRequest;
+import com.fiappostech.fastfood.domain.dto.payment.PaymentResponse;
 import com.fiappostech.fastfood.domain.entity.OrderDomain;
 import com.fiappostech.fastfood.domain.entity.OrderTracking;
 import com.fiappostech.fastfood.domain.entity.PaymentDomain;
 import com.fiappostech.fastfood.domain.entity.PaymentStatus;
-import com.fiappostech.fastfood.domain.port.order.dto.OrderRequest;
-import com.fiappostech.fastfood.domain.port.payment.PaymentInsertUseCase;
-import com.fiappostech.fastfood.domain.port.payment.dto.PaymentRequest;
-import com.fiappostech.fastfood.domain.port.payment.dto.PaymentResponse;
 
 public class PaymentInsertInteractor implements PaymentInsertUseCase {
 
@@ -34,7 +33,7 @@ public class PaymentInsertInteractor implements PaymentInsertUseCase {
    @Override
    public PaymentResponse execute(PaymentRequest paymentRequest) {
       if (paymentRequest.order() == null || paymentRequest.order().orderId() == null) {
-         throw new BusinessException("Order ID cannot be empty");
+         throw new ApplicationException("Order ID cannot be empty");
       }
       var orderId = paymentRequest.order().orderId();
       var orderResponse = this.orderFindByIdGateway.execute(orderId);

@@ -3,7 +3,7 @@ package com.fiappostech.fastfood.adapter.presenter.order.response;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import com.fiappostech.fastfood.domain.port.order.dto.OrderProductResponse;
+import com.fiappostech.fastfood.domain.dto.order.OrderProductResponse;
 
 public record OrderProductResponseFull(
       UUID productId,

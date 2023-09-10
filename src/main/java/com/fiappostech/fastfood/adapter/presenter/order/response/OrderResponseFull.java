@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.UUID;
 
 import com.fiappostech.fastfood.adapter.presenter.customer.response.CustomerResponseFull;
+import com.fiappostech.fastfood.domain.dto.order.OrderResponse;
 import com.fiappostech.fastfood.domain.entity.OrderTracking;
-import com.fiappostech.fastfood.domain.port.order.dto.OrderResponse;
 
 public record OrderResponseFull(
       UUID orderId,

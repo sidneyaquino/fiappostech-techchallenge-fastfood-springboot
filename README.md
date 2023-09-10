@@ -97,7 +97,8 @@ _The APIs should have the following capabilities_:
 - [x] `Webhook` to receive confirmation: Approved Payment or Declined Payment;
 - [x] Order List should return Orders with their descriptions, sorted by Tracking with the following priority: 
 >  **undelivered** : `ready`  **>**  `preparation`  **>**  `received`
->  `finalized` tracking should NOT appear in the list;
+
+**NOTE**: `finalized` tracking should NOT appear in the list;
 - [x] Update the Order Tracking.
 
 _Order Tracking (queries)_:
@@ -139,45 +140,48 @@ For this project you should to have basic konwledgement about:
 <a name="features"></a>
 ## 💻 Features
 
-Project summary diagram
+Project summary diagram:
 ```
-+-----------------+
-| Adapter         |
-| Layer           | Contains communication components
-|                 |
-| - Presenter     | The Presenter handles HTTP requests and returns HTTP responses
-|   (Controller)  | 
-+-----------------+
-        | 
-+-----------------+
-| Application     | 
-| Layer           | Responsible for implementing the application's business logic
-|                 |
-| - Interactor /  | Interactor is the component that implements a UseCase
-|   UseCase       | 
-| - Interface     | Used to abstract the infrastructure layer 
-|   - Repository  | when communicating with the database
-| - Exception     |
-+-----------------+
-        | 
-+-----------------+
-| Domain          | It contains components such as the database,
-| Layer           | web framework and external APIs
-|                 |
-| - Entity        | 
-| - Value Object  | 
-| - Interface     | Contains the business logic that coordinates the flow of data
-|   - UseCase     | 
-+-----------------+
-        | 
-+-----------------+
-| Infrastructure  | It is responsible for communicating with external systems 
-| Layer           | that provide concrete implementations of the interfaces
++─────────────────+
+│ Interface       │ Contains communication.components:
+│ Adapter Layer   │ controllers, presenters and gateways.
+│                 │
+│ - Presenter     │ Receives and returns data to internal api (user interface).
+│   (Controller)  │ 
+│ - Gateway       │ It's a middleware for external dependencies,
+│   (Repository)  │ when communicating with the database.
++─────────────────+
+        │
+        v 
++─────────────────+
+│ Application     │ Responsible for implementing 
+│ Layer           │ the application's business logic.
+│                 │
+│ - Interactor /  │ Interactor is the component that implements a UseCase,
+│   UseCase       │ contains the business logic that coordinates the flow.
+│ - Exception     │ Error handling for business rules.
++─────────────────+
+        │
+        v 
++─────────────────+
+│ Domain / Entity │ 
+│ Layer           │ Enterprise Business Rules.
+│ - Entity        │ 
+│ - Value Object  │ 
+│ - DTO           │ Anemic entities used outside the domain.
+│   (Anemic)      │ (protects business rules)
++─────────────────+
+        ^
+        │ 
++─────────────────+
+| Infrastructure  | It is responsible for communicating with external systems. 
+| Layer           | that provide concrete implementations of the interfaces.
 |                 |
 | - Web Framework | 
-| - Database      |
-|   - Repository  | 
-+-----------------+
+|   (API)         | Presenter handles HTTP requests and returns HTTP responses 
+| - Database      | 
+|   (Repository)  | Persistence
++─────────────────+
 ```
 
 The project's structure is as follows:: 
@@ -190,29 +194,33 @@ The project's structure is as follows::
 │   │   │       └── fiappostech
 │   │   │           └── fastfood
 │   │   │               ├── adapter
+│   │   │               │   ├── gateway
+│   │   │               │   │   ├── .. 
+│   │   │               │   │   :   
 │   │   │               │   └── presenter
-│   │   │               │       ├── .. 
-│   │   │               │       :   
+│   │   │               │       ├── ..
+│   │   │               │       :
 │   │   │               ├── application
 │   │   │               │   ├── exception
-│   │   │               │   ├── port
+│   │   │               │   ├── usecase
 │   │   │               │   │   ├── ..
 │   │   │               │   │   :   
-│   │   │               │   └── usecase
+│   │   │               │   └── port
 │   │   │               │       ├── ..
 │   │   │               │       :
 │   │   │               ├── domain
 │   │   │               │   ├── entity
-│   │   │               │   ├── port
-│   │   │               │   │   ├── ..
-│   │   │               │   │   :
-│   │   │               │   └── valueobject
+│   │   │               │   ├── valueobject
+│   │   │               │   └── dto
+│   │   │               │       ├── ..
+│   │   │               │       :
 │   │   │               └── infrastructure
 │   │   │                   ├── api
 │   │   │                   │   ├── ..
 │   │   │                   │   :
 │   │   │                   ├── config
-│   │   │                   │   └── springdoc
+│   │   │                   │   ├── ..
+│   │   │                   │   :
 │   │   │                   ├── exception
 │   │   │                   └── persistence
 │   │   │                       ├── ..
@@ -222,34 +230,36 @@ The project's structure is as follows::
 │   │           └── migration
 :   :
 ```
+#### (A)
+Here we have the packages with all our classes that `DON'T have any dependencies`, including libraries and the framework dependencies.
 
-First we have all our classes that don't have any dependency, including framework dependencies.
+#### Interface Adapters Layer (adapter)
+**Broker** for external dependencies.
+ `adapter/presenter`: this is where all our controllers (user interface) are.
+ `adapter/gateway`: this is where all our repositories (database persistence) are.
+#### Application Bussines Rules Layer (application)
+ `application/usecase`: this is where all our interactors (implementing __usecases__) are.
+#### Enterprise Bussines Rules Layer (domain)
+ `domain/entity`: this is where all __domains__ are.
+ `domain/valueobject`: this is where all __value objects__ are.
+ `domain/dto`: this is where our `abstraction` entity, that represents __entities__  outside the domain (protects business rules). 
 
-#### Adapter
-They are the **abstration** of your external dependency (user interface)
-- `presenter`: this is where all our controllers are.
-
-#### Application
-- `usecase`: this is where the implementation of the interactors (__usecases__) are.
-- `port`: this is where our `abstraction`, that represents repository intefaces are. Note that here we do not have any naming connected to the technologies.
-#### Domain
-- `entity`: this is where all __domains__ are.
-- `valueobjects`: this is where all __value objects__ are.
----
-
-#### Infrastructure
-They are the **implementation** of your external dependencies (user interface and infrastructure)
-- `api`: this is where all our controllers are.
-- `persistense`: this is where all our external integrations are.
-
+#### (B)
+Now we have the packages with all our classes that `HAVE library and/or framework dependencies`, such as web, ui, devices, datababe and external interfaces.
+#### Frameworks & Drives Layer (infrastructure)
+**Implementation** of external integration dependencies.
+- `infrastructure/api`: this is where all our api controllers (user interface) are located.
+- `infrastructure/persistence`: this is where our entire persistence repository (database) is located.
 ---
 
 #### Disclaimer
 This is only an way of how to implement the structure of the Clean Architecture.
 
-Your biggest concern should be to make good use of the concepts of separation of concerns, independence of frameworks and libraries, testability, dependency inversion and domain-centric design. Furthermore, it is important to respect the fact that your domain, application and adapter layers must not have any external dependencies (including with the framework).
+The main focus should be on making good use of the concepts of separation of concerns, independence from frameworks and libraries, testability, dependency inversion, outer layers depend on inner layers (as per the direction of the arrows) and domain-centred design. It's important to respect the fact that the domain, application and adapter layers can't have any external dependencies (including with the focus on the framework).
 
-The idea is that your business rule is fully protected from these external factors.
+![Similarities between hexagonal architecture (ports and adapters) and clean architecture ](./assets/archtectures.png)
+
+The idea is that your business rule is fully protected from these external factors, understand the architectures, their similarities, adapt them to your needs and "*Go Horse*"! ;-)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -387,14 +397,14 @@ Made by *Sidney Aquino*, **get in Touch!**  [![LinkedIn][linkedin-shield]][linke
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[java-shield]: https://img.shields.io/badge/Java-17-C74634?style=for-the-badge&logo=openjdk&logoColor=white
+[java-shield]: https://img.shields.io/badge/Java-20-C74634?style=for-the-badge&logo=openjdk&logoColor=white
 [java-url]: https://openjdk.org/
 
 [maven-shield]: https://img.shields.io/badge/Maven-3.9-EE3A43?style=for-the-badge&logo=apache&logoColor=white
 [maven-url]: https://maven.apache.org/
 
 <!-- Color 6db33f or 43853D -->
-[springboot-shield]: https://img.shields.io/badge/SpringBoot-3.1-6db33f?style=for-the-badge&logo=springboot&logoColor=white
+[springboot-shield]: https://img.shields.io/badge/SpringBoot-3.2-6db33f?style=for-the-badge&logo=springboot&logoColor=white
 [springboot-url]: https://spring.io/projects/spring-boot
 
 [postgresql-shield]: https://img.shields.io/badge/Postgresql-15-336791?style=for-the-badge&logo=postgresql&logoColor=white

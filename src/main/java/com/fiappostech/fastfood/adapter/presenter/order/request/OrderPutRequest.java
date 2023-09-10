@@ -3,8 +3,8 @@ package com.fiappostech.fastfood.adapter.presenter.order.request;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fiappostech.fastfood.domain.dto.order.OrderRequest;
 import com.fiappostech.fastfood.domain.entity.OrderTracking;
-import com.fiappostech.fastfood.domain.port.order.dto.OrderRequest;
 
 import jakarta.validation.constraints.NotNull;
 

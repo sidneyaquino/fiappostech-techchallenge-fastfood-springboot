@@ -4,8 +4,8 @@ import java.util.UUID;
 
 import org.hibernate.annotations.AnyKeyJavaClass;
 
-import com.fiappostech.fastfood.domain.port.customer.dto.CustomerRequest;
-import com.fiappostech.fastfood.domain.port.customer.dto.CustomerResponse;
+import com.fiappostech.fastfood.domain.dto.customer.CustomerRequest;
+import com.fiappostech.fastfood.domain.dto.customer.CustomerResponse;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,7 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@EqualsAndHashCode(of = {"customerId", "personalId"})
+@EqualsAndHashCode(of = { "customerId", "personalId" })
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
