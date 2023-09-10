@@ -257,9 +257,9 @@ This is only an way of how to implement the structure of the Clean Architecture.
 
 The main focus should be on making good use of the concepts of separation of concerns, independence from frameworks and libraries, testability, dependency inversion, outer layers depend on inner layers (as per the direction of the arrows) and domain-centred design. It's important to respect the fact that the domain, application and adapter layers can't have any external dependencies (including with the focus on the framework).
 
-![Similarities between hexagonal architecture (ports and adapters) and clean architecture ](./assets/archtectures.png)
+<span style="display:block;text-align:center">![Similarities between hexagonal architecture (ports and adapters) and clean architecture ](./assets/archtectures.png)</span>
 
-The idea is that your business rule is fully protected from these external factors, understand the architectures, their similarities, adapt them to your needs and "*Go Horse*"! ;-)
+The idea is that your business rule is fully protected from these external factors, understand the architectures, their similarities, adapt them to your needs and "*Go Horse!!*". ;-)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
