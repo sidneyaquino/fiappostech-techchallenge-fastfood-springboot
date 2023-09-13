@@ -21,8 +21,13 @@ public class OrderFindByTrackingInteractor implements OrderFindByTrackingUseCase
       //
       // Business Rules before Request.
       //
+
+      //
+      // Request.
+      //      
       var listOrderResponse = this.orderFindByTrackingGateway.execute(tracking);
       var listOrderDomain = listOrderResponse.stream().map(OrderDomain::new).toList();
+      
       //
       // Business Rules before Response.
       //

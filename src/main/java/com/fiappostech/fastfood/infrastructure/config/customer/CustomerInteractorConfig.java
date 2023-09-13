@@ -1,5 +1,7 @@
 package com.fiappostech.fastfood.infrastructure.config.customer;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,6 +14,8 @@ import com.fiappostech.fastfood.application.usecase.customer.CustomerIdentifyInt
 import com.fiappostech.fastfood.application.usecase.customer.CustomerIdentifyUseCase;
 import com.fiappostech.fastfood.application.usecase.customer.CustomerRegistryInteractor;
 import com.fiappostech.fastfood.application.usecase.customer.CustomerRegistryUseCase;
+import com.fiappostech.fastfood.application.usecase.customer.validator.CustomerRegistryExistsValidator;
+import com.fiappostech.fastfood.application.usecase.customer.validator.CustomerRegistryValidator;
 
 @Configuration
 public class CustomerInteractorConfig {
@@ -31,9 +35,18 @@ public class CustomerInteractorConfig {
    }
 
    @Bean
-   public CustomerRegistryUseCase customerRegistryUseCase(
-         CustomerRegistryGateway customerRegistryGateway) {
+   public CustomerRegistryValidator customerRegistryExistsValidator(
+         CustomerIdentifyGateway customerIdentifyGateway) {
 
-      return new CustomerRegistryInteractor(customerRegistryGateway);
+      return new CustomerRegistryExistsValidator(customerIdentifyGateway);
+   }
+
+   @Bean
+   public CustomerRegistryUseCase customerRegistryUseCase(
+         CustomerRegistryGateway customerRegistryGateway,
+         List<CustomerRegistryValidator> listCustomerRegistryValidator) {
+
+      return new CustomerRegistryInteractor(
+            customerRegistryGateway, listCustomerRegistryValidator);
    }
 }

@@ -26,8 +26,13 @@ public class OrderFindAllUndeliveredInteractor implements OrderFindAllUndelivere
       listTracking.add(OrderTracking.RECEIVED);
       listTracking.add(OrderTracking.PREPARING);
       listTracking.add(OrderTracking.READY);
+
+      //
+      // Request.
+      //
       var listOrderResponse = this.orderFindAllUndeliveredGateway.execute(listTracking);
       var listOrderDomain = listOrderResponse.stream().map(OrderDomain::new).toList();
+
       //
       // Business Rules before Response.
       //

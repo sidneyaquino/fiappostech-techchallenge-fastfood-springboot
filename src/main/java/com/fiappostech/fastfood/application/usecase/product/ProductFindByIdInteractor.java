@@ -20,8 +20,13 @@ public class ProductFindByIdInteractor implements ProductFindByIdUseCase {
       //
       // Business Rules before Request.
       //
+
+      //
+      // Request.
+      //
       var productResponse = this.productFindByIdGateway.execute(productId);
       var productDomain = new ProductDomain(productResponse); 
+
       //
       // Business Rules before Response.
       //

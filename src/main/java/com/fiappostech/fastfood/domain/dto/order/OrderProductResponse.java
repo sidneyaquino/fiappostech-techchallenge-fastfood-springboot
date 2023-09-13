@@ -8,10 +8,4 @@ public record OrderProductResponse(
       String description,
       Short quantity,
       BigDecimal value) {
-   // public OrderProductResponse(OrderProductProjection orderProductProjection){   // PENDENCY
-   //    this(orderProductProjection.getProductId(),
-   //          orderProductProjection.getDescription(),
-   //          orderProductProjection.getQuantity(),
-   //          orderProductProjection.getValue());
-   // }
 }

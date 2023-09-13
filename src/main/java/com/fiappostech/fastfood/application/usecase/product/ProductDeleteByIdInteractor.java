@@ -15,12 +15,18 @@ public class ProductDeleteByIdInteractor implements ProductDeleteByIdUseCase {
    @Override
    public void execute(UUID productId) {
 
-      ///
+      //
       // Business Rules before Request.
       //
+
+      //
+      // Request.
+      //
       this.productDeleteByIdGateway.execute(productId);
+
       //
       // Business Rules before Response.
       //
+           
    }
 }

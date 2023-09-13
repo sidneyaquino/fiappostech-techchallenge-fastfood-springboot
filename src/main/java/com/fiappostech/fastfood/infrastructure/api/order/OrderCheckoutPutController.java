@@ -1,5 +1,6 @@
 package com.fiappostech.fastfood.infrastructure.api.order;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/orders/checkout")
 public class OrderCheckoutPutController {
 
+   @Autowired
    private final OrderCheckoutPresenter orderCheckoutPresenter;
 
    @PutMapping

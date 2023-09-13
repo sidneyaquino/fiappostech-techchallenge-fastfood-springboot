@@ -26,7 +26,6 @@ public class OrderFindByIdRepository {
       List<OrderProductProjection> listOrderProductProjection = orderRepository.findAllOrderProductById(orderId);
       List<OrderProductResponse> listOrderProductResponse = new ArrayList<>();
       for (OrderProductProjection item : listOrderProductProjection) {
-         // listOrderProductResponse.add(new OrderProductResponse(item));  // PENDENCY
          listOrderProductResponse.add(this.toOrderProductResponse(item));
       }
       return orderRepository.getReferenceById(orderId).toOrderResponse(listOrderProductResponse);

@@ -20,8 +20,13 @@ public class PaymentFindByOrderIdInteractor implements PaymentFindByOrderIdUseCa
       //
       // Business Rules before Request.
       //
+
+      //
+      // Request.
+      //      
       var paymentResponse = this.paymentFindByOrderIdGateway.execute(orderId);
       var paymentDomain = new PaymentDomain(paymentResponse);
+      
       //
       // Business Rules before Response.
       //

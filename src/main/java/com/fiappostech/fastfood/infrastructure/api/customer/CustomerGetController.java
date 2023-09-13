@@ -4,6 +4,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,8 +25,11 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/customers")
 public class CustomerGetController {
 
+   @Autowired
    private final CustomerFindByIdPresenter customerFindByIdPresenter;
+   @Autowired
    private final CustomerIdentifyPresenter customerIdentifyPresenter;
+   
    private static int request = 0;
 
    @GetMapping("/{customerId}")

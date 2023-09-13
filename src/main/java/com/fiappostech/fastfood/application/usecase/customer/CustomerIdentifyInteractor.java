@@ -15,13 +15,18 @@ public class CustomerIdentifyInteractor implements CustomerIdentifyUseCase {
 
    @Override
    public CustomerResponse execute(String personalId) {
-      var personalIdDomain = new PersonalIdDomain(personalId);
 
       //
       // Business Rules before Request.
       //
+      PersonalIdDomain personalIdDomain = new PersonalIdDomain(personalId);
+
+      //
+      // Request.
+      //
       var customerResponse = this.customerIdentifyGateway.execute(personalIdDomain.personalId());
       var customerDomain = new CustomerDomain(customerResponse);
+      
       //
       // Business Rules before Response.
       //

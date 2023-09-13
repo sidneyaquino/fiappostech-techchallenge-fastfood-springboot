@@ -15,16 +15,21 @@ public class ProductSaveInteractor implements ProductSaveUseCase{
 
    @Override
    public ProductResponse execute(ProductRequest productRequest) {
-      var productDomain = new ProductDomain(productRequest);
 
       //
       // Business Rules before Request.
-      //      
+      //
+      var productDomain = new ProductDomain(productRequest);
+
+      //
+      // Request.
+      //
       var productResponse = this.productSaveGateway.execute(productDomain.toProductRequest());
       productDomain = new ProductDomain(productResponse);
+
       //
       // Business Rules before Response.
-      //       
+      //
 
       return productDomain.toProductResponse();
    }  

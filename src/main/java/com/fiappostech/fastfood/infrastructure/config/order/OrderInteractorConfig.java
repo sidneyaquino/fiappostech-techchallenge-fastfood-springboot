@@ -1,5 +1,7 @@
 package com.fiappostech.fastfood.infrastructure.config.order;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -23,6 +25,13 @@ import com.fiappostech.fastfood.application.usecase.order.OrderInsertInteractor;
 import com.fiappostech.fastfood.application.usecase.order.OrderInsertUseCase;
 import com.fiappostech.fastfood.application.usecase.order.OrderUpdateInteractor;
 import com.fiappostech.fastfood.application.usecase.order.OrderUpdateUseCase;
+import com.fiappostech.fastfood.application.usecase.order.validator.OrderCheckoutExistsValidator;
+import com.fiappostech.fastfood.application.usecase.order.validator.OrderCheckoutNotExistsValidator;
+import com.fiappostech.fastfood.application.usecase.order.validator.OrderCheckoutValidator;
+import com.fiappostech.fastfood.application.usecase.order.validator.OrderPaymentNotExistsValidator;
+import com.fiappostech.fastfood.application.usecase.order.validator.OrderProductDontMatchValidation;
+import com.fiappostech.fastfood.application.usecase.order.validator.OrderTrackingUpdatedValidator;
+import com.fiappostech.fastfood.application.usecase.order.validator.OrderUpdateValidator;
 
 @Configuration
 public class OrderInteractorConfig {
@@ -38,21 +47,49 @@ public class OrderInteractorConfig {
    }
 
    @Bean
+   public OrderCheckoutValidator orderCheckoutExistsValidator() {
+      return new OrderCheckoutExistsValidator();
+   }
+
+   @Bean
+   public OrderCheckoutValidator orderCheckoutItemsMatchValidation() {
+      return new OrderProductDontMatchValidation();
+   }
+
+   @Bean
    public OrderCheckoutUseCase orderCheckoutUseCase(
          OrderUpdateGateway orderUpdateGateway,
          OrderFindByIdGateway orderFindByIdGateway,
-         PaymentInsertGateway paymentInsertGateway) {
+         PaymentInsertGateway paymentInsertGateway,
+         List<OrderCheckoutValidator> listOrderCheckoutValidation) {
 
       return new OrderCheckoutInteractor(
-            orderUpdateGateway, orderFindByIdGateway, paymentInsertGateway);
+            orderUpdateGateway, orderFindByIdGateway, paymentInsertGateway, listOrderCheckoutValidation);
    }
+
+   @Bean
+   public OrderUpdateValidator orderCheckoutNotExistsValidator() {
+      return new OrderCheckoutNotExistsValidator();
+   }
+
+   @Bean
+   public OrderUpdateValidator orderPaymentNotExistsValidator() {
+      return new OrderPaymentNotExistsValidator();
+   }
+
+   @Bean
+   public OrderUpdateValidator orderTrackingUpdatedValidator() {
+      return new OrderTrackingUpdatedValidator();
+   }   
 
    @Bean
    public OrderUpdateUseCase orderUpdateUseCase(
          OrderUpdateGateway orderUpdateGateway,
-         OrderFindByIdGateway orderFindByIdGateway) {
+         OrderFindByIdGateway orderFindByIdGateway,
+         List<OrderUpdateValidator> listOrderUpdateValidation) {
 
-      return new OrderUpdateInteractor(orderUpdateGateway, orderFindByIdGateway);
+      return new OrderUpdateInteractor(
+            orderUpdateGateway, orderFindByIdGateway, listOrderUpdateValidation);
    }
 
    @Bean

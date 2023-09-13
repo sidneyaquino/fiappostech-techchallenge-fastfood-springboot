@@ -20,8 +20,13 @@ public class CustomerFindByIdInteractor implements CustomerFindByIdUseCase {
       //
       // Business Rules before Request.
       //
+
+      //
+      // Request.
+      //
       var customerResponse = this.customerFindByIdGateway.execute(customerId);
       var customerDomain = new CustomerDomain(customerResponse);
+      
       //
       // Business Rules before Response.
       //

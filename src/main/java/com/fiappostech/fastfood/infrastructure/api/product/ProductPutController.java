@@ -1,5 +1,6 @@
 package com.fiappostech.fastfood.infrastructure.api.product;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/products")
 public class ProductPutController {
 
+   @Autowired
    private final ProductUpdatePresenter productUpdatePresenter;
 
    @PutMapping

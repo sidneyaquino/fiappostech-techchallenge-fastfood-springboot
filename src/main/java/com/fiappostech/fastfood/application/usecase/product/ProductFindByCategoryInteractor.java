@@ -21,8 +21,13 @@ public class ProductFindByCategoryInteractor implements ProductFindByCategoryUse
       //
       // Business Rules before Request.
       //
+
+      //
+      // Request.
+      //      
       var listProductResponse = this.productFindByCategoryGateway.execute(category);
       var listProductDomain = listProductResponse.stream().map(ProductDomain::new).toList();
+
       //
       // Business Rules before Response.
       //

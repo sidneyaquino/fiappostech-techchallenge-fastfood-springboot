@@ -1,16 +1,19 @@
 package com.fiappostech.fastfood.application.usecase.order;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.fiappostech.fastfood.adapter.gateway.customer.CustomerIdentifyGateway;
 import com.fiappostech.fastfood.adapter.gateway.order.OrderInsertGateway;
 import com.fiappostech.fastfood.adapter.gateway.product.ProductFindByIdGateway;
 import com.fiappostech.fastfood.application.exception.ApplicationException;
 import com.fiappostech.fastfood.domain.dto.customer.CustomerRequest;
+import com.fiappostech.fastfood.domain.dto.customer.CustomerResponse;
+import com.fiappostech.fastfood.domain.dto.order.OrderProductRequest;
 import com.fiappostech.fastfood.domain.dto.order.OrderRequest;
 import com.fiappostech.fastfood.domain.dto.order.OrderResponse;
+import com.fiappostech.fastfood.domain.entity.CustomerDomain;
 import com.fiappostech.fastfood.domain.entity.OrderDomain;
-import com.fiappostech.fastfood.domain.entity.OrderProductDomain;
 
 public class OrderInsertInteractor implements OrderInsertUseCase {
 
@@ -30,37 +33,17 @@ public class OrderInsertInteractor implements OrderInsertUseCase {
 
    @Override
    public OrderResponse execute(OrderRequest orderRequest) {
-      if (orderRequest.customer() != null) {
-         var personalId = orderRequest.customer().personalId();
-         var customerResponse = this.customerIdentifyGateway.execute(personalId);
-
-         orderRequest = new OrderRequest(
-               orderRequest.orderId(),
-               new CustomerRequest(customerResponse),
-               orderRequest.created(),
-               orderRequest.tracked(),
-               orderRequest.tracking(),
-               orderRequest.value(),
-               orderRequest.products()
-         );
-      }
-      var orderDomain = new OrderDomain(orderRequest);
-
+      
       //
       // Business Rules before Request (validation).
       //
-      if (orderDomain.getProducts() == null) {
-         throw new ApplicationException("Input products list cannot be empty");
-      }
-      var value = new BigDecimal(0);
-      for (OrderProductDomain orderProductDomain : orderDomain.getProducts()) {
-         if (orderProductDomain.getQuantity() < 1) {
-            throw new ApplicationException("The minimum quantity value is one (1)");
-         }
-         var productrResponse = this.productFindByIdGateway.execute(orderProductDomain.getProductId());
-         value = value.add(productrResponse.value().multiply(new BigDecimal(orderProductDomain.getQuantity())));
-      }
+      CustomerResponse customerResponse = customerValidate(orderRequest.customer());
+      BigDecimal value = productsValidate(orderRequest.products());
+      
+      var orderDomain = new OrderDomain(orderRequest);
+      orderDomain.setCustomer(new CustomerDomain(customerResponse));
       orderDomain.setValue(value);
+
       //
       // Request.
       //
@@ -71,5 +54,31 @@ public class OrderInsertInteractor implements OrderInsertUseCase {
       //
 
       return orderDomain.toOrderResponse();
+   }
+
+   private CustomerResponse customerValidate(CustomerRequest customerRequest) {
+      CustomerResponse customerResponse = null;
+
+      if (customerRequest != null) {
+         var personalId = customerRequest.personalId();
+         customerResponse = this.customerIdentifyGateway.execute(personalId);
+      }
+      return customerResponse;
+   }
+
+   private BigDecimal productsValidate(List<OrderProductRequest> products) {
+      if (products == null) {
+         throw new ApplicationException("Input products list cannot be empty");
+      }
+
+      var value = new BigDecimal(0);
+      for (OrderProductRequest item : products) {
+         if (item.quantity() < 1) {
+            throw new ApplicationException("The minimum quantity value is one (1)");
+         }
+         var productrResponse = this.productFindByIdGateway.execute(item.productId());
+         value = value.add(productrResponse.value().multiply(new BigDecimal(item.quantity())));
+      }
+      return value;
    }
 }

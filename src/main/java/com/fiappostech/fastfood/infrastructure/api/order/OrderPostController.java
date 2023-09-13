@@ -1,5 +1,6 @@
 package com.fiappostech.fastfood.infrastructure.api.order;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/orders")
 public class OrderPostController {
 
+   @Autowired
    private final OrderInsertPresenter orderInsertPresenter;
 
    @PostMapping

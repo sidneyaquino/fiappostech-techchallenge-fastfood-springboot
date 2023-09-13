@@ -143,8 +143,8 @@ For this project you should to have basic konwledgement about:
 Project summary diagram:
 ```
 +─────────────────+
-│ Interface       │ Contains communication.components:
-│ Adapter Layer   │ controllers, presenters and gateways.
+│ 1. Interface    │ Contains communication components:
+│ Adapters Layer  │ controllers, presenters and gateways.
 │                 │
 │ - Presenter     │ Receives and returns data to internal api (user interface).
 │   (Controller)  │ 
@@ -154,8 +154,8 @@ Project summary diagram:
         │
         v 
 +─────────────────+
-│ Application     │ Responsible for implementing 
-│ Layer           │ the application's business logic.
+│ 2. Application/ │ Responsible for implementing 
+│ Use Cases Layer │ the application's business logic.
 │                 │
 │ - Interactor /  │ Interactor is the component that implements a UseCase,
 │   UseCase       │ contains the business logic that coordinates the flow.
@@ -164,18 +164,18 @@ Project summary diagram:
         │
         v 
 +─────────────────+
-│ Domain / Entity │ 
-│ Layer           │ Enterprise Business Rules.
+│ 3. Domain /     │ 
+│ Entities Layer  │ Enterprise Business Rules.
 │ - Entity        │ 
 │ - Value Object  │ 
 │ - DTO           │ Anemic entities used outside the domain.
-│   (Anemic)      │ (protects business rules)
+│ (Data Transfer) │ (protects business rules)
 +─────────────────+
         ^
         │ 
 +─────────────────+
-| Infrastructure  | It is responsible for communicating with external systems. 
-| Layer           | that provide concrete implementations of the interfaces.
+| 4. Frameworks & | It is responsible for communicating with external systems. 
+| Drives Layer    | that provide concrete implementations of the interfaces.
 |                 |
 | - Web Framework | 
 |   (API)         | Presenter handles HTTP requests and returns HTTP responses 
@@ -230,23 +230,21 @@ The project's structure is as follows::
 │   │           └── migration
 :   :
 ```
-#### (A)
 Here we have the packages with all our classes that `DON'T have any dependencies`, including libraries and the framework dependencies.
 
-#### Interface Adapters Layer (adapter)
+#### 1. Interface Adapters Layer (adapter)
 **Broker** for external dependencies.
- `adapter/presenter`: this is where all our controllers (user interface) are.
- `adapter/gateway`: this is where all our repositories (database persistence) are.
-#### Application Bussines Rules Layer (application)
- `application/usecase`: this is where all our interactors (implementing __usecases__) are.
-#### Enterprise Bussines Rules Layer (domain)
- `domain/entity`: this is where all __domains__ are.
- `domain/valueobject`: this is where all __value objects__ are.
- `domain/dto`: this is where our `abstraction` entity, that represents __entities__  outside the domain (protects business rules). 
+- `adapter/presenter`: this is where all our controllers (user interface) are.
+- `adapter/gateway`: this is where all our repositories (database persistence) are.
+#### 2. Application Bussines Rules Layer (application)
+- `application/usecase`: this is where all our interactors (implementing __usecases__) are.
+#### 3. Enterprise Bussines Rules Layer (domain)
+- `domain/entity`: this is where all __domains__ are.
+- `domain/valueobject`: this is where all __value objects__ are.
+- `domain/dto`: this is where our `abstraction` entity, that represents __entities__  outside the domain (protects business rules). 
 
-#### (B)
 Now we have the packages with all our classes that `HAVE library and/or framework dependencies`, such as web, ui, devices, datababe and external interfaces.
-#### Frameworks & Drives Layer (infrastructure)
+#### 4. Frameworks & Drives Layer (infrastructure)
 **Implementation** of external integration dependencies.
 - `infrastructure/api`: this is where all our api controllers (user interface) are located.
 - `infrastructure/persistence`: this is where our entire persistence repository (database) is located.
@@ -259,7 +257,7 @@ The main focus should be on making good use of the concepts of separation of con
 
 <span style="display:block;text-align:center">![Similarities between hexagonal architecture (ports and adapters) and clean architecture ](./assets/archtectures.png)</span>
 
-The idea is that your business rule is fully protected from these external factors, understand the architectures, their similarities, adapt them to your needs and "*Go Horse!!*". ;-)
+The idea is that your business rule is fully protected from these external factors, understand the architectures, their similarities, adapt them to your needs and "*Go Horse!!*".  ;-)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

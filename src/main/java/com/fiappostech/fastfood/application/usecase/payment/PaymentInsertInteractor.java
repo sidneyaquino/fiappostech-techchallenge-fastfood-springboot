@@ -6,7 +6,6 @@ import com.fiappostech.fastfood.adapter.gateway.order.OrderFindByIdGateway;
 import com.fiappostech.fastfood.adapter.gateway.order.OrderUpdateGateway;
 import com.fiappostech.fastfood.adapter.gateway.payment.PaymentInsertGateway;
 import com.fiappostech.fastfood.application.exception.ApplicationException;
-import com.fiappostech.fastfood.domain.dto.order.OrderRequest;
 import com.fiappostech.fastfood.domain.dto.payment.PaymentRequest;
 import com.fiappostech.fastfood.domain.dto.payment.PaymentResponse;
 import com.fiappostech.fastfood.domain.entity.OrderDomain;
@@ -32,26 +31,34 @@ public class PaymentInsertInteractor implements PaymentInsertUseCase {
 
    @Override
    public PaymentResponse execute(PaymentRequest paymentRequest) {
-      if (paymentRequest.order() == null || paymentRequest.order().orderId() == null) {
-         throw new ApplicationException("Order ID cannot be empty");
-      }
-      var orderId = paymentRequest.order().orderId();
-      var orderResponse = this.orderFindByIdGateway.execute(orderId);
-      paymentRequest = new PaymentRequest(
-            paymentRequest.paymentId(),
-            paymentRequest.externalReference(),
-            new OrderRequest(orderResponse),
-            paymentRequest.created(),
-            paymentRequest.approved(),
-            paymentRequest.status(),
-            paymentRequest.detail(),
-            paymentRequest.value());
-      var paymentDomain = new PaymentDomain(paymentRequest);
-      paymentDomain.setOrder(new OrderDomain(orderResponse));
-
+      
       //
       // Business Rules before Request (validation).
       //
+      if (paymentRequest.order() == null || paymentRequest.order().orderId() == null) {
+         throw new ApplicationException("Order ID cannot be empty");
+      }
+      var orderResponse = this.orderFindByIdGateway.execute(paymentRequest.order().orderId());
+
+      var paymentDomain = new PaymentDomain(paymentRequest);
+      paymentDomain.setOrder(new OrderDomain(orderResponse));
+      setApproved(paymentDomain);
+      
+      //
+      // Request.
+      //
+      var paymentResponse = this.paymentInsertGateway.execute(paymentDomain.toPaymentRequest());
+      paymentDomain = new PaymentDomain(paymentResponse);
+      this.orderUpdateGateway.execute(paymentDomain.getOrder().toOrderRequest());
+      
+      //
+      // Business Rules after Response.
+      //
+
+      return paymentDomain.toPaymentResponse();
+   }
+
+   private void setApproved(PaymentDomain paymentDomain){
       paymentDomain.setApproved(false);
       if (paymentDomain.getStatus().equals(PaymentStatus.APPROVED)) {
          if (paymentDomain.getValue().compareTo(paymentDomain.getOrder().getValue()) > -1) {
@@ -68,16 +75,6 @@ public class PaymentInsertInteractor implements PaymentInsertUseCase {
          paymentDomain.getOrder().setTracking(null);
          paymentDomain.getOrder().setTracked(null);
       }
-      paymentDomain.setCreated(LocalDateTime.now());
-      //
-      // Request.
-      //
-      var paymentResponse = this.paymentInsertGateway.execute(paymentDomain.toPaymentRequest());
-      //
-      // Business Rules after Response.
-      //
-      this.orderUpdateGateway.execute(paymentDomain.getOrder().toOrderRequest());
-
-      return paymentResponse;
+      paymentDomain.setCreated(LocalDateTime.now());      
    }
 }

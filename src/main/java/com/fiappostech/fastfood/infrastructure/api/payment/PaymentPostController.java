@@ -1,5 +1,6 @@
 package com.fiappostech.fastfood.infrastructure.api.payment;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/payments")
 public class PaymentPostController {
 
+   @Autowired
    private final PaymentInsertPresenter paymentInsertPresenter;
 
    @PostMapping

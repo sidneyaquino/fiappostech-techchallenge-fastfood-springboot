@@ -20,8 +20,13 @@ public class OrderFindByIdInteractor implements OrderFindByIdUseCase {
       //
       // Business Rules before Request.
       //
+
+      //
+      // Request.
+      //      
       var orderResponse = this.orderFindByIdGateway.execute(orderId);
       var orderDomain = new OrderDomain(orderResponse);
+      
       //
       // Business Rules before Response.
       //

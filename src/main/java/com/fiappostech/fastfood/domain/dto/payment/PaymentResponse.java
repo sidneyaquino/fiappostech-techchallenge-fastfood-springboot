@@ -16,14 +16,4 @@ public record PaymentResponse(
       PaymentStatus status,
       String detail,
       BigDecimal value) {
-   // public PaymentResponse(PaymentProjection paymenttProjection){  // PENDENCY
-   //    this(paymenttProjection.getPaymentId(),
-   //          null,
-   //          null,
-   //          paymenttProjection.getCreated(),
-   //          paymenttProjection.getApproved(),
-   //          paymenttProjection.getStatus(),
-   //          paymenttProjection.getStatusDetail(),
-   //          paymenttProjection.getValue());
-   // }
 }

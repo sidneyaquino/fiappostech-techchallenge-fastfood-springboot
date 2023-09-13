@@ -61,14 +61,17 @@ public class OrderDomain {
 
    public OrderDomain(OrderRequest orderRequest) {
       this.orderId = orderRequest.orderId();
-      this.customer = orderRequest.customer() == null ? null
+      this.customer = orderRequest.customer() == null || orderRequest.customer().email() == null ? null
             : new CustomerDomain(orderRequest.customer());
       this.created = orderRequest.created();
       this.tracked = orderRequest.tracked();
       this.tracking = orderRequest.tracking();
-      this.value = orderRequest.value();
       this.products = orderRequest.products() == null ? null
             : orderRequest.products().stream().map(OrderProductDomain::new).toList();
+      this.value = orderRequest.value();
+      // this.value = orderRequest.value() != null ? orderRequest.value()
+      //       : orderRequest.products().stream().map(item -> item.value().multiply(new BigDecimal(item.quantity())))
+      //             .reduce(BigDecimal.ZERO, BigDecimal::add);            
    }
 
    public UUID getOrderId() {
