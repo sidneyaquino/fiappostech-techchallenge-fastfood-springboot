@@ -21,8 +21,8 @@ import com.fiappostech.fastfood.domain.entity.OrderTracking;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
 @Tag(name = "Orders") // , description = "the Order Api")
+@AllArgsConstructor
 @RestController
 @RequestMapping("/orders")
 public class OrderGetController {

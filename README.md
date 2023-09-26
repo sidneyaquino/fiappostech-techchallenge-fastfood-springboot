@@ -142,38 +142,38 @@ For this project you should to have basic konwledgement about:
 
 Project summary diagram:
 ```
-+─────────────────+
-│ 1. Interface    │ Contains communication components:
-│ Adapters Layer  │ controllers, presenters and gateways.
-│                 │
-│ - Presenter     │ Receives and returns data to internal api (user interface).
-│   (Controller)  │ 
-│ - Gateway       │ It's a middleware for external dependencies,
-│   (Repository)  │ when communicating with the database.
-+─────────────────+
++-----------------+
+| 1. Interface    | Contains communication components:
+| Adapters Layer  | controllers, presenters and gateways.
+|                 |
+| - Presenter     | Receives and returns data to internal api (user interface).
+|   (Controller)  | 
+| - Gateway       | It's a middleware for external dependencies,
+|   (Repository)  | when communicating with the database.
++-----------------+
         │
         v 
-+─────────────────+
-│ 2. Application/ │ Responsible for implementing 
-│ Use Cases Layer │ the application's business logic.
-│                 │
-│ - Interactor /  │ Interactor is the component that implements a UseCase,
-│   UseCase       │ contains the business logic that coordinates the flow.
-│ - Exception     │ Error handling for business rules.
-+─────────────────+
++-----------------+
+| 2. Application/ | Responsible for implementing 
+| Use Cases Layer | the application's business logic.
+|                 |
+| - Interactor /  | Interactor is the component that implements a UseCase,
+|   UseCase       | contains the business logic that coordinates the flow.
+| - Exception     | Error handling for business rules.
++-----------------+
         │
         v 
-+─────────────────+
-│ 3. Domain /     │ 
-│ Entities Layer  │ Enterprise Business Rules.
-│ - Entity        │ 
-│ - Value Object  │ 
-│ - DTO           │ Anemic entities used outside the domain.
-│ (Data Transfer) │ (protects business rules)
-+─────────────────+
++-----------------+
+| 3. Domain /     | 
+| Entities Layer  | Enterprise Business Rules.
+| - Entity        | 
+| - Value Object  | 
+| - DTO           | Anemic entities used outside the domain.
+| (Data Transfer) | (protects business rules)
++-----------------+
         ^
         │ 
-+─────────────────+
++-----------------+
 | 4. Frameworks & | It is responsible for communicating with external systems. 
 | Drives Layer    | that provide concrete implementations of the interfaces.
 |                 |
@@ -181,7 +181,7 @@ Project summary diagram:
 |   (API)         | Presenter handles HTTP requests and returns HTTP responses 
 | - Database      | 
 |   (Repository)  | Persistence
-+─────────────────+
++-----------------+
 ```
 
 The project's structure is as follows:: 
@@ -202,10 +202,7 @@ The project's structure is as follows::
 │   │   │               │       :
 │   │   │               ├── application
 │   │   │               │   ├── exception
-│   │   │               │   ├── usecase
-│   │   │               │   │   ├── ..
-│   │   │               │   │   :   
-│   │   │               │   └── port
+│   │   │               │   └── usecase
 │   │   │               │       ├── ..
 │   │   │               │       :
 │   │   │               ├── domain
@@ -395,7 +392,7 @@ Made by *Sidney Aquino*, **get in Touch!**  [![LinkedIn][linkedin-shield]][linke
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[java-shield]: https://img.shields.io/badge/Java-20-C74634?style=for-the-badge&logo=openjdk&logoColor=white
+[java-shield]: https://img.shields.io/badge/Java-21-C74634?style=for-the-badge&logo=openjdk&logoColor=white
 [java-url]: https://openjdk.org/
 
 [maven-shield]: https://img.shields.io/badge/Maven-3.9-EE3A43?style=for-the-badge&logo=apache&logoColor=white
@@ -405,10 +402,10 @@ Made by *Sidney Aquino*, **get in Touch!**  [![LinkedIn][linkedin-shield]][linke
 [springboot-shield]: https://img.shields.io/badge/SpringBoot-3.2-6db33f?style=for-the-badge&logo=springboot&logoColor=white
 [springboot-url]: https://spring.io/projects/spring-boot
 
-[postgresql-shield]: https://img.shields.io/badge/Postgresql-15-336791?style=for-the-badge&logo=postgresql&logoColor=white
+[postgresql-shield]: https://img.shields.io/badge/Postgresql-16-336791?style=for-the-badge&logo=postgresql&logoColor=white
 [postgresql-url]: https://www.postgresql.org/
 
-[flyway-shield]: https://img.shields.io/badge/Flyway-9.1-cc0000?style=for-the-badge&logo=flyway&logoColor=white
+[flyway-shield]: https://img.shields.io/badge/Flyway-9.16-cc0000?style=for-the-badge&logo=flyway&logoColor=white
 [flyway-url]: https://flywaydb.org/
 
 <!-- Dark Color 384d54 and 0db7ed -->
@@ -436,7 +433,7 @@ Made by *Sidney Aquino*, **get in Touch!**  [![LinkedIn][linkedin-shield]][linke
 [grafana-shield]: https://img.shields.io/badge/Grafana-ff671d?style=for-the-badge&logo=grafana&logoColor=black
 [grafana-url]: https://grafana.com/
 
-[k6-shield]: https://img.shields.io/badge/k6-0.4-7d64ff?style=for-the-badge&logo=k6&logoColor=white
+[k6-shield]: https://img.shields.io/badge/k6-0.46-7d64ff?style=for-the-badge&logo=k6&logoColor=white
 [k6-url]: https://grafana.com/
 
 [editor-config-shield]: https://img.shields.io/badge/Editor%20Config-E0EFEF?style=for-the-badge&logo=editorconfig&logoColor=000

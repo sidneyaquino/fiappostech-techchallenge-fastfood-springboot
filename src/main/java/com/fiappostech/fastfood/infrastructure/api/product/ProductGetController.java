@@ -19,8 +19,8 @@ import com.fiappostech.fastfood.domain.entity.ProductCategory;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
 @Tag(name = "Products") // , description = "the Product Api")
+@AllArgsConstructor
 @RestController
 @RequestMapping("/products")
 public class ProductGetController {

@@ -15,8 +15,8 @@ import com.fiappostech.fastfood.adapter.presenter.payment.response.PaymentRespon
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
 @Tag(name = "Payments") //, description = "the Payment Api")
+@AllArgsConstructor
 @RestController
 @RequestMapping("/payments")
 public class PaymentGetController {

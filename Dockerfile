@@ -1,4 +1,4 @@
-FROM docker.io/bellsoft/liberica-openjdk-alpine:20 AS build
+FROM docker.io/bellsoft/liberica-openjdk-alpine-musl:21 AS build
 WORKDIR /tmp
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
@@ -8,7 +8,7 @@ RUN --mount=type=cache,target=/root/.m2 ./mvnw install -DskipTests -Djacoco.skip
 RUN mkdir -p target/dependency \
    && (cd target/dependency; jar -xf ../*.jar)
 
-FROM docker.io/bellsoft/liberica-openjre-alpine:20 AS runtime
+FROM docker.io/bellsoft/liberica-openjre-alpine-musl:21 AS runtime
 RUN addgroup --system javauser && \
    adduser -S -s /usr/sbin/nologin -D -H -G javauser javauser
 ARG DEPENDENCY=/tmp/target/dependency

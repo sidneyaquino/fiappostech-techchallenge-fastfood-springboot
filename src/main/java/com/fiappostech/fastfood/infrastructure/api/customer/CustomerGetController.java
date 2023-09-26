@@ -19,8 +19,8 @@ import com.fiappostech.fastfood.adapter.presenter.customer.response.CustomerResp
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
+@Tag(name = "Customers") // , description = "the Customer Api")
 @AllArgsConstructor
-@Tag(name = "Customers") //, description = "the Customer Api")
 @RestController
 @RequestMapping("/customers")
 public class CustomerGetController {
@@ -29,7 +29,7 @@ public class CustomerGetController {
    private final CustomerFindByIdPresenter customerFindByIdPresenter;
    @Autowired
    private final CustomerIdentifyPresenter customerIdentifyPresenter;
-   
+
    private static int request = 0;
 
    @GetMapping("/{customerId}")
@@ -39,7 +39,10 @@ public class CustomerGetController {
 
    @GetMapping
    public ResponseEntity<CustomerResponseFull> customerFindByPersonalId(@RequestParam String personalId) throws UnknownHostException {
-      System.out.println("Request: " + ++request + " - " + InetAddress.getLocalHost().getHostName() + "\n"); ;      
+      System.out.println("\n" + "Request/Thread: " + ++request + " - " +
+            InetAddress.getLocalHost().getHostName() + "/" +
+            Thread.currentThread().toString());
+
       return ResponseEntity.ok(customerIdentifyPresenter.execute(personalId));
-   }  
+   }
 }

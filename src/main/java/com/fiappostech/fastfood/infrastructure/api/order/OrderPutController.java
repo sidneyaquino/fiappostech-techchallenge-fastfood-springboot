@@ -15,8 +15,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
 @Tag(name = "Orders") //, description = "the Order Api")
+@AllArgsConstructor
 @RestController
 @RequestMapping("/orders")
 public class OrderPutController {
