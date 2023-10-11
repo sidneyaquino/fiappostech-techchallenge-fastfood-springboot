@@ -12,7 +12,7 @@
 
 	<groupId>com.fiappostech</groupId>
 	<artifactId>fastfood</artifactId>
-	<version>0.4.1-SNAPSHOT</version>
+	<version>0.4.2-SNAPSHOT</version>
 	<name>fastfood</name>
 	<description>Tech Challenge project for Spring Boot</description>
 
@@ -145,9 +145,9 @@
 
 					<image>
 						<builder>paketobuildpacks/builder:tiny</builder>
-						<!-- <env>
+						<env>
 							<BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
-						</env> -->
+						</env>
 					</image>
 
 					<jvmArguments>
@@ -161,25 +161,36 @@
 						<!-- -Dspring.aot.enabled=true -->
 					</jvmArguments>
 
-					<!-- <systemPropertyVariables>
+					<systemPropertyVariables>
 						<springAot>true</springAot>
-					</systemPropertyVariables> -->
+					</systemPropertyVariables>
 				</configuration>
 
-				<!-- <executions>
+				<executions>
 					<execution>
 						<id>process-aot</id>
 						<goals>
 							<goal>process-aot</goal>
 						</goals>
+						<configuration>
+							<profiles>prod</profiles>
+					  </configuration>						
 					</execution>
-				</executions> -->
+				</executions>
 			</plugin>
 
-			<!-- <plugin>
+			<plugin>
 				<groupId>org.graalvm.buildtools</groupId>
 				<artifactId>native-maven-plugin</artifactId>
-			</plugin> -->
+				<configuration>
+					<buildArgs>
+						<!-- <buildArg>-static</buildArg>
+						<buildArg>-libc=musl</buildArg> -->
+						<!-- <buildArg>-H:+StaticExecutableWithDynamicLibC</buildArg> -->
+						<!-- <buildArg>-gc=G1</buildArg> -->
+					</buildArgs>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	

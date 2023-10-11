@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.hibernate.annotations.AnyKeyJavaClass;
 
 import com.fiappostech.fastfood.domain.dto.order.OrderProductResponse;
 import com.fiappostech.fastfood.domain.dto.order.OrderRequest;
@@ -41,7 +40,6 @@ import lombok.Setter;
 public class OrderEntity {
 
    @Id
-   @AnyKeyJavaClass(UUID.class)
    @GeneratedValue(strategy = GenerationType.UUID)
    @Column(name = "id")
    private UUID orderId;

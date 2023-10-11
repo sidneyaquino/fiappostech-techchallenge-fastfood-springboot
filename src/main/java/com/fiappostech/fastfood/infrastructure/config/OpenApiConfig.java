@@ -18,7 +18,7 @@ public class OpenApiConfig {
                   .title("Fiap-Postech Fastfood API")
                   .description(
                         "API Rest of Fiap-Postech's Fastfood application, including customers and products CRUD functionalities, as well as orders, checkout and payment.")
-                  .version("0.4.1-SNAPSHOT")
+                  .version("0.4.2-SNAPSHOT")
                   .contact(new Contact()
                         .name("Sidney Aquino")
                         .url("https://www.linkedin.com/in/sidneydeaquino/"))

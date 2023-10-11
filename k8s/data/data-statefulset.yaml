@@ -19,7 +19,7 @@ spec:
       containers:
         - name: data-pod-container
           image: docker.io/library/postgres:16-alpine
-          imagePullPolicy: IfNotPresent # Always/IfNotPresent/Never
+          imagePullPolicy: Always # Always/IfNotPresent/Never
 
           # ENVIROMENT
           envFrom:

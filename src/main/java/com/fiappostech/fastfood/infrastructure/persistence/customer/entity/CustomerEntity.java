@@ -2,8 +2,6 @@ package com.fiappostech.fastfood.infrastructure.persistence.customer.entity;
 
 import java.util.UUID;
 
-import org.hibernate.annotations.AnyKeyJavaClass;
-
 import com.fiappostech.fastfood.domain.dto.customer.CustomerRequest;
 import com.fiappostech.fastfood.domain.dto.customer.CustomerResponse;
 
@@ -29,7 +27,6 @@ import lombok.Setter;
 public class CustomerEntity {
 
    @Id
-   @AnyKeyJavaClass(UUID.class)
    @GeneratedValue(strategy = GenerationType.UUID)
    @Column(name = "id")
    private UUID customerId;

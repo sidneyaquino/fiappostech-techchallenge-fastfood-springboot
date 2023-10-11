@@ -17,8 +17,8 @@ spec:
     spec:
       containers:
         - name: app-pod-container
-          image: docker.io/sidneyaquino/fiappostech-fastfood:0.4.1-SNAPSHOT
-          imagePullPolicy: IfNotPresent # Always/IfNotPresent/Never
+          image: docker.io/sidneyaquino/fiappostech-fastfood:0.4.2-SNAPSHOT
+          imagePullPolicy: Always # Always/IfNotPresent/Never
 
           # ENVIROMENT
           envFrom:
@@ -79,12 +79,12 @@ spec:
           # MACHINE
           resources:
             requests:
-              # memory: "1500Mi" # Cloud
-              memory: "750Mi"  # Local
-              cpu: "750m"
+              memory: "800Mi" # Cloud
+              # memory: "400Mi"  # Local
+              cpu: "500m"
             limits:
-              # memory: "2Gi"    # Cloud
-              memory: "750Mi"  # Local
-              cpu: "1"
+              memory: "1Gi"   # Cloud
+              # memory: "500Mi"  # Local
+              cpu: "750m"
           ports:
             - containerPort: 8080

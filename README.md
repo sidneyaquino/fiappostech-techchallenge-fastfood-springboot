@@ -405,7 +405,7 @@ Made by *Sidney Aquino*, **get in Touch!**  [![LinkedIn][linkedin-shield]][linke
 [postgresql-shield]: https://img.shields.io/badge/Postgresql-16-336791?style=for-the-badge&logo=postgresql&logoColor=white
 [postgresql-url]: https://www.postgresql.org/
 
-[flyway-shield]: https://img.shields.io/badge/Flyway-9.16-cc0000?style=for-the-badge&logo=flyway&logoColor=white
+[flyway-shield]: https://img.shields.io/badge/Flyway-9.22-cc0000?style=for-the-badge&logo=flyway&logoColor=white
 [flyway-url]: https://flywaydb.org/
 
 <!-- Dark Color 384d54 and 0db7ed -->
@@ -433,8 +433,8 @@ Made by *Sidney Aquino*, **get in Touch!**  [![LinkedIn][linkedin-shield]][linke
 [grafana-shield]: https://img.shields.io/badge/Grafana-ff671d?style=for-the-badge&logo=grafana&logoColor=black
 [grafana-url]: https://grafana.com/
 
-[k6-shield]: https://img.shields.io/badge/k6-0.46-7d64ff?style=for-the-badge&logo=k6&logoColor=white
-[k6-url]: https://grafana.com/
+[k6-shield]: https://img.shields.io/badge/k6-0.47-7d64ff?style=for-the-badge&logo=k6&logoColor=white
+[k6-url]: https://k6.io/
 
 [editor-config-shield]: https://img.shields.io/badge/Editor%20Config-E0EFEF?style=for-the-badge&logo=editorconfig&logoColor=000
 [editor-config-url]: https://editorconfig.org/

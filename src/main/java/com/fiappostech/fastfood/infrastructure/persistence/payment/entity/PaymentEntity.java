@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import org.hibernate.annotations.AnyKeyJavaClass;
 
 import com.fiappostech.fastfood.domain.dto.payment.PaymentRequest;
 import com.fiappostech.fastfood.domain.dto.payment.PaymentResponse;
@@ -38,7 +37,6 @@ import lombok.Setter;
 public class PaymentEntity {
 
    @Id
-   @AnyKeyJavaClass(UUID.class)
    @GeneratedValue(strategy = GenerationType.UUID)
    @Column(name = "id")
    private UUID paymentId;
@@ -47,7 +45,6 @@ public class PaymentEntity {
    @JoinColumn(name = "order_id")
    private OrderEntity order;
 
-   @AnyKeyJavaClass(UUID.class)
    @Column(name = "external_reference", unique = true) //, nullable = false)
    private UUID externalReference;
 
