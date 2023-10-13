@@ -16,6 +16,8 @@ spec:
         app: data-pod
 
     spec:
+      imagePullSecrets:
+        - name: registry-secret    
       containers:
         - name: data-pod-container
           image: docker.io/library/postgres:16-alpine
@@ -71,11 +73,11 @@ spec:
           # MACHINE
           resources:
             requests:
-              memory: "750Mi"
-              cpu: "500m"
-            limits:
-              memory: "750Mi"
+              memory: "1Gi"
               cpu: "750m"
+            limits:
+              memory: "1200Mi"
+              cpu: "900m"
           ports:
             - containerPort: 5432
           volumeMounts:

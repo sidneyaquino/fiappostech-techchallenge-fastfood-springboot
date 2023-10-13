@@ -184,9 +184,9 @@
 				<artifactId>native-maven-plugin</artifactId>
 				<configuration>
 					<buildArgs>
-						<!-- <buildArg>-static</buildArg>
-						<buildArg>-libc=musl</buildArg> -->
 						<!-- <buildArg>-H:+StaticExecutableWithDynamicLibC</buildArg> -->
+						<buildArg>--static --libc=musl</buildArg>
+						<buildArg>--no-fallback</buildArg>
 						<!-- <buildArg>-gc=G1</buildArg> -->
 					</buildArgs>
 				</configuration>
