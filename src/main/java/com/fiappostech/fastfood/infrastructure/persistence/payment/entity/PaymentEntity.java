@@ -45,7 +45,7 @@ public class PaymentEntity {
    @JoinColumn(name = "order_id")
    private OrderEntity order;
 
-   @Column(name = "external_reference", unique = true) //, nullable = false)
+   @Column(name = "external_reference") //, unique = true, nullable = false)
    private UUID externalReference;
 
    @Column(nullable = false)

@@ -286,9 +286,9 @@ This project was developed with the following technology:
 
 -   Editor:  **[Visual Studio Code](https://code.visualstudio.com/)** 
 -   API Client:  **[Postman](https://www.postman.com/)** or **[RESTClient for VSCode](https://www.postman.com/)**
--   Markdown:  **[Obsidian](https://obsidian.md/)**
+-   Markdown:  **[Obsidian](https://obsidian.md/)** or **[Markdown Preview Enhanced](https://github.com/shd101wyy/vscode-markdown-preview-enhanced)**
 -   Database Manager:  **[DbGate](https://dbgate.org/)**
--   Container Tool:  **[Docker](https://www.docker.com/)** or **[Podman](https://podman.io/)**
+-   Container Tool:  **[Podman](https://podman.io/)** or **[Docker](https://www.docker.com/)**
 -   Kubernetes:  **[Minikube](https://minikube.sigs.k8s.io/docs/)** and **[k9s](https://k9scli.io/)**
 -   Terminal emulator:  **[Alacritty](https://alacritty.org/)**
 -   Command Line: **[asdf](https://asdf-vm.com/)**, **[git](https://git-scm.com/)**, **[helm](https://helm.sh/)**, **[kubectl](https://kubernetes.io/docs/reference/kubectl/)**, **[oc](https://docs.openshift.com/container-platform/4.11/cli_reference/openshift_cli/getting-started-cli.html)**, **[stern](https://github.com/stern/stern)**, **[dive](https://gochronicles.com/dive/)** and others...

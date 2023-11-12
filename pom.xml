@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.0-SNAPSHOT</version>
+		<version>3.2.0-RC2</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -174,7 +174,7 @@
 						</goals>
 						<configuration>
 							<profiles>prod</profiles>
-					  </configuration>						
+					  </configuration>
 					</execution>
 				</executions>
 			</plugin>
@@ -183,17 +183,24 @@
 				<groupId>org.graalvm.buildtools</groupId>
 				<artifactId>native-maven-plugin</artifactId>
 				<configuration>
+					<fallback>false</fallback>
+					<!-- <verbose>true</verbose> -->
+					<quickBuild>true</quickBuild>
 					<buildArgs>
-						<!-- <buildArg>-H:+StaticExecutableWithDynamicLibC</buildArg> -->
-						<buildArg>--static --libc=musl</buildArg>
-						<buildArg>--no-fallback</buildArg>
+						<!-- <buildArg>-H:+UnlockExperimentalVMOptions</buildArg> -->
+						<buildArg>-H:+StaticExecutableWithDynamicLibC</buildArg>
+						<!-- <buildArg>- -static - -libc=musl</buildArg> -->
+						<buildArg>-march=native</buildArg>
+						<buildArg>--strict-image-heap</buildArg>
+						<buildArg>-J-XX:MaxRAMPercentage=90.0</buildArg>
 						<!-- <buildArg>-gc=G1</buildArg> -->
+						<buildArg>--color=always</buildArg>
 					</buildArgs>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<repositories>
 		<repository>
 		  	<id>spring-milestones</id>

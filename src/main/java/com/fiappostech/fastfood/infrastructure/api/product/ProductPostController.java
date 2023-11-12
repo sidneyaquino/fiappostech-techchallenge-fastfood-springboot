@@ -31,7 +31,9 @@ public class ProductPostController {
          UriComponentsBuilder uriComponentsBuilder) {
 
       var productResponseFull = productInsertPresenter.execute(productPostRequest);
-      var uri = uriComponentsBuilder.path("/products/{productId}").buildAndExpand(productResponseFull.productId())
+      var uri = uriComponentsBuilder
+            .path("/products/{productId}")
+            .buildAndExpand(productResponseFull.productId())
             .toUri();
 
       return ResponseEntity.created(uri).body(productResponseFull);

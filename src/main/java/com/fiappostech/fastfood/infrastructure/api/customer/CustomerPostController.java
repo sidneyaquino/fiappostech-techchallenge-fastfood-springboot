@@ -33,7 +33,7 @@ public class CustomerPostController {
       var customerResponseFull = customerRegistryPresenter.execute(customerPostRequest);
       var uri = uriComponentsBuilder
             .path("/customers/{personalId}")
-            .buildAndExpand(customerResponseFull)
+            .buildAndExpand(customerResponseFull.customerId())
             .toUri();
 
       return ResponseEntity.created(uri).body(customerResponseFull);

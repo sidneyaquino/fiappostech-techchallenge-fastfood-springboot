@@ -15,9 +15,10 @@ public class OpenApiConfig {
    public OpenAPI customOpenAPI() {
       return new OpenAPI()
             .info(new Info()
-                  .title("Fiap-Postech Fastfood API")
+                  .title("Fiap-Postech Fastfood API Application")
                   .description(
                         "API Rest of Fiap-Postech's Fastfood application, including customers and products CRUD functionalities, as well as orders, checkout and payment.")
+                  .summary("The Fastfood Open API")
                   .version("0.4.2-SNAPSHOT")
                   .contact(new Contact()
                         .name("Sidney Aquino")

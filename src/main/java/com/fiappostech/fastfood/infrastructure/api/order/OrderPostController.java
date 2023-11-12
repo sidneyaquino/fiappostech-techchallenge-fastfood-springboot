@@ -26,12 +26,15 @@ public class OrderPostController {
    private final OrderInsertPresenter orderInsertPresenter;
 
    @PostMapping
-   public ResponseEntity<OrderResponseFull> orderSave(   
+   public ResponseEntity<OrderResponseFull> orderSave(
          @RequestBody @Valid OrderPostRequest orderPostRequest,
          UriComponentsBuilder uriComponentsBuilder) {
 
       var orderResponseFull = orderInsertPresenter.execute(orderPostRequest);
-      var uri = uriComponentsBuilder.path("/orders/{orderId}").buildAndExpand(orderResponseFull.orderId()).toUri();
+      var uri = uriComponentsBuilder
+            .path("/orders/{orderId}")
+            .buildAndExpand(orderResponseFull.orderId())
+            .toUri();
 
       return ResponseEntity.created(uri).body(orderResponseFull);
    }

@@ -1,37 +1,6 @@
 version: "3.8"
 services:
   # ====================================================================================================================
-  # APP
-  # ====================================================================================================================
-  web:
-    image: container-registry.oracle.com/graalvm/native-image-community:21
-    container_name: fastfood
-    working_dir: /app
-    volumes:
-      - $PWD:/app
-      - ${HOME}/.m2/repository:/root/.m2/repository
-    ports:
-      - 5005:5005
-      - 8080:8080
-    environment:
-      # APP_PROFILE: prod
-      DB_HOST: sql
-      DB_NAME: fastfood
-      DB_USER: postgres
-      DB_PASS: postgres
-    command:
-      [
-        /bin/sh,
-        -c,
-        "./mvnw spring-boot:run -DskipTests"
-      ]
-    depends_on:
-      - sql
-    networks:
-      - network
-    restart: always
-
-  # ====================================================================================================================
   # POSTGRES SERVER
   # ====================================================================================================================
   sql:

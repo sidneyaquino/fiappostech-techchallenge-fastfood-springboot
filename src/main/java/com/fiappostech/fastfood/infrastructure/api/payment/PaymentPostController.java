@@ -26,12 +26,15 @@ public class PaymentPostController {
    private final PaymentInsertPresenter paymentInsertPresenter;
 
    @PostMapping
-   public ResponseEntity<PaymentResponseFull> paymentSave(   
+   public ResponseEntity<PaymentResponseFull> paymentSave(
          @RequestBody @Valid PaymentPostRequest paymentPostRequest,
          UriComponentsBuilder uriComponentsBuilder) {
 
       var paymentResponseFull = paymentInsertPresenter.execute(paymentPostRequest);
-      var uri = uriComponentsBuilder.path("/payments/{paymentId}").buildAndExpand(paymentResponseFull.paymentId()).toUri();
+      var uri = uriComponentsBuilder
+            .path("/payments/{paymentId}")
+            .buildAndExpand(paymentResponseFull.paymentId())
+            .toUri();
 
       return ResponseEntity.created(uri).body(paymentResponseFull);
    }
