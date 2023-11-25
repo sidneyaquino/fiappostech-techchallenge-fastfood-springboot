@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.0-RC2</version>
+ 		<version>3.2.0</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -185,23 +185,24 @@
 				<configuration>
 					<fallback>false</fallback>
 					<!-- <verbose>true</verbose> -->
-					<quickBuild>true</quickBuild>
+					<!-- <quickBuild>true</quickBuild> -->
 					<buildArgs>
-						<!-- <buildArg>-H:+UnlockExperimentalVMOptions</buildArg> -->
-						<buildArg>-H:+StaticExecutableWithDynamicLibC</buildArg>
-						<!-- <buildArg>- -static - -libc=musl</buildArg> -->
-						<buildArg>-march=native</buildArg>
-						<buildArg>--strict-image-heap</buildArg>
-						<buildArg>-J-XX:MaxRAMPercentage=90.0</buildArg>
-						<!-- <buildArg>-gc=G1</buildArg> -->
 						<buildArg>--color=always</buildArg>
+						<buildArg>-J-XX:MaxRAMPercentage=95.0</buildArg>
+						<buildArg>-H:+UnlockExperimentalVMOptions</buildArg>
+						<buildArg>--enable-preview</buildArg>
+						<buildArg>--strict-image-heap</buildArg>
+						<buildArg>--static --libc=musl</buildArg>
+						<!-- <buildArg>-H:+StaticExecutableWithDynamicLibC</buildArg> -->
+						<!-- <buildArg>-march=native</buildArg> -->
+						<!-- <buildArg>-gc=G1</buildArg> -->
 					</buildArgs>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 
-	<repositories>
+	<!-- <repositories>
 		<repository>
 		  	<id>spring-milestones</id>
 		  	<name>Spring Milestones</name>
@@ -237,5 +238,5 @@
 			 	<enabled>false</enabled>
 		  	</releases>
 		</pluginRepository>
-	 </pluginRepositories>
+	 </pluginRepositories> -->
 </project>

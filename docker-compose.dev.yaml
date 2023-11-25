@@ -4,7 +4,7 @@ services:
   # APP
   # ====================================================================================================================
   web:
-    image: container-registry.oracle.com/graalvm/native-image-community:21
+    image: container-registry.oracle.com/graalvm/native-image-community:21-muslib
     container_name: fastfood
     working_dir: /app
     volumes:
@@ -19,11 +19,11 @@ services:
       DB_NAME: fastfood
       DB_USER: postgres
       DB_PASS: postgres
-    command:
+    entrypoint:
       [
         /bin/sh,
         -c,
-        "./mvnw spring-boot:run -DskipTests"
+        "./mvnw spring-boot:run -Dspring.aot.enabled=true -DskipTests"
       ]
     depends_on:
       - sql
