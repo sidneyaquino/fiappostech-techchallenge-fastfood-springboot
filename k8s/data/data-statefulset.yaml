@@ -20,7 +20,7 @@ spec:
         - name: registry-secret    
       containers:
         - name: data-pod-container
-          image: docker.io/library/postgres:16-alpine
+          image: cgr.dev/chainguard/postgres:latest
           imagePullPolicy: Always # Always/IfNotPresent/Never
 
           # ENVIROMENT

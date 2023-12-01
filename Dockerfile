@@ -10,13 +10,14 @@ RUN --mount=type=cache,target=/root/.m2 \
 RUN mkdir -p target/dependency && \
    (cd target/dependency; jar -xf ../*.jar)
 
-FROM docker.io/bellsoft/liberica-runtime-container:jre-21-slim-musl AS runtime
+FROM docker.io/bellsoft/liberica-runtime-container:jre-21-slim-musl
+ARG DEPENDENCY=/tmp/target/dependency
+COPY --chmod=755 --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY --chown=755 --from=build ${DEPENDENCY}/META-INF /app/META-INF
+COPY --chown=755 --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 RUN addgroup --system nonroot && \
    adduser -S -s /usr/sbin/nologin -D -H -G nonroot nonroot
-ARG DEPENDENCY=/tmp/target/dependency
-COPY --chown=nonroot --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
-COPY --chown=nonroot --from=build ${DEPENDENCY}/META-INF /app/META-INF
-COPY --chown=nonroot --from=build ${DEPENDENCY}/BOOT-INF/classes /app
+   # adduser --system --disabled-login --disabled-password --no-create-home --ingroup javauser javauser   
 USER nonroot
 SHELL ["/bin/sh", "-c"]
 CMD java -Dserver.port=$PORT $JAVA_OPTS -Dspring.aot.enabled=true -cp app:app/lib/* \

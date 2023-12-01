@@ -28,7 +28,7 @@ services:
   # POSTGRES SERVER
   # ====================================================================================================================
   sql:
-    image: docker.io/library/postgres:16-alpine
+    image: cgr.dev/chainguard/postgres:latest
     container_name: postgres
     environment:
       POSTGRES_DB: fastfood
