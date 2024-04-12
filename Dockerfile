@@ -1,4 +1,4 @@
-FROM container-registry.oracle.com/graalvm/native-image-community:21-muslib AS build
+FROM ghcr.io/graalvm/native-image-community:21-muslib AS build
 WORKDIR /tmp
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./

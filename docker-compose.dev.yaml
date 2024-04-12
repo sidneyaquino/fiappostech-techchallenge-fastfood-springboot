@@ -4,7 +4,7 @@ services:
   # APP
   # ====================================================================================================================
   web:
-    image: container-registry.oracle.com/graalvm/native-image-community:21-muslib
+    image: ghcr.io/graalvm/native-image-community:21-muslib
     container_name: fastfood
     working_dir: /app
     volumes:

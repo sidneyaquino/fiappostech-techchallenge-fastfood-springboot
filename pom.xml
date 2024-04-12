@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
- 		<version>3.2.0</version>
+ 		<version>3.2.5-SNAPSHOT</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -154,7 +154,7 @@
 						-Dserver.port=8080
 						-Dfile.encoding=UTF-8
 						-Dspring.backgroundpreinitializer.ignore=true
-						-XX:+UseContainerSupport -Xmx300m -Xss512k -XX:CICompilerCount=2
+						<!-- -XX:+UseContainerSupport -Xmx300m -Xss512k -XX:CICompilerCount=2 -->
 						<!-- -verbose:gc -XX:+PrintGCDetails -->
 						-Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
 						<!-- -agentlib:native-image-agent=config-output-dir=target/native-image -->
@@ -188,9 +188,10 @@
 					<!-- <quickBuild>true</quickBuild> -->
 					<buildArgs>
 						<buildArg>--color=always</buildArg>
-						<buildArg>-J-XX:MaxRAMPercentage=95.0</buildArg>
+						<!-- <buildArg>- -enable-sbom=cyclondx,strict,hierarchical</buildArg> -->
+						<buildArg>-J-XX:MaxRAMPercentage=80.0</buildArg>
 						<buildArg>-H:+UnlockExperimentalVMOptions</buildArg>
-						<buildArg>--enable-preview</buildArg>
+						<!-- <buildArg>- -enable-preview</buildArg> -->
 						<buildArg>--strict-image-heap</buildArg>
 						<buildArg>--static --libc=musl</buildArg>
 						<!-- <buildArg>-H:+StaticExecutableWithDynamicLibC</buildArg> -->
@@ -202,7 +203,7 @@
 		</plugins>
 	</build>
 
-	<!-- <repositories>
+	<repositories>
 		<repository>
 		  	<id>spring-milestones</id>
 		  	<name>Spring Milestones</name>
@@ -238,5 +239,5 @@
 			 	<enabled>false</enabled>
 		  	</releases>
 		</pluginRepository>
-	 </pluginRepositories> -->
+	 </pluginRepositories>
 </project>
