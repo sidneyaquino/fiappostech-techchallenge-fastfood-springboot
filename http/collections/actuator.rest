@@ -11,4 +11,4 @@ GET {{url}}/health
 
 
 ### FIND prometheus
-GET {{url}}/prometheus
+#GET {{url}}/prometheus

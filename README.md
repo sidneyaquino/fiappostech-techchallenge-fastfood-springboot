@@ -291,7 +291,7 @@ This project was developed with the following technology:
 -   Container Tool:  **[Podman](https://podman.io/)** or **[Docker](https://www.docker.com/)**
 -   Kubernetes:  **[Minikube](https://minikube.sigs.k8s.io/docs/)** and **[k9s](https://k9scli.io/)**
 -   Terminal emulator:  **[Alacritty](https://alacritty.org/)**
--   Command Line: **[asdf](https://asdf-vm.com/)**, **[git](https://git-scm.com/)**, **[helm](https://helm.sh/)**, **[kubectl](https://kubernetes.io/docs/reference/kubectl/)**, **[oc](https://docs.openshift.com/container-platform/4.11/cli_reference/openshift_cli/getting-started-cli.html)**, **[stern](https://github.com/stern/stern)**, **[dive](https://gochronicles.com/dive/)** and others...
+-   Command Line: **[asdf](https://asdf-vm.com/)**, **[git](https://git-scm.com/)**, **[helm](https://helm.sh/)**, **[kubectl](https://kubernetes.io/docs/reference/kubectl/)**, **[oc](https://docs.openshift.com/container-platform/4.11/cli_reference/openshift_cli/getting-started-cli.html)**, **[stern](https://github.com/stern/stern)**, **[dive](https://gochronicles.com/dive/)**, **[grype](https://github.com/anchore/grype)**, **[trivy](https://aquasecurity.github.io/trivy)**  and others...
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
- 		<version>3.2.5-SNAPSHOT</version>
+		<version>3.2.5</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -21,11 +21,17 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
+		<!-- <dependency>
 			<groupId>io.micrometer</groupId>
 			<artifactId>micrometer-registry-prometheus</artifactId>
 			<scope>runtime</scope>
-		</dependency>
+		</dependency> -->
+
+		<!-- <dependency>
+			<groupId>org.crac</groupId>
+			<artifactId>crac</artifactId>
+			<version>1.4.0</version>
+		</dependency> -->
 
 		<dependency>
 			<groupId>org.flywaydb</groupId>
@@ -158,7 +164,6 @@
 						<!-- -verbose:gc -XX:+PrintGCDetails -->
 						-Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
 						<!-- -agentlib:native-image-agent=config-output-dir=target/native-image -->
-						<!-- -Dspring.aot.enabled=true -->
 					</jvmArguments>
 
 					<systemPropertyVariables>
@@ -203,7 +208,7 @@
 		</plugins>
 	</build>
 
-	<repositories>
+	<!-- <repositories>
 		<repository>
 		  	<id>spring-milestones</id>
 		  	<name>Spring Milestones</name>
@@ -239,5 +244,5 @@
 			 	<enabled>false</enabled>
 		  	</releases>
 		</pluginRepository>
-	 </pluginRepositories>
+	 </pluginRepositories> -->
 </project>

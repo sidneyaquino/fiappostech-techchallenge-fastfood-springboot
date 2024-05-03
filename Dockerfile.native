@@ -8,11 +8,11 @@ COPY src/ src
 RUN --mount=type=cache,target=/root/.m2 \
    ./mvnw -Pnative package native:compile-no-fork -DskipTests -Djacoco.skip
 
-FROM cgr.dev/chainguard/busybox:latest
+# FROM cgr.dev/chainguard/static:latest
+FROM docker.io/library/busybox:musl
 COPY --chown=755 --from=build /tmp/target/fastfood /app/app
-# RUN addgroup --system nonroot && \
-#    adduser -S -s /usr/sbin/nologin -D -H -G nonroot nonroot
-#    # adduser --system --disabled-login --disabled-password --no-create-home --ingroup javauser javauser
-# USER nonroot
+RUN addgroup --system nonroot && \
+   adduser -S -s /usr/sbin/nologin -D -H -G nonroot nonroot
+USER nonroot
 SHELL ["/bin/sh", "-c"]
-CMD /app/app -Dserver.port=$PORT
+CMD ["/app/app", "-Dserver.port=", "$PORT"]
