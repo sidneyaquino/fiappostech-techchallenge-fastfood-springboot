@@ -18,7 +18,7 @@ COPY --chown=755 --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --chown=755 --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 RUN addgroup --system nonroot && \
    adduser -S -s /usr/sbin/nologin -D -H -G nonroot nonroot
-USER nonroot
+USER nonroot:nonroot
 SHELL ["/bin/sh", "-c"]
 CMD java -cp app:app/lib/* com.fiappostech.fastfood.FastfoodApplication \
    -Dserver.port=$PORT $JAVA_OPTS -Dspring.aot.enabled=true

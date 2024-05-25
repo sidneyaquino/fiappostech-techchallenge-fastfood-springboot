@@ -13,6 +13,6 @@ FROM docker.io/library/busybox:musl
 COPY --chown=755 --from=build /tmp/target/fastfood /app/app
 RUN addgroup --system nonroot && \
    adduser -S -s /usr/sbin/nologin -D -H -G nonroot nonroot
-USER nonroot
+USER nonroot:nonroot
 SHELL ["/bin/sh", "-c"]
-CMD ["/app/app", "-Dserver.port=", "$PORT"]
+CMD /app/app -Dserver.port=$PORT
