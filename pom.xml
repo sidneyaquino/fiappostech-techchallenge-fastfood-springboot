@@ -198,10 +198,11 @@
 						<buildArg>-H:+UnlockExperimentalVMOptions</buildArg>
 						<!-- <buildArg>- -enable-preview</buildArg> -->
 						<buildArg>--strict-image-heap</buildArg>
-						<buildArg>--static --libc=musl</buildArg>
+						<!-- <buildArg>- -static - -libc=musl</buildArg> -->
 						<!-- <buildArg>-H:+StaticExecutableWithDynamicLibC</buildArg> -->
 						<!-- <buildArg>-march=native</buildArg> -->
 						<!-- <buildArg>-gc=G1</buildArg> -->
+                                                <buildArg>--gc=parallel</buildArg>
 					</buildArgs>
 				</configuration>
 			</plugin>

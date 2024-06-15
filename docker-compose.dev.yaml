@@ -3,7 +3,7 @@ services:
   # APP
   # ====================================================================================================================
   web:
-    image: ghcr.io/graalvm/native-image-community:21-muslib
+    image: docker.io/bellsoft/liberica-native-image-kit-container:jdk-21-nik-23-musl
     container_name: fastfood
     working_dir: /app
     volumes:
@@ -33,7 +33,7 @@ services:
   # POSTGRES SERVER
   # ====================================================================================================================
   sql:
-    image: cgr.dev/chainguard/postgres:latest
+    image: docker.io/chainguard/postgres:latest-dev
     container_name: postgres
     environment:
       POSTGRES_DB: fastfood

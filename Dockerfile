@@ -1,4 +1,4 @@
-FROM ghcr.io/graalvm/native-image-community:21-muslib AS build
+FROM docker.io/bellsoft/liberica-native-image-kit-container:jdk-21-nik-23-musl AS build
 WORKDIR /tmp
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
@@ -10,7 +10,6 @@ RUN --mount=type=cache,target=/root/.m2 \
 RUN mkdir -p target/dependency && \
    (cd target/dependency; jar -xf ../*.jar)
 
-# FROM cgr.dev/chainguard/jre-lts:latest
 FROM docker.io/bellsoft/liberica-runtime-container:jre-21-slim-musl
 ARG DEPENDENCY=/tmp/target/dependency
 COPY --chmod=755 --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib

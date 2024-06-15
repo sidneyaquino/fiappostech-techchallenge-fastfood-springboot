@@ -3,7 +3,7 @@ services:
   # POSTGRES SERVER
   # ====================================================================================================================
   sql:
-    image: cgr.dev/chainguard/postgres:latest
+    image: docker.io/chainguard/postgres:latest-dev
     container_name: postgres
     environment:
       POSTGRES_DB: fastfood
