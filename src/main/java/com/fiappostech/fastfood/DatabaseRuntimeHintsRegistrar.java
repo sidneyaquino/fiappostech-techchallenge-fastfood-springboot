@@ -8,9 +8,9 @@ import org.springframework.lang.Nullable;
 
 public class DatabaseRuntimeHintsRegistrar implements RuntimeHintsRegistrar {
     @Override
-    public void registerHints(RuntimeHints hints, @Nullable ClassLoader classLoader) {
-        hints
-                .reflection()
-                .registerType(PostgreSQLDialect.class, MemberCategory.values());
+    public void registerHints(@Nullable RuntimeHints hints, @Nullable ClassLoader classLoader) {
+        if (hints != null) {
+            hints.reflection().registerType(PostgreSQLDialect.class, MemberCategory.values());
+        }
     }
 }

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
+import org.hibernate.annotations.SQLRestriction;
 
 import com.fiappostech.fastfood.domain.dto.product.ProductRequest;
 import com.fiappostech.fastfood.domain.dto.product.ProductResponse;
@@ -30,7 +30,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @SQLDelete(sql = "UPDATE products SET deleted = true WHERE id=?")
-@Where(clause = "deleted = false")
+@SQLRestriction(value = "deleted = false")
 @Entity
 @Table(name = "products")
 public class ProductEntity {

@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: docker.io/sidneyaquino/fiappostech-fastfood:0.4.2-SNAPSHOT
+    image: docker.io/sidneyaquino/fiappostech-fastfood:0.4.2
     container_name: fastfood
     ports:
       - 8080:8080
@@ -27,7 +27,7 @@ services:
   # POSTGRES SERVER
   # ====================================================================================================================
   sql:
-    image: docker.io/chainguard/postgres:latest-dev
+    image: docker.io/chainguard/postgres:latest
     container_name: postgres
     environment:
       POSTGRES_DB: fastfood

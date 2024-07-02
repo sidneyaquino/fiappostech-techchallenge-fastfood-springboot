@@ -26,9 +26,9 @@ public class PaymentFindByOrderIdRepository {
       }
       
       var paymentEntity = paymentRepository.getReferenceById(paymentProjection.getPaymentId());
-      if(paymentEntity == null) {
-         throw new RecordNotFoundException(orderId);
-      }
+      // if(paymentEntity == null) {
+      //    throw new RecordNotFoundException(orderId);
+      // }
       return paymentEntity.toPaymentResponse();
    }
 }
