@@ -1,4 +1,4 @@
-FROM docker.io/bellsoft/liberica-runtime-container:jdk-21-cds-slim-musl AS builder
+FROM docker.io/bellsoft/liberica-runtime-container:jdk-21-crac-cds-slim-musl AS builder
 WORKDIR /tmp
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
@@ -10,19 +10,18 @@ RUN --mount=type=cache,target=/root/.m2 \
 RUN java -Djarmode=tools -jar target/*.jar \
    extract --layers --launcher --destination target/extracted
 
-FROM docker.io/bellsoft/liberica-runtime-container:jdk-21-cds-slim-musl AS optimizer
+FROM docker.io/bellsoft/liberica-runtime-container:jre-21-cds-slim-musl AS optimizer
 WORKDIR /tmp
 ENV DEPENDENCY=/tmp/target/extracted
 COPY --from=builder ${DEPENDENCY}/dependencies/ ./
 COPY --from=builder ${DEPENDENCY}/spring-boot-loader/ ./
 COPY --from=builder ${DEPENDENCY}/snapshot-dependencies/ ./
 COPY --from=builder ${DEPENDENCY}/application/ ./
-ENV DB_HOST=localhost
 RUN java -Dserver.port=$PORT $JAVA_OPTS -Dspring.aot.enabled=true \
-   -XX:ArchiveClassesAtExit=./app.jsa -Dspring.context.exit=onRefresh \
-   org.springframework.boot.loader.launch.JarLauncher
+      -XX:ArchiveClassesAtExit=./app.jsa -Dspring.context.exit=onRefresh \
+      org.springframework.boot.loader.launch.JarLauncher
 
-FROM docker.io/bellsoft/liberica-runtime-container:jdk-21-cds-slim-musl
+FROM docker.io/bellsoft/liberica-runtime-container:jre-21-cds-slim-musl
 WORKDIR /app
 COPY --chmod=755 --from=optimizer /tmp ./
 RUN addgroup --system nonroot && \
@@ -30,5 +29,5 @@ RUN addgroup --system nonroot && \
 USER nonroot:nonroot
 SHELL ["/bin/sh", "-c"]
 CMD java -Dserver.port=$PORT $JAVA_OPTS -Dspring.aot.enabled=true \
-   -XX:SharedArchiveFile=./app.jsa -Xshare:on \
-   org.springframework.boot.loader.launch.JarLauncher
+      -XX:SharedArchiveFile=./app.jsa -Xshare:on \
+      org.springframework.boot.loader.launch.JarLauncher
