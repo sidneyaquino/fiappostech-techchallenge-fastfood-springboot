@@ -8,7 +8,7 @@ COPY src/ src
 RUN --mount=type=cache,target=/root/.m2 \
    ./mvnw -Pnative package native:compile-no-fork -DskipTests -Djacoco.skip
 
-FROM docker.io/bellsoft/alpaquita-linux-base:stream-musl
+FROM docker.io/bellsoft/alpaquita-linux-base:stream-musl AS runner
 COPY --chown=755 --from=builder /tmp/target/fastfood /app/app
 RUN addgroup --system nonroot && \
    adduser -S -s /usr/sbin/nologin -D -H -G nonroot nonroot
