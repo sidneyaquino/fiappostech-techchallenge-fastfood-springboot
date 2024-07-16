@@ -30,7 +30,6 @@
 		<!-- <dependency>
 			<groupId>org.crac</groupId>
 			<artifactId>crac</artifactId>
-			<version>1.4.0</version>
 		</dependency> -->
 
 		<dependency>
@@ -165,10 +164,10 @@
 						-Dserver.port=8080
 						-Dfile.encoding=UTF-8
 						-Dspring.backgroundpreinitializer.ignore=true
-						<!-- -XX:+UseContainerSupport -Xmx300m -Xss512k -XX:CICompilerCount=2 -->
-						<!-- -verbose:gc -XX:+PrintGCDetails -->
 						-Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
 						<!-- -agentlib:native-image-agent=config-output-dir=target/native-image -->
+						<!-- -XX:+UseContainerSupport -Xmx300m -Xss512k -XX:CICompilerCount=2 -->
+						<!-- -verbose:gc -XX:+PrintGCDetails -->
 					</jvmArguments>
 
 					<systemPropertyVariables>

@@ -1,4 +1,4 @@
-FROM docker.io/bellsoft/liberica-runtime-container:jdk-21-cds-slim-musl AS builder
+FROM docker.io/bellsoft/liberica-native-image-kit-container:jdk-21-nik-23-musl AS builder
 WORKDIR /tmp
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
@@ -17,7 +17,7 @@ COPY --from=builder ${DEPENDENCY}/dependencies/ ./
 COPY --from=builder ${DEPENDENCY}/spring-boot-loader/ ./
 COPY --from=builder ${DEPENDENCY}/snapshot-dependencies/ ./
 COPY --from=builder ${DEPENDENCY}/application/ ./
-RUN java -Dserver.port=$PORT $JAVA_OPTS -Dspring.aot.enabled=true \
+RUN java \
       -XX:ArchiveClassesAtExit=./app.jsa -Dspring.context.exit=onRefresh \
       org.springframework.boot.loader.launch.JarLauncher
 
