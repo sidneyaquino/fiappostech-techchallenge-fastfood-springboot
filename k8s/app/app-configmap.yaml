@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: app-configmap
 data:
-  JAVA_OPTS: "-XX:+UseContainerSupport -Xmx300m -Xss512k -XX:CICompilerCount=2 -Dspring.backgroundpreinitializer.ignore=true -Dfile.encoding=UTF-8"
+  # JAVA_OPTS: "-XX:+UseContainerSupport -Xmx300m -Xss512k -XX:CICompilerCount=2"
   APP_PROFILE: prod

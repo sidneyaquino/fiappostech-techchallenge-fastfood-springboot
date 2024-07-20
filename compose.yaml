@@ -11,7 +11,7 @@ services:
     ports:
       - 8080:8080
     environment:
-      JAVA_OPTS: "-XX:+UseContainerSupport -Xmx300m -Xss512k -XX:CICompilerCount=2 -Dspring.backgroundpreinitializer.ignore=true -Dfile.encoding=UTF-8"
+      # JAVA_OPTS: "-XX:+UseContainerSupport -Xmx300m -Xss512k -XX:CICompilerCount=2"
       APP_PROFILE: prod
       DB_HOST: sql
       DB_NAME: fastfood
