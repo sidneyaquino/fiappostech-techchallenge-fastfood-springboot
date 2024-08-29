@@ -1,4 +1,4 @@
-FROM docker.io/bellsoft/liberica-native-image-kit-container:jdk-21-nik-23-musl AS builder
+FROM docker.io/bellsoft/liberica-native-image-kit-container:jdk-22-nik-24-musl AS builder
 WORKDIR /tmp
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
@@ -10,7 +10,7 @@ RUN --mount=type=cache,target=/root/.m2 \
 RUN java -Djarmode=tools -jar target/*.jar \
       extract --layers --launcher --destination target/extracted
 
-FROM docker.io/bellsoft/liberica-runtime-container:jre-21-cds-slim-musl AS optimizer
+FROM docker.io/bellsoft/liberica-runtime-container:jre-22-cds-slim-musl AS optimizer
 WORKDIR /tmp
 ENV DEPENDENCY=/tmp/target/extracted
 COPY --from=builder ${DEPENDENCY}/dependencies/ ./
@@ -21,7 +21,7 @@ RUN java \
       -XX:ArchiveClassesAtExit=./app.jsa -Dspring.context.exit=onRefresh \
       org.springframework.boot.loader.launch.JarLauncher
 
-FROM docker.io/bellsoft/liberica-runtime-container:jre-21-cds-slim-musl AS runner
+FROM docker.io/bellsoft/liberica-runtime-container:jre-22-cds-slim-musl AS runner
 WORKDIR /app
 COPY --chmod=755 --from=optimizer /tmp ./
 RUN addgroup --system nonroot && \

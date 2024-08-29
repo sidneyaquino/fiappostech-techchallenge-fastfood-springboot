@@ -1,4 +1,4 @@
-FROM docker.io/bellsoft/liberica-native-image-kit-container:jdk-21-nik-23-musl AS builder
+FROM docker.io/bellsoft/liberica-native-image-kit-container:jdk-22-nik-24-musl AS builder
 WORKDIR /tmp
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./

@@ -3,7 +3,7 @@ services:
   # APP
   # ====================================================================================================================
   web:
-    image: docker.io/bellsoft/liberica-native-image-kit-container:jdk-21-nik-23-musl
+    image: docker.io/bellsoft/liberica-native-image-kit-container:jdk-22-nik-24-musl
     container_name: fastfood
     working_dir: /app
     volumes:
