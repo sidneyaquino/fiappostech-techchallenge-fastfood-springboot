@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+  	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.3</version>
+      <artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.4.2</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -17,7 +17,7 @@
 	<description>Tech Challenge project for Spring Boot</description>
 
 	<properties>
-		<java.version>22</java.version>
+		<java.version>21</java.version>
 	</properties>
 
 	<dependencies>
@@ -109,6 +109,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-undertow</artifactId>
 		</dependency> -->
+
+		<!-- <dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-locator-lite</artifactId>
+		</dependency> -->
 	</dependencies>
 
 	<build>
@@ -156,7 +161,9 @@
 					<image>
 						<builder>paketobuildpacks/builder:tiny</builder>
 						<env>
+							<BP_JVM_CDS_ENABLE>true</BP_JVM_CDS_ENABLE>
 							<BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+							<BP_SPRING_AOT_ENABLED>true</BP_SPRING_AOT_ENABLED>
 						</env>
 					</image>
 
@@ -164,7 +171,7 @@
 						-Dserver.port=8080
 						-Dfile.encoding=UTF-8
 						-Dspring.backgroundpreinitializer.ignore=true
-						-Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+						-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
 						<!-- -agentlib:native-image-agent=config-output-dir=target/native-image -->
 						<!-- -XX:+UseContainerSupport -Xmx300m -Xss512k -XX:CICompilerCount=2 -->
 						<!-- -verbose:gc -XX:+PrintGCDetails -->
@@ -200,7 +207,7 @@
 						<!-- <buildArg>- -enable-sbom=cyclondx,strict,hierarchical</buildArg> -->
 						<buildArg>-J-XX:MaxRAMPercentage=80.0</buildArg>
 						<buildArg>-H:+UnlockExperimentalVMOptions</buildArg>
-						<!-- <buildArg>- -enable-preview</buildArg> -->
+						<buildArg>--enable-preview</buildArg>
 						<buildArg>--strict-image-heap</buildArg>
 						<!-- <buildArg>- -static - -libc=musl</buildArg> -->
 						<!-- <buildArg>-H:+StaticExecutableWithDynamicLibC</buildArg> -->
