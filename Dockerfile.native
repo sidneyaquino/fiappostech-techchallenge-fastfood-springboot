@@ -1,4 +1,5 @@
-FROM docker.io/bellsoft/liberica-native-image-kit-container:jdk-21-nik-23-musl AS builder
+# FROM docker.io/bellsoft/liberica-native-image-kit-container:jdk-24-nik-24-glibc AS builder
+FROM ghcr.io/graalvm/native-image-community:24 AS builder
 WORKDIR /tmp
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
@@ -6,12 +7,14 @@ RUN --mount=type=cache,target=/root/.m2 \
    ./mvnw dependency:resolve
 COPY src/ src
 RUN --mount=type=cache,target=/root/.m2 \
-   ./mvnw -Pnative package native:compile-no-fork -DskipTests -Djacoco.skip
+   ./mvnw -Pnative package native:compile-no-fork \
+      -DskipTests -Djacoco.skip -Dmaven.compiler.proc=full
 
-FROM docker.io/bellsoft/alpaquita-linux-base:stream-musl AS runner
+FROM docker.io/bellsoft/alpaquita-linux-base:stream-glibc AS runner
+# FROM docker.io/library/busybox:glibc AS runner
 COPY --chown=755 --from=builder /tmp/target/fastfood /app/app
-RUN addgroup --system nonroot && \
-   adduser -S -s /usr/sbin/nologin -D -H -G nonroot nonroot
-USER nonroot:nonroot
+RUN adduser --disabled-password -u 10001 nonroot \
+    && echo "nonroot:x:10001:10001:App User:/:/sbin/nologin" > /etc/minimal-passwd
+USER nonroot
 SHELL ["/bin/sh", "-c"]
 CMD /app/app -Dserver.port=$PORT

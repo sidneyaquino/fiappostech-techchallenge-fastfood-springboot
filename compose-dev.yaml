@@ -3,7 +3,8 @@ services:
   # APP
   # ====================================================================================================================
   web:
-    image: docker.io/bellsoft/liberica-native-image-kit-container:jdk-21-nik-23-musl
+    image: docker.io/bellsoft/liberica-native-image-kit-container:jdk-24-nik-24-musl
+    # image: ghcr.io/graalvm/native-image-community:24-muslib
     container_name: fastfood
     working_dir: /app
     volumes:
@@ -21,7 +22,7 @@ services:
     entrypoint:
       [
         "sh", "-c",
-        "./mvnw spring-boot:run -Dspring.aot.enabled=true -DskipTests"
+        "./mvnw spring-boot:run -DskipTests -Dmaven.compiler.proc=full"
       ]
     depends_on:
       - sql
