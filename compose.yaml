@@ -11,13 +11,13 @@ services:
     ports:
       - ${PORT:-8080}:${PORT:-8080}
     environment:
-      # JAVA_OPTS: "-XX:+UseContainerSupport -Xmx300m -Xss512k -XX:CICompilerCount=2"
+      # JAVA_OPTS: "-Xmx300m -Xss512k -XX:CICompilerCount=2"
       APP_PROFILE: prod
       PORT: ${PORT:-8080}
-      DB_HOST: sql
-      DB_NAME: fastfood
-      DB_USER: postgres
-      DB_PASS: postgres
+      DB_HOST: ${DB_HOST:-sql}
+      DB_NAME: ${DB_NAME:-fastfood}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASS: ${DB_PASS:-postgres}
     depends_on:
       - sql
     networks:
@@ -28,12 +28,12 @@ services:
   # POSTGRES SERVER
   # ====================================================================================================================
   sql:
-    image: docker.io/chainguard/postgres:latest
+    image: docker.io/chainguard/postgres:latest-dev
     container_name: postgres
     environment:
-      POSTGRES_DB: fastfood
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: $(DB_NAME:-fastfood}
+      POSTGRES_USER: $(DB_USER:-postgres}
+      POSTGRES_PASSWORD: $(DB_PASS:-postgres}
       PGDATA: /var/lib/postgresql/data/pgdata
       TZ: GMT
     ports:
