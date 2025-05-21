@@ -12,16 +12,12 @@ RUN --mount=type=cache,target=/root/.m2 \
 RUN mkdir -p target/extracted && \
    (cd target/extracted; jar -xf ../*.jar)
 
-FROM scratch AS optimizer
-WORKDIR /tmp
-ENV DEPENDENCY=/tmp/target/extracted
-COPY --from=builder ${DEPENDENCY}/BOOT-INF/lib ./lib
-COPY --from=builder ${DEPENDENCY}/META-INF ./META-INF
-COPY --from=builder ${DEPENDENCY}/BOOT-INF/classes ./
-
 FROM docker.io/bellsoft/liberica-runtime-container:jre-24-slim-musl AS runner
 # FROM docker.io/bellsoft/liberica-openjre-alpine-musl:24 AS runner
-COPY --chmod=755 --from=optimizer /tmp /app
+ENV DEPENDENCY=/tmp/target/extracted
+COPY --from=builder ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY --from=builder ${DEPENDENCY}/META-INF /app/META-INF
+COPY --from=builder ${DEPENDENCY}/BOOT-INF/classes /app
 RUN adduser --disabled-password -u 10001 nonroot \
    && echo "nonroot:x:10001:10001:App User:/:/sbin/nologin" > /etc/minimal-passwd
 USER nonroot

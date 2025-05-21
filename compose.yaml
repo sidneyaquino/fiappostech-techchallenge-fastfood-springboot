@@ -9,15 +9,15 @@ services:
     image: docker.io/sidneyaquino/fiappostech-fastfood:0.4.2
     container_name: fastfood
     ports:
-      - ${PORT:-8080}:${PORT:-8080}
+      - ${_APP_PORT:-8080}:${_APP_PORT:-8080}
     environment:
       # JAVA_OPTS: "-Xmx300m -Xss512k -XX:CICompilerCount=2"
       APP_PROFILE: prod
-      PORT: ${PORT:-8080}
-      DB_HOST: ${DB_HOST:-sql}
-      DB_NAME: ${DB_NAME:-fastfood}
-      DB_USER: ${DB_USER:-postgres}
-      DB_PASS: ${DB_PASS:-postgres}
+      PORT: ${_APP_PORT:-8080}
+      DB_HOST: ${_DB_HOST:-sql}
+      DB_NAME: ${_DB_NAME:-fastfood}
+      DB_USER: ${_DB_USER:-postgres}
+      DB_PASS: ${_DB_PASS:-postgres}
     depends_on:
       - sql
     networks:
@@ -28,12 +28,13 @@ services:
   # POSTGRES SERVER
   # ====================================================================================================================
   sql:
-    image: docker.io/chainguard/postgres:latest-dev
+    image: docker.io/library/postgres:17-alpine
+    # image: docker.io/chainguard/postgres:latest-dev
     container_name: postgres
     environment:
-      POSTGRES_DB: $(DB_NAME:-fastfood}
-      POSTGRES_USER: $(DB_USER:-postgres}
-      POSTGRES_PASSWORD: $(DB_PASS:-postgres}
+      POSTGRES_DB: ${_DB_NAME:-fastfood}
+      POSTGRES_USER: ${_DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${_DB_PASS:-postgres}
       PGDATA: /var/lib/postgresql/data/pgdata
       TZ: GMT
     ports:

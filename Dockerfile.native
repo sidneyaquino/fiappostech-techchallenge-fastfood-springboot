@@ -17,7 +17,7 @@ RUN adduser --disabled-password -u 10001 nonroot \
    && echo "nonroot:x:10001:10001:App User:/:/sbin/nologin" > /etc/minimal-passwd
 USER nonroot
 SHELL ["/bin/sh", "-c"]
-CMD [ "/app/app", "-Dserver.port=${PORT:-8080}", \
+CMD ["/app/app", "-Dserver.port=${PORT:-8080}", \
    "-Dspring.backgroundpreinitializer.ignore=true", \
    "-Dfile.encoding=UTF-8" \
 ]
